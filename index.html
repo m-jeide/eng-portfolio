@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>It Worked</title>
+  <style>
+    body {
+      background: repeating-linear-gradient(
+        45deg,
+        hotpink,
+        hotpink 20px,
+        gold 20px,
+        gold 40px
+      );
+      font-family: Comic Sans MS, cursive, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      animation: spin 6s linear infinite;
+    }
+    h1 {
+      background-color: white;
+      padding: 20px;
+      border: 5px dashed red;
+      border-radius: 15px;
+      box-shadow: 0 0 20px lime;
+      transform: rotate(-3deg);
+      animation: shake 0.5s infinite;
+    }
+    @keyframes spin {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+    @keyframes shake {
+      0% { transform: rotate(-3deg) translate(0, 0); }
+      25% { transform: rotate(3deg) translate(3px, -2px); }
+      50% { transform: rotate(-3deg) translate(-3px, 2px); }
+      75% { transform: rotate(3deg) translate(2px, -3px); }
+      100% { transform: rotate(-3deg) translate(0, 0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>hey ms. guzman if you can see this it worked</h1>
+</body>
+</html>
