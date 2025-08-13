@@ -1,0 +1,20 @@
+{
+  "title": "Basic Safety Notes",
+  "date": "08/27/24",
+  "type": "Notes",
+  "brief": [
+    "Review general safety rules for the classroom and laboratory",
+    "Review safety rules specific to possible electrical injures"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/DE/Notes/General Safety Notes/General Safety Notes.pdf"
+        }
+      ]
+    }
+  ]
+}

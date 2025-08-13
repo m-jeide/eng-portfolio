@@ -1,0 +1,19 @@
+{
+  "title": "Analog Component Identification",
+  "date": "08/30/24",
+  "type": "Notes",
+  "brief": [
+    "Learn about and how to classify analog components"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/DE/Notes/Analog Component Identification Notes/Analog Component Identification Notes.pdf"
+        }
+      ]
+    }
+  ]
+}

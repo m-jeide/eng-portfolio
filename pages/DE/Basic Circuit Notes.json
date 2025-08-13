@@ -1,0 +1,22 @@
+{
+  "title": "Basic Circuit Notes",
+  "date": "08/26/24",
+  "type": "Notes",
+  "brief": [
+    "Introduce basic circuits and their symbols",
+    "Introduce components and equipment that are fundamental to understanding circuits",
+    "Define voltage, current, and resistance",
+    "Prepare for Activity 1.1.2 Investigating Basic Circuits"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/DE/Notes/Basic Circuit Notes/Basic Circuit Notes.pdf"
+        }
+      ]
+    }
+  ]
+}
