@@ -1,0 +1,19 @@
+{
+  "title": "First Time Soldering",
+  "date": "09/11/24",
+  "type": "Notes",
+  "brief": [
+    "First time soldering, this activity was meant to improve and teach us how to solder."
+  ],
+  "elements": [
+    {
+      "type": "Video",
+      "items": [
+        {
+          "label": "First Time Soldering",
+          "src": "https://www.youtube.com/watch?v=rBXvdt5HfJ0"
+        }
+      ]
+    }
+  ]
+}

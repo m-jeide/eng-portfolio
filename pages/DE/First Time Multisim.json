@@ -1,0 +1,19 @@
+{
+  "title": "First Time Multisim",
+  "date": "09/13/24",
+  "type": "Notes",
+  "brief": [
+    "First time using Multisim, this activity was meant to help us learn how to use NI Multisim software."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}

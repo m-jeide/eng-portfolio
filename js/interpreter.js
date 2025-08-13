@@ -129,7 +129,19 @@
         return tile(label, `<div class="tile-body"></div>`, embed);
       }).join("");
       return lane(el.label || "Video", tiles);
-    }
+    },
+    image: (el, ctx, _i, page) => {
+      const items = normalizeItems(el);
+      const tiles = items.map(it => {
+        const src = makeSrc(it.src, page, ctx);
+        const label = escapeHtml(it.label || "Image");
+        const alt = escapeHtml(it.alt || it.label || page.title || "");
+        const img = `<img class="image-frame" src="${src}" alt="${alt}" loading="lazy">`;
+        return tile(label, `<div class="tile-body"></div>`, img);
+      }).join("");
+      return lane(el.label || "Image", tiles);
+    },
+    images: (el, ctx, i, page) => RENDERERS.image(el, ctx, i, page) // alias
   };
 
   function block(title, innerHtml) {
@@ -208,7 +220,7 @@
   }
 
   function absolutize(p) { return /^https?:\/\//i.test(p) ? p : BASE + p.replace(/^\/+/, ""); }
-  function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
+  function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;","&gt;":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
   function richText(s) {
     const esc = escapeHtml(String(s));
     const linked = esc.replace(/(https?:\/\/[^\s)]+)/g, '<a href="$1" class="btn">$1</a>');
