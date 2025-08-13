@@ -1,0 +1,24 @@
+{
+  "title": "Circuit Theory Notes",
+  "date": "09/04/24",
+  "type": "Notes",
+  "brief": [
+    "Review voltage, current, and resistance",
+    "Review and apply Ohm’s Law",
+    "Review series circuits",
+    "Review parallel circuits",
+    "Review and apply Kirchoff's Voltage Law",
+    "Review and apply Kirchoff's Current Law"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/DE/Notes/Circuit Theory Notes/Circuit Theory Notes.pdf"
+        }
+      ]
+    }
+  ]
+}

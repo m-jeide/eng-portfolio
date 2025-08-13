@@ -1,0 +1,20 @@
+{
+  "title": "Nikola Tesla Notes",
+  "date": "09/03/24",
+  "type": "Notes",
+  "brief": [
+    "Learn about famous inventor Nikola Tesla and his life",
+    "Learn about Alternating Current (AC)"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/DE/Notes/Nikola Tesla Notes/Nikola Tesla Notes.pdf"
+        }
+      ]
+    }
+  ]
+}
