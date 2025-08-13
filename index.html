@@ -1,49 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>It Worked</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Engineering Portfolio • Index</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <script src="./site.config.js"></script>
   <style>
-    body {
-      background: repeating-linear-gradient(
-        45deg,
-        hotpink,
-        hotpink 20px,
-        gold 20px,
-        gold 40px
-      );
-      font-family: Comic Sans MS, cursive, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      animation: spin 12s linear infinite;
+    /* lightweight page-only sugar */
+    .brand { font-weight: 800; font-size: 22px }
+    .toolbar { display: flex; gap: 10px; align-items: center; margin: 16px 0 20px }
+    .search, .select {
+      padding: 10px 12px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: var(--card); color: var(--text)
     }
-    h1 {
-      background-color: white;
-      padding: 20px;
-      border: 5px dashed red;
-      border-radius: 15px;
-      box-shadow: 0 0 20px lime;
-      transform: rotate(-3deg);
-      animation: shake 2s infinite;
-    }
-    @keyframes spin {
-      0% { filter: hue-rotate(0deg); }
-      100% { filter: hue-rotate(360deg); }
-    }
-    @keyframes shake {
-      0% { transform: rotate(-3deg) translate(0, 0); }
-      25% { transform: rotate(3deg) translate(3px, -2px); }
-      50% { transform: rotate(-3deg) translate(-3px, 2px); }
-      75% { transform: rotate(3deg) translate(2px, -3px); }
-      100% { transform: rotate(-3deg) translate(0, 0); }
-    }
+    .search { flex: 1 }
+    .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) }
+    .class-card h2 { margin: 0 0 8px; font-size: 18px }
+    .list { display: grid; gap: 8px }
+    .item { display: flex; justify-content: space-between; gap: 10px; padding: 8px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,.08) }
+    .item a { text-decoration: none; color: var(--text) }
+    .muted { color: var(--muted); font-size: 13px }
+    .empty { color: var(--muted); font-style: italic }
   </style>
 </head>
 <body>
-  <h1>hey ms. guzman if you can see this it worked</h1>
+  <main class="container">
+    <header class="toolbar">
+      <div class="brand">Engineering Portfolio</div>
+      <input id="q" class="search" placeholder="Search title, id, or tag" />
+      <select id="cls" class="select">
+        <option value="">All classes</option>
+      </select>
+    </header>
+
+    <div id="classes" class="grid">
+      <div class="loading">Loading…</div>
+    </div>
+  </main>
+
+  <script src="./js/index.js"></script>
 </body>
 </html>

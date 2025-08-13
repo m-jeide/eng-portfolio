@@ -1,0 +1,47 @@
+{
+  "title": "1.1.9 Soldering Desoldering",
+  "date": "2025-08-12",
+  "type": "Note",
+  "brief": [
+    "Wear eye protection and work in a ventilated area.",
+    "Heat the joint, not the solder. Aim for a quick, shiny fillet.",
+    "Use wick or a pump to remove solder without lifting pads."
+  ],
+  "elements": [
+    {
+      "type": "Synopsis",
+      "content": "Quick overview of soldering and desoldering best practices with links to class resources."
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Lesson PDF",
+          "src": "resources/DE/Notes/1.1.9 Soldering Desoldering/1.1.9 Soldering Desoldering.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Video",
+      "items": [
+        {
+          "label": "How to Solder",
+          "src": "https://www.youtube.com/watch?v=fYz5nIHH0iY"
+        }
+      ]
+    },
+    {
+      "type": "Design Brief",
+      "content": "Build an LED board with correct polarity and pass continuity tests. Joints must be smooth and shiny."
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Rubric",
+          "src": "resources/DE/Notes/1.1.9 Soldering Desoldering/1.1.9 Soldering Desoldering.pdf"
+        }
+      ]
+    }
+  ]
+}
