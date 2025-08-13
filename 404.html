@@ -1,16 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio • Page</title>
-  <link rel="stylesheet" href="./css/style.css" />
-  <script src="./site.config.js"></script>
+
+  <!-- 1) load config from the project root -->
+  <script src="/eng-portfolio/site.config.js"></script>
+
+  <!-- 2) set document base so relative paths resolve under /eng-portfolio/ -->
+  <script>document.write('<base href="' + (window.SITE_BASE || "/") + '">');</script>
+
+  <!-- 3) now relative asset paths work everywhere -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <main id="app" class="container">
     <div class="loading">Loading…</div>
   </main>
-  <script src="./js/interpreter.js"></script>
+  <script src="js/interpreter.js"></script>
 </body>
-</html>

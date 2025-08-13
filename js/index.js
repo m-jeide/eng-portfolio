@@ -9,7 +9,6 @@
   const q = document.getElementById("q");
   const sel = document.getElementById("cls");
 
-  // populate class filter
   for (const c of CLASSES) {
     const opt = document.createElement("option");
     opt.value = c;
@@ -21,7 +20,7 @@
 
   async function boot() {
     try {
-      // try local manifest first
+      // If you later add pages/manifest.json, we can prefer it
       const manifest = await tryFetchJson(BASE + "pages/manifest.json");
       let data;
       if (manifest) {
@@ -119,7 +118,6 @@
   }
 
   // helpers
-
   async function tryFetchJson(url) {
     try {
       const r = await fetch(url, { cache: "no-store" });
@@ -135,7 +133,7 @@
       id: it.id,
       title: it.title || it.id,
       type: it.type || "",
-      date: it.date || "",
+      date: it.date || ""
     }));
   }
 
@@ -149,12 +147,6 @@
     return `<div class="card" style="padding:14px;border-radius:14px">${inner}</div>`;
   }
 
-  function normalizeBase(b) {
-    if (!b) return "/";
-    return b.endsWith("/") ? b : b + "/";
-  }
-
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
-  }
+  function normalizeBase(b) { return b && !b.endsWith("/") ? b + "/" : (b || "/"); }
+  function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
 })();

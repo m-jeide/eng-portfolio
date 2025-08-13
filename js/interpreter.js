@@ -20,16 +20,16 @@
       return;
     }
 
-    const jsonUrl = buildJsonUrl(cls, id); // fetch from repo root: /{CLASS}/{ID}.json
+    const jsonUrl = buildJsonUrl(cls, id); // fetch from pages/{CLASS}/{ID}.json
     const page = await fetchJson(jsonUrl);
     render(page, { cls, id });
   }
 
-  // Parse either ?class=DE&id=... or /BASE/DE/<id-with-spaces>
+  // Supports ?class=DE&id=... and pretty URLs /eng-portfolio/DE/<id>
   function parseRoute() {
-    const qs = new URLSearchParams(location.search);
-    const clsQ = qs.get("class");
-    const idQ  = qs.get("id");
+    const sp = new URLSearchParams(location.search);
+    const clsQ = sp.get("class");
+    const idQ  = sp.get("id");
     if (clsQ && idQ) return { cls: decodeURIComponent(clsQ), id: decodeURIComponent(idQ) };
 
     let path = decodeURIComponent(location.pathname);
@@ -37,18 +37,17 @@
     const parts = path.replace(/^\/+|\/+$/g, "").split("/");
     if (parts.length >= 2) {
       const cls = parts[0];
-      // optional guard to prevent weird paths
       if (CLASSES.length && !CLASSES.includes(cls)) return { cls: null, id: null };
-      const id = parts.slice(1).join("/"); // keep slashes if you ever nest
+      const id = parts.slice(1).join("/");
       return { cls, id };
     }
     return { cls: null, id: null };
   }
 
-  // Build raw.githubusercontent URL for /{CLASS}/{ID}.json in your repo
   function buildJsonUrl(cls, id) {
     if (!OWNER || !REPO) throw new Error("Missing REPO_OWNER or REPO_NAME in site.config.js");
-    const path = [cls, `${id}.json`].map(seg => seg.split("/").map(encodeURIComponent).join("/")).join("/");
+    const path = ["pages", cls, `${id}.json`]
+      .map(seg => seg.split("/").map(encodeURIComponent).join("/")).join("/");
     return `https://raw.githubusercontent.com/${encodeURIComponent(OWNER)}/${encodeURIComponent(REPO)}/${encodeURIComponent(BR)}/${path}`;
   }
 

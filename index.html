@@ -4,10 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Engineering Portfolio • Index</title>
-  <link rel="stylesheet" href="./css/style.css" />
-  <script src="./site.config.js"></script>
+
+  <!-- Load config first, from absolute project path -->
+  <script src="/eng-portfolio/site.config.js"></script>
+  <!-- Set document base so relative paths work from any route -->
+  <script>document.write('<base href="' + (window.SITE_BASE || "/") + '">');</script>
+
+  <link rel="stylesheet" href="css/style.css" />
   <style>
-    /* lightweight page-only sugar */
     .brand { font-weight: 800; font-size: 22px }
     .toolbar { display: flex; gap: 10px; align-items: center; margin: 16px 0 20px }
     .search, .select {
@@ -29,7 +33,7 @@
   <main class="container">
     <header class="toolbar">
       <div class="brand">Engineering Portfolio</div>
-      <input id="q" class="search" placeholder="Search title, id, or tag" />
+      <input id="q" class="search" placeholder="Search title, id, or type" />
       <select id="cls" class="select">
         <option value="">All classes</option>
       </select>
@@ -40,6 +44,6 @@
     </div>
   </main>
 
-  <script src="./js/index.js"></script>
+  <script src="js/index.js" defer></script>
 </body>
 </html>

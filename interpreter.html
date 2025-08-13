@@ -4,13 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio • Page</title>
-  <link rel="stylesheet" href="./css/style.css" />
-  <script src="./site.config.js"></script>
+
+  <script src="/eng-portfolio/site.config.js"></script>
+  <script>document.write('<base href="' + (window.SITE_BASE || "/") + '">');</script>
+
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <main id="app" class="container">
     <div class="loading">Loading…</div>
   </main>
-  <script src="./js/interpreter.js"></script>
+
+  <script src="js/interpreter.js" defer></script>
 </body>
 </html>
