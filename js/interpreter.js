@@ -20,7 +20,7 @@
       return;
     }
 
-    const jsonUrl = buildJsonUrl(cls, id); // fetch from pages/{CLASS}/{ID}.json
+    const jsonUrl = buildJsonUrl(cls, id);
     const page = await fetchJson(jsonUrl);
     render(page, { cls, id });
   }
@@ -44,6 +44,7 @@
     return { cls: null, id: null };
   }
 
+  // Pull JSON from pages/{CLASS}/{ID}.json in your repo
   function buildJsonUrl(cls, id) {
     if (!OWNER || !REPO) throw new Error("Missing REPO_OWNER or REPO_NAME in site.config.js");
     const path = ["pages", cls, `${id}.json`]
@@ -162,6 +163,22 @@
     const esc = escapeHtml(String(s));
     const linked = esc.replace(/(https?:\/\/[^\s)]+)/g, '<a href="$1" class="btn">$1</a>');
     return linked.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  }
+  function toVideoEmbed(src) {
+    const url = String(src || "");
+    // YouTube
+    if (/youtu\.be|youtube\.com/.test(url)) {
+      const idMatch = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
+      const id = idMatch ? idMatch[1] : null;
+      const embed = id ? "https://www.youtube.com/embed/" + id : url;
+      return `<iframe class="video-frame" src="${embed}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    }
+    // Direct video files
+    if (/\.(mp4|webm|ogg)(\?|$)/i.test(url)) {
+      return `<video class="video-frame" controls src="${absolutize(url)}"></video>`;
+    }
+    // Fallback generic iframe
+    return `<iframe class="video-frame" src="${absolutize(url)}"></iframe>`;
   }
   function card(inner) { return `<div class="card" style="padding:14px;border-radius:14px">${inner}</div>`; }
   function normalizeBase(b) { return b && !b.endsWith("/") ? b + "/" : (b || "/"); }
