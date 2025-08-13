@@ -16,7 +16,7 @@
       "items": [
         {
           "label": "Notes",
-          "src": "resources/DE/Notes/Circuit Theory Notes/Circuit Theory Notes.pdf"
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
         }
       ]
     }

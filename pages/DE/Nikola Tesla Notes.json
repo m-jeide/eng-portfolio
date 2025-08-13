@@ -12,7 +12,7 @@
       "items": [
         {
           "label": "Notes",
-          "src": "resources/DE/Notes/Nikola Tesla Notes/Nikola Tesla Notes.pdf"
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
         }
       ]
     }

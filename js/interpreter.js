@@ -79,17 +79,17 @@
       ? `<section><h2>Brief</h2><div class="card"><ul class="brief">${brief.map(li => `<li>${escapeHtml(li)}</li>`).join("")}</ul></div></section>`
       : "";
 
-    const elementsHtml = renderElements(elements, ctx);
+    const elementsHtml = renderElements(elements, ctx, page);
 
     app.innerHTML = header + briefHtml + elementsHtml;
   }
 
-  function renderElements(elements, ctx) {
+  function renderElements(elements, ctx, page) {
     if (!elements.length) return "";
     const out = elements.map((el, i) => {
       const t = normalizeType(el.type);
       const renderer = RENDERERS[t] || renderUnknown;
-      return renderer(el, ctx, i);
+      return renderer(el, ctx, i, page);
     }).join("");
     return `<section><h2>Elements</h2>${out}</section>`;
   }
@@ -109,10 +109,10 @@
     notes: (el) => {
       return block(el.label || "Notes", `<div class="card">${richText(el.content || "")}</div>`);
     },
-    pdf: (el) => {
+    pdf: (el, ctx, _i, page) => {
       const items = normalizeItems(el);
       const tiles = items.map(it => {
-        const src = absolutize(it.src);
+        const src = makeSrc(it.src, page, ctx);
         const label = escapeHtml(it.label || "PDF");
         const iframe = `<iframe class="pdf-frame" src="${src}#toolbar=0"></iframe>`;
         const dl = `<a class="btn" href="${src}" download>Download</a>`;
@@ -120,10 +120,11 @@
       }).join("");
       return lane(el.label || "PDF", tiles);
     },
-    video: (el) => {
+    video: (el, ctx, _i, page) => {
       const items = normalizeItems(el);
       const tiles = items.map(it => {
-        const embed = toVideoEmbed(it.src);
+        const src = makeSrc(it.src, page, ctx);
+        const embed = toVideoEmbed(src);
         const label = escapeHtml(it.label || "Video");
         return tile(label, `<div class="tile-body"></div>`, embed);
       }).join("");
@@ -150,20 +151,45 @@
     return block(`Unknown element: ${t}`, `<div class="card"><pre>${pretty}</pre></div>`);
   }
 
-  // helpers
+  // ---------- helpers ----------
+
   function normalizeItems(el) {
     if (Array.isArray(el.items)) return el.items;
     if (el.src) return [{ src: el.src, label: el.label }];
     return [];
   }
-  function normalizeType(t) { return String(t || "").toLowerCase().replace(/\s+/g, ""); }
-  function absolutize(p) { return /^https?:\/\//i.test(p) ? p : BASE + p.replace(/^\/+/, ""); }
-  function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
-  function richText(s) {
-    const esc = escapeHtml(String(s));
-    const linked = esc.replace(/(https?:\/\/[^\s)]+)/g, '<a href="$1" class="btn">$1</a>');
-    return linked.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/\*([^*]+)\*/g, "<em>$1</em>");
+
+  function normalizeType(t) {
+    return String(t || "").toLowerCase().replace(/\s+/g, "");
   }
+
+  function isHttp(url) {
+    return /^https?:\/\//i.test(url || "");
+  }
+
+  // Replace {title}, {class}, {type}
+  function expandTemplatePath(p, page, ctx) {
+    return String(p || "")
+      .replace(/\{title\}/g, page.title || ctx.id || "")
+      .replace(/\{class\}/g, ctx.cls || "")
+      .replace(/\{type\}/g, page.type || "");
+  }
+
+  // Encode each path segment so spaces and symbols are safe
+  function encodeLocalPath(p) {
+    return String(p || "")
+      .split("/")
+      .map(seg => seg === "" ? "" : encodeURIComponent(seg))
+      .join("/");
+  }
+
+  // Build a project-scoped URL for local resources
+  function makeSrc(p, page, ctx) {
+    const expanded = expandTemplatePath(p, page, ctx).replace(/^\/+/, "");
+    if (isHttp(expanded)) return expanded; // absolute URL passthrough
+    return BASE + encodeLocalPath(expanded);
+  }
+
   function toVideoEmbed(src) {
     const url = String(src || "");
     // YouTube
@@ -175,10 +201,18 @@
     }
     // Direct video files
     if (/\.(mp4|webm|ogg)(\?|$)/i.test(url)) {
-      return `<video class="video-frame" controls src="${absolutize(url)}"></video>`;
+      return `<video class="video-frame" controls src="${url}"></video>`;
     }
     // Fallback generic iframe
-    return `<iframe class="video-frame" src="${absolutize(url)}"></iframe>`;
+    return `<iframe class="video-frame" src="${url}"></iframe>`;
+  }
+
+  function absolutize(p) { return /^https?:\/\//i.test(p) ? p : BASE + p.replace(/^\/+/, ""); }
+  function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
+  function richText(s) {
+    const esc = escapeHtml(String(s));
+    const linked = esc.replace(/(https?:\/\/[^\s)]+)/g, '<a href="$1" class="btn">$1</a>');
+    return linked.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/\*([^*]+)\*/g, "<em>$1</em>");
   }
   function card(inner) { return `<div class="card" style="padding:14px;border-radius:14px">${inner}</div>`; }
   function normalizeBase(b) { return b && !b.endsWith("/") ? b + "/" : (b || "/"); }
