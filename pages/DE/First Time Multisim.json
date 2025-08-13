@@ -11,7 +11,16 @@
       "items": [
         {
           "label": "Notes",
-          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+          "src": "resources/{class}/{type}/{title}/CIRCUIT.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Image",
+      "items": [
+        {
+          "label": "Picture",
+          "src": "resources/{class}/{type}/{title}/Screenshot 2024-09-13 102628.png"
         }
       ]
     }
