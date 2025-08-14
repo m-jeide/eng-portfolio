@@ -1,0 +1,30 @@
+name: Build pages/manifest.json
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "pages/**.json"
+      - "scripts/build-manifest.mjs"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate manifest
+        run: npm run build:manifest
+
+      - name: Commit manifest
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(manifest): update pages/manifest.json"
+          file_pattern: pages/manifest.json
