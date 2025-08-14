@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <style>
     .brand { font-weight: 800; font-size: 22px }
-    .toolbar { position: sticky; top: 0; z-index: 20; display: flex; gap: 10px; align-items: center; margin: 16px 0 20px; backdrop-filter: blur(6px); }
+    .toolbar { position: sticky; top: 0; z-index: 20; display: flex; gap: 10px; align-items: center; margin: 16px 0 20px; backdrop-filter: blur(6px) }
     .search, .select {
       padding: 10px 12px; border-radius: 10px;
       border: 1px solid rgba(255,255,255,.15);
@@ -27,13 +27,38 @@
 
     .section-title { margin: 22px 0 10px; font-size: 1.1rem }
     .list { display: grid; gap: 8px }
-    .item { display: flex; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.08); background: var(--card) }
-    .item a { text-decoration: none; color: var(--text) }
-    .muted { color: var(--muted); font-size: 13px }
 
-    /* Search results panel sits right under the toolbar */
-    #resultsPanel { margin-top: 0 }
-    .hidden { display: none }
+    .item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: var(--card);
+    }
+    .item-left { display: flex; align-items: center; gap: 8px; min-width: 0 }
+    .item-left .title { text-decoration: none; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+    .item-right { color: var(--muted); font-size: 13px; white-space: nowrap }
+
+    .chips { display: inline-flex; gap: 6px; margin-left: 6px }
+    .chip {
+      display: inline-flex; align-items: center;
+      padding: 2px 8px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.20);
+      color: var(--muted); font-size: 12px; line-height: 1;
+      background: transparent;
+    }
+    .chip-class { border-color: rgba(110,231,255,.45) }
+    .chip-type  { border-color: rgba(180,180,255,.35) }
+
+    /* Results panel animation: slide + fade */
+    #resultsPanel { overflow: hidden; opacity: 0; transform: translateY(-6px); max-height: 0;
+      transition: opacity .18s ease, transform .18s ease, max-height .28s ease }
+    #resultsPanel.open { opacity: 1; transform: translateY(0); max-height: 1200px }
+
+    .muted { color: var(--muted); font-size: 13px }
   </style>
 </head>
 <body>
@@ -47,7 +72,7 @@
     </header>
 
     <!-- Top results (appears on search focus or when typing) -->
-    <section id="resultsPanel" class="card hidden">
+    <section id="resultsPanel" class="card">
       <h2 class="section-title">Top results</h2>
       <div id="resultsList" class="list"></div>
     </section>
@@ -57,7 +82,7 @@
       <img src="selfie.JPG" alt="Photo of me" />
       <div>
         <h1>Hey, I’m Matthew</h1>
-        <p>This is my engineering portfolio. Notes, projects, and whatever else I want. I'll write more here later.</p>
+        <p>This is my engineering portfolio. Notes, projects, and whatever else I want to put here. I'll write more later.</p>
       </div>
     </section>
 
