@@ -52,7 +52,7 @@ ul.brief li { margin:.2rem 0 }
   border-radius:12px;
   border:1px solid rgba(255,255,255,.08);
   background:var(--card);
-  box-shadow:0 4px 12px var(--ring);
+  box-shadow: 0 4px 12px var(--ring);
 }
 .tile .tile-head { padding:8px 10px; border-bottom:1px solid rgba(255,255,255,.08); font-weight:600 }
 .tile .tile-body { padding:8px 10px }
@@ -68,7 +68,7 @@ ul.brief li { margin:.2rem 0 }
 
 a.btn {
   display:inline-block; margin-top:8px; padding:8px 10px; border-radius:10px;
-  border:1.5px solid var(--accent); text-decoration:none; color:var(--text);
+  border:1.5px solid var(--accent); text-decoration:none; color: var(--text);
 }
 a.btn:hover { background:rgba(110,231,255,.12) }
 
