@@ -1,0 +1,21 @@
+{
+  "title": "Intro to Flip Flops",
+  "date": "10/21/24",
+  "type": "Notes",
+  "brief": [
+    "Flip-flops store data and act as memory in circuits",
+    "Output changes occur on the rising edge of the clock signal",
+    "Flip-flops hold their state until the next clock pulse"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}

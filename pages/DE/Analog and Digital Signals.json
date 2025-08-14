@@ -1,0 +1,23 @@
+{
+  "title": "Analog and Digital Signals",
+  "date": "10/17/24",
+  "type": "Notes",
+  "brief": [
+    "Review the definitions of analog and digital signals",
+    "Detail the components of an analog signal",
+    "Define logic levels",
+    "Detail the components of a digital signal",
+    "Review the function of the virtual oscilloscope"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
