@@ -1,9 +1,6 @@
 (function () {
   const BASE = normalizeBase(window.SITE_BASE || "/");
   const CLASSES = Array.isArray(window.CLASSES) && window.CLASSES.length ? window.CLASSES : ["DE","CIM","EDD"];
-  const OWNER = window.REPO_OWNER;
-  const REPO  = window.REPO_NAME;
-  const BR    = window.REPO_BRANCH || "main";
 
   const q = document.getElementById("q");
   const sel = document.getElementById("cls");
@@ -11,6 +8,7 @@
   const resultsList  = document.getElementById("resultsList");
   const recentList   = document.getElementById("recentList");
 
+  // class filter
   for (const c of CLASSES) {
     const opt = document.createElement("option");
     opt.value = c;
@@ -18,18 +16,45 @@
     sel.appendChild(opt);
   }
 
-  let all = []; // flattened list of items across classes
+  let all = []; // flattened list for search + recent
 
   boot();
 
   async function boot() {
-    const data = await fetchData();
-    // flatten and enrich
-    all = data.flatMap(({ cls, items }) => items.map(it => enrich(it, cls)));
-    // recent 5
-    renderRecent(all);
-    // search behavior
-    wireSearch();
+    try {
+      const manifest = await fetchManifest();
+      const groups = Object.entries(manifest).map(([cls, items]) => ({ cls, items: normalizeItems(items) }));
+
+      // flatten + enrich
+      all = groups.flatMap(({ cls, items }) => items.map(it => enrich(it, cls)));
+
+      // render recent 5
+      renderRecent(all);
+
+      // wire search UX
+      wireSearch();
+    } catch (err) {
+      // polite failure
+      resultsList.innerHTML = `<div class="muted">Failed to load manifest</div>`;
+      recentList.innerHTML  = `<div class="muted">${escapeHtml(String(err))}</div>`;
+    }
+  }
+
+  async function fetchManifest() {
+    // no-store so you see updates immediately after the action writes manifest.json
+    const r = await fetch(BASE + "pages/manifest.json", { cache: "no-store" });
+    if (!r.ok) throw new Error("manifest.json not found");
+    return r.json();
+  }
+
+  function normalizeItems(items) {
+    // ensure minimal shape and safe defaults
+    return (items || []).map(it => ({
+      id: it.id,
+      title: it.title || it.id,
+      type: it.type || "",
+      date: it.date || ""
+    }));
   }
 
   function enrich(it, cls) {
@@ -45,54 +70,6 @@
       href,
       _when: parsed ? parsed.getTime() : 0,
       _hay: [it.title || id, it.type || "", it.date || "", cls].join(" ").toLowerCase()
-    };
-  }
-
-  async function fetchData() {
-    // Manifest fallback kept, but most likely you are using GitHub API
-    const manifest = await tryFetchJson(BASE + "pages/manifest.json");
-    if (manifest) {
-      const groups = Object.entries(manifest).map(([cls, items]) => ({ cls, items: normalizeItems(items, cls) }));
-      groups.forEach(g => g.items.sort(sortByDateDescThenTitle));
-      return groups;
-    }
-
-    if (!OWNER || !REPO) throw new Error("Missing REPO_OWNER or REPO_NAME in site.config.js");
-
-    const out = [];
-    for (const cls of CLASSES) {
-      const files = await listJsonFiles(`pages/${cls}`);
-      const items = [];
-      for (const f of files) {
-        const meta = await fetchPageMeta(`pages/${cls}/${f.name}`);
-        if (meta) items.push(meta);
-      }
-      items.sort(sortByDateDescThenTitle);
-      out.push({ cls, items });
-    }
-    return out;
-  }
-
-  async function listJsonFiles(dir) {
-    const url = `https://api.github.com/repos/${encodeURIComponent(OWNER)}/${encodeURIComponent(REPO)}/contents/${dir.split("/").map(encodeURIComponent).join("/")}?ref=${encodeURIComponent(BR)}`;
-    const res = await fetch(url, { headers: { "Accept": "application/vnd.github+json" } });
-    if (!res.ok) return [];
-    const data = await res.json();
-    return data.filter(x => x.type === "file" && /\.json$/i.test(x.name));
-  }
-
-  async function fetchPageMeta(path) {
-    const rawUrl = `https://raw.githubusercontent.com/${encodeURIComponent(OWNER)}/${encodeURIComponent(REPO)}/${encodeURIComponent(BR)}/${path.split("/").map(encodeURIComponent).join("/")}`;
-    const res = await fetch(rawUrl);
-    if (!res.ok) return null;
-    const json = await res.json().catch(() => null);
-    if (!json) return null;
-    const id = path.replace(/^pages\/[^/]+\//, "").replace(/\.json$/i, "");
-    return {
-      id,
-      title: json.title || id,
-      type: json.type || "",
-      date: json.date || ""
     };
   }
 
@@ -135,50 +112,23 @@
   function toggle(el, show) { el.classList.toggle("hidden", !show); }
 
   // ---------- Helpers ----------
-  async function tryFetchJson(url) {
-    try {
-      const r = await fetch(url, { cache: "no-store" });
-      if (!r.ok) return null;
-      return await r.json();
-    } catch { return null; }
-  }
-
-  function normalizeItems(items, cls) {
-    return items.map(it => ({
-      ...it,
-      id: it.id,
-      title: it.title || it.id,
-      type: it.type || "",
-      date: it.date || ""
-    }));
-  }
-
-  // Accept "YYYY-MM-DD" or "MM/DD/YY" where all parts are zero-padded
+  // Accept "YYYY-MM-DD" or "MM/DD/YY" (zero-padded)
   function parsePortfolioDate(s) {
     if (!s) return null;
-    // ISO like 2025-08-12
     if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
       const [y,m,d] = s.split("-").map(n => parseInt(n, 10));
       return new Date(y, m - 1, d);
     }
-    // MM/DD/YY like 08/09/25
     if (/^\d{2}\/\d{2}\/\d{2}$/.test(s)) {
       const [mm, dd, yy] = s.split("/").map(n => parseInt(n, 10));
-      const year = 2000 + yy; // 25 -> 2025
+      const year = 2000 + yy;
       return new Date(year, mm - 1, dd);
     }
     return null;
   }
 
-  function sortByDateDescThenTitle(a, b) {
-    const A = parsePortfolioDate(a.date); const B = parsePortfolioDate(b.date);
-    const d = (B ? B.getTime() : 0) - (A ? A.getTime() : 0);
-    if (d !== 0) return d;
-    return String(a.title).localeCompare(String(b.title));
-  }
-
   function normalizeBase(b) { return b && !b.endsWith("/") ? b + "/" : (b || "/"); }
   function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+    return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;","&gt;":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
   }
 })();
