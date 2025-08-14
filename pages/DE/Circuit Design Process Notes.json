@@ -1,0 +1,19 @@
+{
+  "title": "Circuit Design Process Notes",
+  "date": "09/26/24",
+  "type": "Notes",
+  "brief": [
+    "Introduce the Circuit Design Process"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}

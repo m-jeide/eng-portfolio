@@ -1,0 +1,21 @@
+{
+  "title": "Wave, Frequency, and Amplitude Notes",
+  "date": "10/10/24",
+  "type": "Notes",
+  "brief": [
+    "Learn about Sound, Wavelength, Frequency, and Amplitude",
+    "Learn how to apply Sound, Wavelength, Frequency, and Amplitude",
+    "Learn how to calculate Wavelength, Frequency, and Amplitude"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}

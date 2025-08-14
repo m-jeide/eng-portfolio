@@ -1,0 +1,25 @@
+{
+  "title": "Binary Systems Worksheet",
+  "date": "10/10/24",
+  "type": "Notes",
+  "brief": [
+    "Understand the fundamentals of binary",
+    "Practice how to convert Base 2 to Base 10",
+    "Practice how to convert Base 10 to Base 2"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Work",
+          "src": "resources/{class}/{type}/{title}/{title} WORK.pdf"
+        },
+        {
+          "label": "Conversion Table",
+          "src": "resources/{class}/{type}/{title}/Matthew Jeide - W9 DE 1.2.3 Binary Number Conversion Worksheet-1.pdf"
+        }
+      ]
+    }
+  ]
+}

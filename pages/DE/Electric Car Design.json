@@ -1,0 +1,19 @@
+{
+  "title": "Electric Car Design",
+  "date": "09/26/24",
+  "type": "Notes",
+  "brief": [
+    "Design a lightweight electric car"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}

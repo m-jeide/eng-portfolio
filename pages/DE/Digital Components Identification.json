@@ -1,0 +1,25 @@
+{
+  "title": "Digital Component Identification Notes",
+  "date": "09/18/24",
+  "type": "Notes",
+  "brief": [
+    "Introduce transistors, logic gates, integrated circuits (ICs), and explain the relationship of each",
+    "Describe the structure of a truth table and how to “count in binary”. (possible input combinations)",
+    "Transistor-Transistor Logic (TTL)",
+    "Complementary Metal Oxide Semiconductor (CMOS)", 
+    "Define the scale of integration and package styles", 
+    "Describe the TTL logic gate numbering system",
+    "Introduce Manufacturer Datasheets"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}

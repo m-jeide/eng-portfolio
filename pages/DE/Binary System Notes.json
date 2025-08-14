@@ -1,0 +1,21 @@
+{
+  "title": "Binary Systems Notes",
+  "date": "10/09/24",
+  "type": "Notes",
+  "brief": [
+    "Understand the fundamentals of binary",
+    "Learn how to convert Base 2 to Base 10",
+    "Learn how to convert Base 10 to Base 2"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
