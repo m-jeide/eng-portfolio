@@ -34,21 +34,18 @@
       // wire search UX
       wireSearch();
     } catch (err) {
-      // polite failure
       resultsList.innerHTML = `<div class="muted">Failed to load manifest</div>`;
       recentList.innerHTML  = `<div class="muted">${escapeHtml(String(err))}</div>`;
     }
   }
 
   async function fetchManifest() {
-    // no-store so you see updates immediately after the action writes manifest.json
     const r = await fetch(BASE + "pages/manifest.json", { cache: "no-store" });
     if (!r.ok) throw new Error("manifest.json not found");
     return r.json();
   }
 
   function normalizeItems(items) {
-    // ensure minimal shape and safe defaults
     return (items || []).map(it => ({
       id: it.id,
       title: it.title || it.id,
@@ -79,15 +76,31 @@
     recentList.innerHTML = top5.map(renderRow).join("") || `<div class="muted">No recent items</div>`;
   }
 
+  // Row renderer with chips
   function renderRow(it) {
-    const right = [it.date, it.type].filter(Boolean).join(" · ");
+    const right = [it.date].filter(Boolean).join("");
     return `<div class="item">
-      <a href="${it.href}">${escapeHtml(it.title)}</a>
-      <span class="muted">${escapeHtml(right)}</span>
+      <div class="item-left">
+        <a class="title" href="${it.href}">${escapeHtml(it.title)}</a>
+        <span class="chips">
+          ${chipClass(it.cls)}
+          ${chipType(it.type)}
+        </span>
+      </div>
+      <span class="item-right">${escapeHtml(right)}</span>
     </div>`;
   }
 
-  // ---------- Search UX ----------
+  function chipClass(cls) {
+    if (!cls) return "";
+    return `<span class="chip chip-class">${escapeHtml(cls)}</span>`;
+  }
+  function chipType(type) {
+    if (!type) return "";
+    return `<span class="chip chip-type">${escapeHtml(type)}</span>`;
+  }
+
+  // ---------- Search UX with debounce + animated panel ----------
   function wireSearch() {
     let t;
     const run = () => {
@@ -97,19 +110,22 @@
       const matches = query ? pool.filter(x => x._hay.includes(query)) : pool;
       const top = matches.slice(0, 10);
       resultsList.innerHTML = top.map(renderRow).join("") || `<div class="muted">No matches</div>`;
-      // show panel if focused or query present
-      toggle(resultsPanel, document.activeElement === q || !!query);
+
+      // open if focused or query present, else close
+      const shouldOpen = document.activeElement === q || !!query;
+      resultsPanel.classList.toggle("open", shouldOpen);
     };
 
     const debounced = () => { clearTimeout(t); t = setTimeout(run, 120); };
 
     q.addEventListener("focus", run);
     q.addEventListener("input", debounced);
-    q.addEventListener("blur", () => setTimeout(() => toggle(resultsPanel, !!q.value.trim()), 50));
+    q.addEventListener("blur", () => setTimeout(() => resultsPanel.classList.toggle("open", !!q.value.trim()), 50));
     sel.addEventListener("change", run);
-  }
 
-  function toggle(el, show) { el.classList.toggle("hidden", !show); }
+    // start collapsed
+    resultsPanel.classList.remove("open");
+  }
 
   // ---------- Helpers ----------
   // Accept "YYYY-MM-DD" or "MM/DD/YY" (zero-padded)
