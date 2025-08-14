@@ -1,0 +1,19 @@
+{
+  "title": "1.2.4 D [Multisim] Counting up to 15 in Binary",
+  "date": "10/17/24",
+  "type": "Notes",
+  "brief": [
+    "Make a binary counter capable of counting up to 15."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
