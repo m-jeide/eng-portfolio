@@ -1,79 +1,137 @@
+/* Theme */
 :root {
   --bg: #0f1115;
   --text: #e7e9ee;
   --muted: #9aa3b2;
-  --card: #161a22;
-  --ring: rgba(110,231,255,.25);
+  --panel: transparent;             /* no card chrome on landing */
+  --card: #161a22;                  /* still used by interpreter tiles */
+  --ring: rgba(110,231,255,.18);
   --accent: #6ee7ff;
+  --hair: rgba(255,255,255,.12);
 }
 @media (prefers-color-scheme: light) {
   :root {
     --bg: #f6f7fb;
     --text: #0d1321;
     --muted: #5b6476;
+    --panel: transparent;
     --card: #ffffff;
-    --ring: rgba(0,122,255,.2);
+    --ring: rgba(0,122,255,.12);
     --accent: #007aff;
+    --hair: rgba(0,0,0,.08);
   }
 }
+
+/* Base */
 * { box-sizing: border-box }
-body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif }
-.container { width:min(100%, 1000px); margin:0 auto; padding:24px }
+html, body { height: 100% }
+body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial, sans-serif }
+.container { width:min(100%, 1100px); margin:0 auto; padding:28px 24px 48px }
 
-.loading { color:var(--muted) }
+/* Top bar */
+.brand { font-weight: 800; font-size: 22px }
+.toolbar {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; gap: 10px; align-items: center;
+  margin: 6px 0 18px; padding: 6px 0;
+  backdrop-filter: blur(6px);
+}
+.search, .select {
+  padding: 12px 14px; border-radius: 12px;
+  border: 1px solid var(--hair);
+  background: var(--panel); color: var(--text)
+}
+.search { flex: 1 }
 
-.header h1 { margin:.2rem 0 }
-.meta { color:var(--muted); font-size:.95rem }
-.meta .chip { display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid var(--muted); margin-left:6px }
+/* Section headings */
+.section-title { margin: 18px 0 10px; font-size: 20px; font-weight: 700 }
 
-section { margin-top:22px }
-section h2 { margin:0 0 10px; font-size:1.1rem }
+/* Results panel (animated) */
+.results-panel {
+  border-bottom: 1px solid var(--hair);
+  padding-bottom: 10px;
+  overflow: hidden;
+  opacity: 0; transform: translateY(-8px); max-height: 0;
+  transition: opacity .2s ease, transform .2s ease, max-height .32s ease;
+}
+.results-panel.open { opacity: 1; transform: translateY(0); max-height: 1600px }
 
+/* About */
+.about { padding-top: 6px }
+.about-title {
+  font-size: clamp(36px, 6vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  margin: 4px 0 16px;
+  font-weight: 900;
+}
+.about-photo {
+  float: left;                       /* actual text wrap */
+  width: clamp(220px, 32vw, 340px);
+  height: auto;
+  border-radius: 18px;
+  border: 1px solid var(--hair);
+  margin: 6px 18px 12px 0;
+  box-shadow: 0 10px 30px var(--ring);
+}
+.about-text p { margin: 0 0 14px; color: var(--text) }
+@media (max-width: 700px) {
+  .about-photo { float:none; display:block; margin: 0 0 14px 0; width: 100% }
+}
+
+/* Recent + results lists */
+.list { display: grid; gap: 10px; margin-top: 6px }
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--hair);
+  background: var(--panel);
+}
+.item-left { display: flex; align-items: center; gap: 10px; min-width: 0 }
+.item-left .title { text-decoration: none; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.item-right { color: var(--muted); font-size: 14px; white-space: nowrap }
+
+/* Chips (class + type) */
+.chips { display: inline-flex; gap: 8px; margin-left: 8px }
+.chip {
+  display: inline-flex; align-items: center;
+  padding: 4px 10px; border-radius: 999px;
+  border: 1.25px solid var(--hair);
+  color: var(--muted); font-size: 12px; line-height: 1;
+  background: transparent;
+}
+.chip-class { border-color: rgba(110,231,255,.45) }
+.chip-type  { border-color: rgba(180,180,255,.35) }
+
+/* Interpreter cards (unchanged, used on detail pages) */
 .card {
   background:var(--card);
-  border:1px solid rgba(255,255,255,.08);
+  border:1px solid var(--hair);
   border-radius:14px;
   padding:14px;
   box-shadow:0 6px 18px var(--ring);
 }
-
 ul.brief { margin:.3rem 0 0 1rem }
 ul.brief li { margin:.2rem 0 }
-
-.lane {
-  display:flex;
-  gap:12px;
-  overflow:auto;
-  padding-bottom:6px;
-}
+.lane { display:flex; gap:12px; overflow:auto; padding-bottom:6px }
 .tile {
-  flex:0 0 auto;
-  width:420px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
-  background:var(--card);
+  flex:0 0 auto; width:420px; border-radius:12px;
+  border:1px solid var(--hair); background:var(--card);
   box-shadow: 0 4px 12px var(--ring);
 }
-.tile .tile-head { padding:8px 10px; border-bottom:1px solid rgba(255,255,255,.08); font-weight:600 }
+.tile .tile-head { padding:8px 10px; border-bottom:1px solid var(--hair); font-weight:600 }
 .tile .tile-body { padding:8px 10px }
+.pdf-frame, .video-frame { width:100%; height:300px; border:0; border-radius:0 0 12px 12px; display:block; background:#000 }
 
-.pdf-frame, .video-frame {
-  width:100%;
-  height:300px;
-  border:0;
-  border-radius:0 0 12px 12px;
-  display:block;
-  background:#000;
-}
-
-a.btn {
-  display:inline-block; margin-top:8px; padding:8px 10px; border-radius:10px;
-  border:1.5px solid var(--accent); text-decoration:none; color: var(--text);
-}
+/* Buttons + tiny fun */
+a.btn { display:inline-block; margin-top:8px; padding:8px 10px; border-radius:10px; border:1.5px solid var(--accent); text-decoration:none; color: var(--text) }
 a.btn:hover { background:rgba(110,231,255,.12) }
-
-/* Mildly funny CSS: focus wobble */
 a:focus-visible, button:focus-visible, .tile:focus-visible { outline:none; animation:wobble .35s }
 @keyframes wobble { 0%{transform:rotate(0)} 25%{transform:rotate(-1.8deg)} 50%{transform:rotate(1.8deg)} 100%{transform:rotate(0)} }
 
+/* Images in elements */
 .image-frame { width: 100%; height: 300px; object-fit: cover; display: block; border: 0; }

@@ -10,59 +10,10 @@
   <script>document.write('<base href="' + (window.SITE_BASE || "/") + '">');</script>
 
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    .brand { font-weight: 800; font-size: 22px }
-    .toolbar { position: sticky; top: 0; z-index: 20; display: flex; gap: 10px; align-items: center; margin: 16px 0 20px; backdrop-filter: blur(6px) }
-    .search, .select {
-      padding: 10px 12px; border-radius: 10px;
-      border: 1px solid rgba(255,255,255,.15);
-      background: var(--card); color: var(--text)
-    }
-    .search { flex: 1 }
-
-    .about-card { display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: center }
-    .about-card img { width: 120px; height: 120px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(255,255,255,.12) }
-    .about-card h1 { margin: 0 0 6px; font-size: 26px }
-    .about-card p { margin: 0; color: var(--muted) }
-
-    .section-title { margin: 22px 0 10px; font-size: 1.1rem }
-    .list { display: grid; gap: 8px }
-
-    .item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 8px;
-      align-items: center;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: var(--card);
-    }
-    .item-left { display: flex; align-items: center; gap: 8px; min-width: 0 }
-    .item-left .title { text-decoration: none; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
-    .item-right { color: var(--muted); font-size: 13px; white-space: nowrap }
-
-    .chips { display: inline-flex; gap: 6px; margin-left: 6px }
-    .chip {
-      display: inline-flex; align-items: center;
-      padding: 2px 8px; border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.20);
-      color: var(--muted); font-size: 12px; line-height: 1;
-      background: transparent;
-    }
-    .chip-class { border-color: rgba(110,231,255,.45) }
-    .chip-type  { border-color: rgba(180,180,255,.35) }
-
-    /* Results panel animation: slide + fade */
-    #resultsPanel { overflow: hidden; opacity: 0; transform: translateY(-6px); max-height: 0;
-      transition: opacity .18s ease, transform .18s ease, max-height .28s ease }
-    #resultsPanel.open { opacity: 1; transform: translateY(0); max-height: 1200px }
-
-    .muted { color: var(--muted); font-size: 13px }
-  </style>
 </head>
 <body>
   <main class="container">
+    <!-- Top bar -->
     <header class="toolbar">
       <div class="brand">Engineering Portfolio</div>
       <input id="q" class="search" placeholder="Search title, id, or type" />
@@ -71,31 +22,31 @@
       </select>
     </header>
 
-    <!-- Top results (appears on search focus or when typing) -->
-    <section id="resultsPanel" class="card">
+    <!-- Top results (slides down on focus/type) -->
+    <section id="resultsPanel" class="results-panel">
       <h2 class="section-title">Top results</h2>
       <div id="resultsList" class="list"></div>
     </section>
 
     <!-- About Me -->
-    <section id="about" class="card about-card">
-      <img src="selfie.JPG" alt="Photo of me" />
-      <div>
-        <h1>Hey, I’m Matthew</h1>
+    <section id="about" class="about">
+      <h1 class="about-title">Hey, I’m Matthew</h1>
+      <img class="about-photo" src="selfie.JPG" alt="Photo of me" />
+      <div class="about-text">
         <p>
-          Last year in Digital Electronics, I learned the fundamentals of electronics, practiced coding in C++, designed and simulated circuits in NI Multisim, and developed my soldering skills.  
+          Last year in <strong>Digital Electronics</strong> I learned the fundamentals of electronics, practiced coding in <strong>C++</strong>, designed circuits and simulated them in <strong>NI Multisim</strong>, and levelled up my <strong>soldering</strong>.
         </p>
         <p>
-          This year, I’m diving into CIM to explore manufacturing processes, and in EDD I aim to create a project that helps my community or reflects something I’m passionate about.  
+          This year I’m diving into <strong>CIM</strong> to explore manufacturing processes, and in <strong>EDD</strong> I plan to build a project that helps my community or channels something I’m genuinely fired up about.
         </p>
         <p>
-          Outside of class, I’m captain of my school’s Robotics team and a member of SkillsUSA, where I placed in the top 5 for programming at both regional and state competitions last year.  
+          Outside of class I captain our <strong>Robotics</strong> team and compete in <strong>SkillsUSA</strong> — last season I placed top 5 in programming at both regionals and state.
         </p>
       </div>
     </section>
 
     <!-- Recent Activity -->
-    <section id="recent" class="card">
+    <section id="recent" class="recent">
       <h2 class="section-title">Recent activity</h2>
       <div id="recentList" class="list"></div>
     </section>
