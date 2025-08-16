@@ -54,11 +54,11 @@
 /* ----- Media sizing tokens ----- */
 /* Tweak these three to taste */
 :root {
-  --media-w-min: 560px;  /* comfortable desktop minimum */
+  --media-w-min: 320px;  /* comfortable desktop minimum */
   --media-w-vw: 70vw;    /* do not span the whole container */
-  --pdf-w-max: 820px;    /* single-page read size */
-  --video-w-max: 860px;  /* fixed comfy video width */
-  --img-w-max: 900px;    /* generous but not edge-to-edge */
+  --pdf-w-max: 500px;    /* single-page read size */
+  --video-w-max: 500px;  /* fixed comfy video width */
+  --img-w-max: 500px;    /* generous but not edge-to-edge */
 }
 
 /* Mobile - allow wider relative width but still not full screen edge-to-edge */
