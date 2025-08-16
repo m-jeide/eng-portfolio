@@ -3,8 +3,8 @@
   --bg: #0f1115;
   --text: #e7e9ee;
   --muted: #9aa3b2;
-  --panel: transparent;             /* no card chrome on landing */
-  --card: #161a22;                  /* still used by interpreter tiles */
+  --panel: transparent;              /* landing uses minimal chrome */
+  --card: #161a22;                   /* detail pages / interpreter */
   --ring: rgba(110,231,255,.18);
   --accent: #6ee7ff;
   --hair: rgba(255,255,255,.12);
@@ -44,7 +44,7 @@ body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-u
 .search { flex: 1 }
 
 /* Section headings */
-.section-title { margin: 18px 0 10px; font-size: 20px; font-weight: 700 }
+.section-title { margin: 22px 0 12px; font-size: 20px; font-weight: 700 }
 
 /* Results panel (animated) */
 .results-panel {
@@ -66,7 +66,7 @@ body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-u
   font-weight: 900;
 }
 .about-photo {
-  float: left;                       /* actual text wrap */
+  float: left;                        /* true wrap */
   width: clamp(220px, 32vw, 340px);
   height: auto;
   border-radius: 18px;
@@ -95,7 +95,7 @@ body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-u
 .item-left .title { text-decoration: none; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
 .item-right { color: var(--muted); font-size: 14px; white-space: nowrap }
 
-/* Chips (class + type) */
+/* Chips (class + type) used in lists */
 .chips { display: inline-flex; gap: 8px; margin-left: 8px }
 .chip {
   display: inline-flex; align-items: center;
@@ -107,7 +107,27 @@ body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-u
 .chip-class { border-color: rgba(110,231,255,.45) }
 .chip-type  { border-color: rgba(180,180,255,.35) }
 
-/* Interpreter cards (unchanged, used on detail pages) */
+/* Links section (new) */
+.links { margin-top: 22px }
+.link-list {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid; gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.link-item { }
+.link-pill {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; border-radius: 999px;
+  border: 1.25px solid var(--hair);
+  color: var(--text); text-decoration: none; background: var(--panel);
+  transition: transform .16s ease, background .16s ease, border-color .16s ease;
+}
+.link-pill:hover { background: rgba(110,231,255,.10); transform: translateY(-1px); border-color: rgba(110,231,255,.35) }
+.link-icon { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px }
+.link-pill span:last-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+
+/* Interpreter cards (detail pages) */
 .card {
   background:var(--card);
   border:1px solid var(--hair);
@@ -126,12 +146,10 @@ ul.brief li { margin:.2rem 0 }
 .tile .tile-head { padding:8px 10px; border-bottom:1px solid var(--hair); font-weight:600 }
 .tile .tile-body { padding:8px 10px }
 .pdf-frame, .video-frame { width:100%; height:300px; border:0; border-radius:0 0 12px 12px; display:block; background:#000 }
+.image-frame { width: 100%; height: 300px; object-fit: cover; display: block; border: 0 }
 
-/* Buttons + tiny fun */
+/* Buttons + fun */
 a.btn { display:inline-block; margin-top:8px; padding:8px 10px; border-radius:10px; border:1.5px solid var(--accent); text-decoration:none; color: var(--text) }
 a.btn:hover { background:rgba(110,231,255,.12) }
 a:focus-visible, button:focus-visible, .tile:focus-visible { outline:none; animation:wobble .35s }
 @keyframes wobble { 0%{transform:rotate(0)} 25%{transform:rotate(-1.8deg)} 50%{transform:rotate(1.8deg)} 100%{transform:rotate(0)} }
-
-/* Images in elements */
-.image-frame { width: 100%; height: 300px; object-fit: cover; display: block; border: 0; }
