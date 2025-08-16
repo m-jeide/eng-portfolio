@@ -8,7 +8,7 @@
   const CLASSES = Array.isArray(window.CLASSES) ? window.CLASSES : [];
 
   // Tweak this if you want bigger or smaller PDF text later
-  const PDF_ZOOM = "page-width"; // percent. Alternatives that often work: "page-width", "175"
+  const PDF_ZOOM = "100"; // percent. Alternatives that often work: "page-width", "175"
 
   boot().catch(err => {
     app.innerHTML = card(`<h2>Load error</h2><p class="muted">${escapeHtml(String(err))}</p>`);
