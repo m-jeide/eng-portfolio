@@ -25,7 +25,6 @@
     render(page, { cls, id });
   }
 
-  // Supports ?class=DE&id=... and pretty URLs /eng-portfolio/DE/<id>
   function parseRoute() {
     const sp = new URLSearchParams(location.search);
     const clsQ = sp.get("class");
@@ -44,7 +43,6 @@
     return { cls: null, id: null };
   }
 
-  // Pull JSON from pages/{CLASS}/{ID}.json in your repo
   function buildJsonUrl(cls, id) {
     if (!OWNER || !REPO) throw new Error("Missing REPO_OWNER or REPO_NAME in site.config.js");
     const path = ["pages", cls, `${id}.json`]
@@ -65,11 +63,11 @@
     const brief = Array.isArray(page.brief) ? page.brief : [];
     const elements = Array.isArray(page.elements) ? page.elements : [];
 
-    // Header: title, chips (class first, then type), then date
     const chips = [
       ctx.cls ? `<span class="chip chip-class">${escapeHtml(ctx.cls)}</span>` : "",
       type ? `<span class="chip chip-type">${escapeHtml(type)}</span>` : ""
     ].join("");
+
     const header = `
       <header class="page-header">
         <h1 class="page-title">${escapeHtml(title)}</h1>
@@ -78,7 +76,6 @@
       </header>
     `;
 
-    // Abstract (brief) — label changes only in UI
     const abstractHtml = brief.length
       ? `<section class="abstract element">
            <h2 class="element-title">Abstract</h2>
@@ -86,10 +83,15 @@
          </section>`
       : "";
 
-    // Elements — no global "Elements" header, each element gets a larger title
     const elementsHtml = renderElements(elements, ctx, page);
 
+    // mount overlay once
+    ensurePdfOverlay();
+
     app.innerHTML = header + abstractHtml + elementsHtml;
+
+    // wire inspect buttons after mount
+    wirePdfInspect();
   }
 
   function renderElements(elements, ctx, page) {
@@ -108,30 +110,35 @@
     },
     designbrief: (el) => {
       if (Array.isArray(el.items)) {
-        const blocks = el.items.map((txt, i) =>
+        const blocks = el.items.map((txt) =>
           `<div class="card" style="margin-top:10px">${richText(txt)}</div>`).join("");
         return section("Design Brief", blocks);
       }
       return section("Design Brief", `<div class="card">${richText(el.content || "")}</div>`);
     },
-    notes: (el) => {
-      return section(el.label || "Notes", `<div class="card">${richText(el.content || "")}</div>`);
-    },
+    notes: (el) => section(el.label || "Notes", `<div class="card">${richText(el.content || "")}</div>`),
+
     pdf: (el, ctx, _i, page) => {
       const items = normalizeItems(el);
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
         const label = escapeHtml(it.label || "PDF");
         const iframe = `<iframe class="pdf-frame" src="${src}#toolbar=0"></iframe>`;
-        const actions = `<div class="media-actions"><a class="btn" href="${src}" download>Download</a></div>`;
+        const actions = `
+          <div class="media-actions">
+            <button class="btn js-inspect" data-src="${src}">Inspect</button>
+            <a class="btn" href="${src}" target="_blank" rel="noopener">Open in new tab</a>
+            <a class="btn" href="${src}" download>Download</a>
+          </div>`;
         return `<figure class="media">
                   <div class="media-center">${iframe}</div>
                   <figcaption class="media-caption">${label}</figcaption>
                   ${actions}
                 </figure>`;
       }).join("");
-      return section(el.label || "PDF", content, true);
+      return section(el.label || "PDF", content);
     },
+
     video: (el, ctx, _i, page) => {
       const items = normalizeItems(el);
       const content = items.map(it => {
@@ -143,8 +150,9 @@
                   <figcaption class="media-caption">${label}</figcaption>
                 </figure>`;
       }).join("");
-      return section(el.label || "Video", content, true);
+      return section(el.label || "Video", content);
     },
+
     image: (el, ctx, _i, page) => {
       const items = normalizeItems(el);
       const content = items.map(it => {
@@ -157,12 +165,11 @@
                   <figcaption class="media-caption">${label}</figcaption>
                 </figure>`;
       }).join("");
-      return section(el.label || "Image", content, true);
+      return section(el.label || "Image", content);
     },
-    images: (el, ctx, i, page) => RENDERERS.image(el, ctx, i, page) // alias
+    images: (el, ctx, i, page) => RENDERERS.image(el, ctx, i, page)
   };
 
-  // Section helpers
   function section(title, innerHtml) {
     return `<section class="element">
       <h2 class="element-title">${escapeHtml(title)}</h2>
@@ -170,68 +177,79 @@
     </section>`;
   }
 
-  function renderUnknown(el) {
-    const t = escapeHtml(el.type || "unknown");
-    const pretty = escapeHtml(JSON.stringify(el, null, 2));
-    return section(`Unknown element: ${t}`, `<div class="card"><pre>${pretty}</pre></div>`);
+  // ---------- Inspect overlay ----------
+  function ensurePdfOverlay() {
+    if (document.getElementById("pdfOverlay")) return;
+    const wrap = document.createElement("div");
+    wrap.id = "pdfOverlay";
+    wrap.className = "pdf-overlay";
+    wrap.innerHTML = `
+      <div class="panel">
+        <button class="close" type="button">Close</button>
+        <iframe src="" title="PDF preview"></iframe>
+      </div>`;
+    document.body.appendChild(wrap);
+
+    wrap.addEventListener("click", (e) => {
+      if (e.target === wrap || e.target.classList.contains("close")) {
+        wrap.classList.remove("open");
+        wrap.querySelector("iframe").src = "";
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        wrap.classList.remove("open");
+        wrap.querySelector("iframe").src = "";
+      }
+    });
+  }
+
+  function wirePdfInspect() {
+    const overlay = document.getElementById("pdfOverlay");
+    if (!overlay) return;
+    document.querySelectorAll(".js-inspect").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const src = btn.getAttribute("data-src");
+        overlay.querySelector("iframe").src = src + "#toolbar=0";
+        overlay.classList.add("open");
+      });
+    });
   }
 
   // ---------- helpers ----------
-
   function normalizeItems(el) {
     if (Array.isArray(el.items)) return el.items;
     if (el.src) return [{ src: el.src, label: el.label }];
     return [];
   }
-
-  function normalizeType(t) {
-    return String(t || "").toLowerCase().replace(/\s+/g, "");
-  }
-
-  function isHttp(url) {
-    return /^https?:\/\//i.test(url || "");
-  }
-
-  // Replace {title}, {class}, {type}
+  function normalizeType(t) { return String(t || "").toLowerCase().replace(/\s+/g, ""); }
+  function isHttp(url) { return /^https?:\/\//i.test(url || ""); }
   function expandTemplatePath(p, page, ctx) {
     return String(p || "")
       .replace(/\{title\}/g, page.title || ctx.id || "")
       .replace(/\{class\}/g, ctx.cls || "")
       .replace(/\{type\}/g, page.type || "");
   }
-
-  // Encode each path segment so spaces and symbols are safe
-  function encodeLocalPath(p) {
-    return String(p || "")
-      .split("/")
-      .map(seg => seg === "" ? "" : encodeURIComponent(seg))
-      .join("/");
-  }
-
-  // Build a project-scoped URL for local resources
+  function encodeLocalPath(p) { return String(p || "").split("/").map(seg => seg === "" ? "" : encodeURIComponent(seg)).join("/"); }
   function makeSrc(p, page, ctx) {
     const expanded = expandTemplatePath(p, page, ctx).replace(/^\/+/, "");
-    if (isHttp(expanded)) return expanded; // absolute URL passthrough
+    if (isHttp(expanded)) return expanded;
     return BASE + encodeLocalPath(expanded);
   }
-
   function toVideoEmbed(src) {
     const url = String(src || "");
-    // YouTube
     if (/youtu\.be|youtube\.com/.test(url)) {
       const idMatch = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
       const id = idMatch ? idMatch[1] : null;
       const embed = id ? "https://www.youtube.com/embed/" + id : url;
       return `<iframe class="video-frame" src="${embed}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
     }
-    // Direct video files
     if (/\.(mp4|webm|ogg)(\?|$)/i.test(url)) {
       return `<video class="video-frame" controls src="${url}"></video>`;
     }
-    // Fallback generic iframe
     return `<iframe class="video-frame" src="${url}"></iframe>`;
   }
-
   function card(inner) { return `<div class="card" style="padding:14px;border-radius:14px">${inner}</div>`; }
   function normalizeBase(b) { return b && !b.endsWith("/") ? b + "/" : (b || "/"); }
   function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;","&gt;":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
