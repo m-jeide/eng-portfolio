@@ -1,0 +1,85 @@
+/* --- Page-specific styling (interpreter) --- */
+
+/* Topbar back home */
+.page-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  border-bottom: 1px solid var(--hair);
+  background: var(--bg);
+}
+.page-topbar .home-link {
+  display: inline-block;
+  padding: 10px 0;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+}
+.page-topbar .home-link:hover { text-decoration: underline }
+
+/* Page header */
+.page-header { margin: 8px 0 18px }
+.page-title {
+  font-size: clamp(28px, 4.8vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  margin: 0 0 8px;
+  font-weight: 900;
+}
+.page-tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 6px }
+.page-date { color: var(--muted); font-size: .95rem }
+
+/* Abstract block (brief -> Abstract visually) */
+.abstract .card {
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--hair);
+  background: var(--panel);
+  box-shadow: none !important; /* flatter */
+}
+
+/* Element sections */
+.element { margin-top: 20px }
+.element-title {
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 800;
+  margin: 0 0 10px;
+}
+
+/* Center and enlarge non-text media */
+.media { margin: 12px 0 }
+.media-center { display: flex; justify-content: center }
+.media-caption { text-align: center; color: var(--muted); font-size: .95rem; margin-top: 6px }
+.media-actions { text-align: center; margin-top: 8px }
+
+.pdf-frame {
+  width: 100%;
+  max-width: 1000px;
+  height: min(80vh, 1200px);
+  border: 1px solid var(--hair);
+  border-radius: 12px;
+  background: #000;
+}
+.video-frame {
+  width: 100%;
+  max-width: 1000px;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--hair);
+  border-radius: 12px;
+  background: #000;
+}
+.image-frame {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 1000px;
+  max-height: 80vh;
+  border: 1px solid var(--hair);
+  border-radius: 12px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* Flatten cards/tiles on detail pages */
+.card, .tile { box-shadow: none }
+.tile, .lane { background: transparent; border: none }

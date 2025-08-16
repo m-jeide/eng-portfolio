@@ -65,102 +65,115 @@
     const brief = Array.isArray(page.brief) ? page.brief : [];
     const elements = Array.isArray(page.elements) ? page.elements : [];
 
+    // Header: title, chips (class first, then type), then date
+    const chips = [
+      ctx.cls ? `<span class="chip chip-class">${escapeHtml(ctx.cls)}</span>` : "",
+      type ? `<span class="chip chip-type">${escapeHtml(type)}</span>` : ""
+    ].join("");
     const header = `
-      <header class="header">
-        <h1>${escapeHtml(title)}</h1>
-        <div class="meta">
-          ${date ? `<span>${escapeHtml(date)}</span>` : ""}
-          ${type ? `<span class="chip">${escapeHtml(type)}</span>` : ""}
-        </div>
+      <header class="page-header">
+        <h1 class="page-title">${escapeHtml(title)}</h1>
+        <div class="page-tags">${chips}</div>
+        ${date ? `<div class="page-date">${escapeHtml(date)}</div>` : ""}
       </header>
     `;
 
-    const briefHtml = brief.length
-      ? `<section><h2>Brief</h2><div class="card"><ul class="brief">${brief.map(li => `<li>${escapeHtml(li)}</li>`).join("")}</ul></div></section>`
+    // Abstract (brief) — label changes only in UI
+    const abstractHtml = brief.length
+      ? `<section class="abstract element">
+           <h2 class="element-title">Abstract</h2>
+           <div class="card"><ul class="brief">${brief.map(li => `<li>${escapeHtml(li)}</li>`).join("")}</ul></div>
+         </section>`
       : "";
 
+    // Elements — no global "Elements" header, each element gets a larger title
     const elementsHtml = renderElements(elements, ctx, page);
 
-    app.innerHTML = header + briefHtml + elementsHtml;
+    app.innerHTML = header + abstractHtml + elementsHtml;
   }
 
   function renderElements(elements, ctx, page) {
     if (!elements.length) return "";
-    const out = elements.map((el, i) => {
+    return elements.map((el, i) => {
       const t = normalizeType(el.type);
       const renderer = RENDERERS[t] || renderUnknown;
       return renderer(el, ctx, i, page);
     }).join("");
-    return `<section><h2>Elements</h2>${out}</section>`;
   }
 
   const RENDERERS = {
     synopsis: (el) => {
       const text = el.content || el.text || "";
-      return block("Synopsis", `<div class="card">${richText(text)}</div>`);
+      return section("Synopsis", `<div class="card">${richText(text)}</div>`);
     },
     designbrief: (el) => {
       if (Array.isArray(el.items)) {
-        const tiles = el.items.map((txt, i) => tile(`Brief ${i+1}`, `<div class="tile-body">${richText(txt)}</div>`)).join("");
-        return lane("Design Brief", tiles);
+        const blocks = el.items.map((txt, i) =>
+          `<div class="card" style="margin-top:10px">${richText(txt)}</div>`).join("");
+        return section("Design Brief", blocks);
       }
-      return block("Design Brief", `<div class="card">${richText(el.content || "")}</div>`);
+      return section("Design Brief", `<div class="card">${richText(el.content || "")}</div>`);
     },
     notes: (el) => {
-      return block(el.label || "Notes", `<div class="card">${richText(el.content || "")}</div>`);
+      return section(el.label || "Notes", `<div class="card">${richText(el.content || "")}</div>`);
     },
     pdf: (el, ctx, _i, page) => {
       const items = normalizeItems(el);
-      const tiles = items.map(it => {
+      const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
         const label = escapeHtml(it.label || "PDF");
         const iframe = `<iframe class="pdf-frame" src="${src}#toolbar=0"></iframe>`;
-        const dl = `<a class="btn" href="${src}" download>Download</a>`;
-        return tile(label, `<div class="tile-body">${dl}</div>`, iframe);
+        const actions = `<div class="media-actions"><a class="btn" href="${src}" download>Download</a></div>`;
+        return `<figure class="media">
+                  <div class="media-center">${iframe}</div>
+                  <figcaption class="media-caption">${label}</figcaption>
+                  ${actions}
+                </figure>`;
       }).join("");
-      return lane(el.label || "PDF", tiles);
+      return section(el.label || "PDF", content, true);
     },
     video: (el, ctx, _i, page) => {
       const items = normalizeItems(el);
-      const tiles = items.map(it => {
+      const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
         const embed = toVideoEmbed(src);
         const label = escapeHtml(it.label || "Video");
-        return tile(label, `<div class="tile-body"></div>`, embed);
+        return `<figure class="media">
+                  <div class="media-center">${embed}</div>
+                  <figcaption class="media-caption">${label}</figcaption>
+                </figure>`;
       }).join("");
-      return lane(el.label || "Video", tiles);
+      return section(el.label || "Video", content, true);
     },
     image: (el, ctx, _i, page) => {
       const items = normalizeItems(el);
-      const tiles = items.map(it => {
+      const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
         const label = escapeHtml(it.label || "Image");
         const alt = escapeHtml(it.alt || it.label || page.title || "");
         const img = `<img class="image-frame" src="${src}" alt="${alt}" loading="lazy">`;
-        return tile(label, `<div class="tile-body"></div>`, img);
+        return `<figure class="media">
+                  <div class="media-center">${img}</div>
+                  <figcaption class="media-caption">${label}</figcaption>
+                </figure>`;
       }).join("");
-      return lane(el.label || "Image", tiles);
+      return section(el.label || "Image", content, true);
     },
     images: (el, ctx, i, page) => RENDERERS.image(el, ctx, i, page) // alias
   };
 
-  function block(title, innerHtml) {
-    return `<div class="section"><h3>${escapeHtml(title)}</h3>${innerHtml}</div>`;
+  // Section helpers
+  function section(title, innerHtml) {
+    return `<section class="element">
+      <h2 class="element-title">${escapeHtml(title)}</h2>
+      ${innerHtml}
+    </section>`;
   }
-  function lane(title, tilesHtml) {
-    return `<div class="section"><h3>${escapeHtml(title)}</h3><div class="lane">${tilesHtml}</div></div>`;
-  }
-  function tile(head, bodyHtml, mediaHtml = "") {
-    return `<div class="tile" tabindex="0">
-      <div class="tile-head">${escapeHtml(head)}</div>
-      ${mediaHtml || ""}
-      ${bodyHtml}
-    </div>`;
-  }
+
   function renderUnknown(el) {
     const t = escapeHtml(el.type || "unknown");
     const pretty = escapeHtml(JSON.stringify(el, null, 2));
-    return block(`Unknown element: ${t}`, `<div class="card"><pre>${pretty}</pre></div>`);
+    return section(`Unknown element: ${t}`, `<div class="card"><pre>${pretty}</pre></div>`);
   }
 
   // ---------- helpers ----------
@@ -219,13 +232,12 @@
     return `<iframe class="video-frame" src="${url}"></iframe>`;
   }
 
-  function absolutize(p) { return /^https?:\/\//i.test(p) ? p : BASE + p.replace(/^\/+/, ""); }
+  function card(inner) { return `<div class="card" style="padding:14px;border-radius:14px">${inner}</div>`; }
+  function normalizeBase(b) { return b && !b.endsWith("/") ? b + "/" : (b || "/"); }
   function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;","&gt;":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
   function richText(s) {
     const esc = escapeHtml(String(s));
     const linked = esc.replace(/(https?:\/\/[^\s)]+)/g, '<a href="$1" class="btn">$1</a>');
     return linked.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/\*([^*]+)\*/g, "<em>$1</em>");
   }
-  function card(inner) { return `<div class="card" style="padding:14px;border-radius:14px">${inner}</div>`; }
-  function normalizeBase(b) { return b && !b.endsWith("/") ? b + "/" : (b || "/"); }
 })();

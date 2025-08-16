@@ -8,9 +8,16 @@
   <script src="/eng-portfolio/site.config.js"></script>
   <script>document.write('<base href="' + (window.SITE_BASE || "/") + '">');</script>
 
+  <!-- Base styles + page-specific overrides -->
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pages.css" />
 </head>
 <body>
+  <!-- Simple header so users can get home without the browser back button -->
+  <nav class="page-topbar">
+    <a href="./" class="home-link">← Home</a>
+  </nav>
+
   <main id="app" class="container">
     <div class="loading">Loading…</div>
   </main>

@@ -5,14 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio • Page</title>
 
-  <!-- Load config from absolute project path -->
   <script src="/eng-portfolio/site.config.js"></script>
-  <!-- Make all relative href/src resolve under /eng-portfolio/ -->
   <script>document.write('<base href="' + (window.SITE_BASE || "/") + '">');</script>
 
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pages.css" />
 </head>
 <body>
+  <nav class="page-topbar">
+    <a href="./" class="home-link">← Home</a>
+  </nav>
+
   <main id="app" class="container">
     <div class="loading">Loading…</div>
   </main>
