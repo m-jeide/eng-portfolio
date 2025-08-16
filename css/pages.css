@@ -62,7 +62,7 @@
 }
 
 /* Mobile - allow wider relative width but still not full screen edge-to-edge */
-@media (max-width: 700px) {
+@media (max-width: 450px) {
   :root {
     --media-w-min: 300px;
     --media-w-vw: 92vw;
@@ -75,7 +75,7 @@
 /* PDF - show roughly one page at a time */
 .pdf-frame {
   width: clamp(var(--media-w-min), var(--media-w-vw), var(--pdf-w-max));
-  aspect-ratio: 8.5 / 11;                 /* Letter page ratio */
+  aspect-ratio: 11 / 8.5;                 /* Letter page ratio */
   border: 1px solid var(--hair);
   border-radius: 12px;
   background: #000;
