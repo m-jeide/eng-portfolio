@@ -213,3 +213,8 @@ a:focus-visible, button:focus-visible, .tile:focus-visible { outline:none; anima
 .site-footer a:hover {
   text-decoration: underline;
 }
+
+.section-title.recent {
+  font-size: 26px;
+  font-weight: 800;
+}
