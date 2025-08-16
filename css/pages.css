@@ -29,7 +29,7 @@
 .page-tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 6px }
 .page-date { color: var(--muted); font-size: .95rem }
 
-/* Abstract block (brief -> Abstract visually) */
+/* Abstract block */
 .abstract .card {
   padding: 14px;
   border-radius: 14px;
@@ -65,16 +65,15 @@
 }
 .btn:hover { background: rgba(110,231,255,.12) }
 
-/* ----- Media sizing knobs ----- */
+/* Media sizing knobs */
 :root {
   --media-w-min: 560px;
   --media-w-vw: 70vw;
   --pdf-w-max: 860px;
-  --pdf-h: clamp(900px, 85vh, 1600px);   /* doubled height */
+  --pdf-h: clamp(900px, 85vh, 1600px);   /* tall for readability */
   --video-w-max: 860px;
   --img-w-max: 900px;
 }
-
 @media (max-width: 700px) {
   :root {
     --media-w-min: 300px;
@@ -86,7 +85,7 @@
   }
 }
 
-/* PDF shows about one page tall, now doubled */
+/* PDF */
 .pdf-frame {
   width: clamp(var(--media-w-min), var(--media-w-vw), var(--pdf-w-max));
   height: var(--pdf-h);
@@ -95,7 +94,7 @@
   background: #000;
 }
 
-/* Video stays comfy and static */
+/* Video */
 .video-frame {
   width: clamp(var(--media-w-min), var(--media-w-vw), var(--video-w-max));
   aspect-ratio: 16 / 9;
@@ -104,7 +103,7 @@
   background: #000;
 }
 
-/* Images retain ratio and never overflow */
+/* Images */
 .image-frame {
   width: clamp(var(--media-w-min), var(--media-w-vw), var(--img-w-max));
   height: auto;
@@ -118,38 +117,3 @@
 /* Flatten cards on detail pages */
 .card, .tile { box-shadow: none }
 .tile, .lane { background: transparent; border: none }
-
-/* Overlay for Inspect */
-.pdf-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background: rgba(0,0,0,.75);
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-.pdf-overlay.open { display: flex }
-.pdf-overlay .panel {
-  width: min(95vw, 1400px);
-  height: 90vh;
-  background: var(--bg);
-  border: 1px solid var(--hair);
-  border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.5);
-  padding: 10px;
-  position: relative;
-  display: grid;
-}
-.pdf-overlay .panel iframe { width: 100%; height: 100%; border: 0; border-radius: 8px; background: #000 }
-.pdf-overlay .close {
-  position: absolute;
-  top: 10px; right: 12px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: 1px solid var(--hair);
-  background: var(--panel);
-  color: var(--text);
-  cursor: pointer;
-}
-.pdf-overlay .close:hover { background: rgba(110,231,255,.12) }

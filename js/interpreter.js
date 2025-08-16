@@ -7,6 +7,9 @@
   const BR    = window.REPO_BRANCH || "main";
   const CLASSES = Array.isArray(window.CLASSES) ? window.CLASSES : [];
 
+  // Tweak this if you want bigger or smaller PDF text later
+  const PDF_ZOOM = "160"; // percent. Alternatives that often work: "page-width", "175"
+
   boot().catch(err => {
     app.innerHTML = card(`<h2>Load error</h2><p class="muted">${escapeHtml(String(err))}</p>`);
   });
@@ -25,6 +28,7 @@
     render(page, { cls, id });
   }
 
+  // Supports ?class=DE&id=... and pretty URLs /eng-portfolio/DE/<id>
   function parseRoute() {
     const sp = new URLSearchParams(location.search);
     const clsQ = sp.get("class");
@@ -43,6 +47,7 @@
     return { cls: null, id: null };
   }
 
+  // Pull JSON from pages/{CLASS}/{ID}.json in your repo
   function buildJsonUrl(cls, id) {
     if (!OWNER || !REPO) throw new Error("Missing REPO_OWNER or REPO_NAME in site.config.js");
     const path = ["pages", cls, `${id}.json`]
@@ -85,13 +90,7 @@
 
     const elementsHtml = renderElements(elements, ctx, page);
 
-    // mount overlay once
-    ensurePdfOverlay();
-
     app.innerHTML = header + abstractHtml + elementsHtml;
-
-    // wire inspect buttons after mount
-    wirePdfInspect();
   }
 
   function renderElements(elements, ctx, page) {
@@ -123,11 +122,11 @@
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
         const label = escapeHtml(it.label || "PDF");
-        const iframe = `<iframe class="pdf-frame" src="${src}#toolbar=0"></iframe>`;
+        const embedUrl = `${src}#zoom=${encodeURIComponent(PDF_ZOOM)}`;
+        const iframe = `<iframe class="pdf-frame" src="${embedUrl}"></iframe>`;
         const actions = `
           <div class="media-actions">
-            <button class="btn js-inspect" data-src="${src}">Inspect</button>
-            <a class="btn" href="${src}" target="_blank" rel="noopener">Open in new tab</a>
+            <a class="btn" href="${embedUrl}" target="_blank" rel="noopener">Open in new tab</a>
             <a class="btn" href="${src}" download>Download</a>
           </div>`;
         return `<figure class="media">
@@ -175,46 +174,6 @@
       <h2 class="element-title">${escapeHtml(title)}</h2>
       ${innerHtml}
     </section>`;
-  }
-
-  // ---------- Inspect overlay ----------
-  function ensurePdfOverlay() {
-    if (document.getElementById("pdfOverlay")) return;
-    const wrap = document.createElement("div");
-    wrap.id = "pdfOverlay";
-    wrap.className = "pdf-overlay";
-    wrap.innerHTML = `
-      <div class="panel">
-        <button class="close" type="button">Close</button>
-        <iframe src="" title="PDF preview"></iframe>
-      </div>`;
-    document.body.appendChild(wrap);
-
-    wrap.addEventListener("click", (e) => {
-      if (e.target === wrap || e.target.classList.contains("close")) {
-        wrap.classList.remove("open");
-        wrap.querySelector("iframe").src = "";
-      }
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        wrap.classList.remove("open");
-        wrap.querySelector("iframe").src = "";
-      }
-    });
-  }
-
-  function wirePdfInspect() {
-    const overlay = document.getElementById("pdfOverlay");
-    if (!overlay) return;
-    document.querySelectorAll(".js-inspect").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const src = btn.getAttribute("data-src");
-        overlay.querySelector("iframe").src = src + "#toolbar=0";
-        overlay.classList.add("open");
-      });
-    });
   }
 
   // ---------- helpers ----------
