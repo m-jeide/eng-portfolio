@@ -153,3 +153,44 @@ a.btn { display:inline-block; margin-top:8px; padding:8px 10px; border-radius:10
 a.btn:hover { background:rgba(110,231,255,.12) }
 a:focus-visible, button:focus-visible, .tile:focus-visible { outline:none; animation:wobble .35s }
 @keyframes wobble { 0%{transform:rotate(0)} 25%{transform:rotate(-1.8deg)} 50%{transform:rotate(1.8deg)} 100%{transform:rotate(0)} }
+
+#links {
+    margin-top: 2rem;
+}
+
+.card-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.link-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    min-width: 150px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.link-card a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link-card .icon {
+    width: 24px;
+    height: 24px;
+}
+
+.link-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
