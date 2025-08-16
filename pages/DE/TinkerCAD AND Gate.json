@@ -11,7 +11,7 @@
       "items": [
         {
           "label": "Design",
-          "src": "resources/{class}/{type}/{title}/{title}.png"
+          "src": "resources/{class}/{type}/{title}/image.png"
         }
       ]
     }
