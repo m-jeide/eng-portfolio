@@ -46,40 +46,62 @@
   margin: 0 0 10px;
 }
 
-/* Center and enlarge non-text media */
-.media { margin: 12px 0 }
-.media-center { display: flex; justify-content: center }
+/* Centered media wrappers */
+.media { margin: 12px 0; display: flex; flex-direction: column; align-items: center }
 .media-caption { text-align: center; color: var(--muted); font-size: .95rem; margin-top: 6px }
 .media-actions { text-align: center; margin-top: 8px }
 
+/* ----- Media sizing tokens ----- */
+/* Tweak these three to taste */
+:root {
+  --media-w-min: 560px;  /* comfortable desktop minimum */
+  --media-w-vw: 70vw;    /* do not span the whole container */
+  --pdf-w-max: 820px;    /* single-page read size */
+  --video-w-max: 860px;  /* fixed comfy video width */
+  --img-w-max: 900px;    /* generous but not edge-to-edge */
+}
+
+/* Mobile - allow wider relative width but still not full screen edge-to-edge */
+@media (max-width: 700px) {
+  :root {
+    --media-w-min: 300px;
+    --media-w-vw: 92vw;
+    --pdf-w-max: 92vw;
+    --video-w-max: 92vw;
+    --img-w-max: 92vw;
+  }
+}
+
+/* PDF - show roughly one page at a time */
 .pdf-frame {
-  width: 100%;
-  max-width: 1000px;
-  height: min(80vh, 1200px);
+  width: clamp(var(--media-w-min), var(--media-w-vw), var(--pdf-w-max));
+  aspect-ratio: 8.5 / 11;                 /* Letter page ratio */
   border: 1px solid var(--hair);
   border-radius: 12px;
   background: #000;
 }
+
+/* Video - static, comfortable size (fullscreen available if needed) */
 .video-frame {
-  width: 100%;
-  max-width: 1000px;
+  width: clamp(var(--media-w-min), var(--media-w-vw), var(--video-w-max));
   aspect-ratio: 16 / 9;
   border: 1px solid var(--hair);
   border-radius: 12px;
   background: #000;
 }
+
+/* Images - keep ratio, never overflow viewport */
 .image-frame {
-  display: block;
-  width: auto;
+  width: clamp(var(--media-w-min), var(--media-w-vw), var(--img-w-max));
   height: auto;
-  max-width: 1000px;
   max-height: 80vh;
   border: 1px solid var(--hair);
   border-radius: 12px;
   object-fit: contain;
-  margin: 0 auto;
+  display: block;
 }
 
 /* Flatten cards/tiles on detail pages */
 .card, .tile { box-shadow: none }
 .tile, .lane { background: transparent; border: none }
+
