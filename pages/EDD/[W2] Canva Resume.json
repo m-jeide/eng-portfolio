@@ -1,0 +1,19 @@
+{
+  "title": "[W2] Canva Resume",
+  "date": "8/18/24",
+  "type": "Notes",
+  "brief": [
+    "Create an updated resume showcasing our new skills and experience."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
