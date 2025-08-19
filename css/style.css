@@ -218,3 +218,8 @@ a:focus-visible, button:focus-visible, .tile:focus-visible { outline:none; anima
   font-size: 26px;
   font-weight: 800;
 }
+
+.resume {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}

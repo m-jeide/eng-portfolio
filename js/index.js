@@ -148,3 +148,10 @@
     return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;","&gt;":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
   }
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const resumeLink = document.getElementById("resumeLink");
+  if (resumeLink && window.RESUME_URL) {
+    resumeLink.href = window.RESUME_URL;
+  }
+});
