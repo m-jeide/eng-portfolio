@@ -1,0 +1,17 @@
+{
+  "title": "Manufacturing Principles",
+  "date": "8/22/25",
+  "type": "Certifications",
+  "brief": [],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Certificate",
+          "src": "resources/{class}/{type}/{title}/Certificate.pdf"
+        }
+      ]
+    } 
+  ]
+}
