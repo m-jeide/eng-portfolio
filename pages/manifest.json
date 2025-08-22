@@ -1,5 +1,12 @@
 {
-  "Certifications": [],
+  "Certifications": [
+    {
+      "id": "Engineering Technology",
+      "title": "Engineering Technology",
+      "type": "Certifications",
+      "date": "8/22/25"
+    }
+  ],
   "DE": [
     {
       "id": "Intro to Flip Flops",
