@@ -1,0 +1,19 @@
+{
+  "title": "[W2] EDD Problem Selection",
+  "date": "08/22/25",
+  "type": "Notes",
+  "brief": [
+    "Brainstorm problems that potentially might become the basis of our EDD project."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
