@@ -1,0 +1,19 @@
+{
+  "title": "[W2] Automated Guided Vehicle Sketches",
+  "date": "08/24/25",
+  "type": "Notes",
+  "brief": [
+    "Sketch potential ideas for an AGV, focusing on cost-effectiveness"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Sketch",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}

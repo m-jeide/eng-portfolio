@@ -1,0 +1,19 @@
+{
+  "title": "[W2] CIM Introduction to the VEX V5Robotics Platform",
+  "date": "08/24/25",
+  "type": "Notes",
+  "brief": [
+    "Learn about Vex components, their usecases, specifications, and cost"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Reference",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
