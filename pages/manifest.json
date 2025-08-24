@@ -1,4 +1,18 @@
 {
+  "CIM": [
+    {
+      "id": "[W2] Automated Guided Vehicle Sketches",
+      "title": "[W2] Automated Guided Vehicle Sketches",
+      "type": "Notes",
+      "date": "08/24/25"
+    },
+    {
+      "id": "[W2] CIM Introduction to the VEX V5Robotics Platform",
+      "title": "[W2] CIM Introduction to the VEX V5Robotics Platform",
+      "type": "Notes",
+      "date": "08/24/25"
+    }
+  ],
   "Certifications": [
     {
       "id": "Engineering Technology",
