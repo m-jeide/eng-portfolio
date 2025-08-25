@@ -1,0 +1,19 @@
+{
+  "title": "[W2] 60 Second Elevator Pitch",
+  "date": "08/25/25",
+  "type": "Notes",
+  "brief": [
+    "Create a 60 second elevator pitch selling our EDD idea."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "PDF",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
