@@ -1,6 +1,12 @@
 {
   "CIM": [
     {
+      "id": "[W3] CTE College and Career Ready - Weekly Schedule of Classes",
+      "title": "[W3] CTE College and Career Ready - Weekly Schedule of Classes",
+      "type": "Notes",
+      "date": "08/25/25"
+    },
+    {
       "id": "[W2] Automated Guided Vehicle Sketches",
       "title": "[W2] Automated Guided Vehicle Sketches",
       "type": "Notes",
@@ -153,6 +159,12 @@
     {
       "id": "[W2] 60 Second Elevator Pitch",
       "title": "[W2] 60 Second Elevator Pitch",
+      "type": "Notes",
+      "date": "08/25/25"
+    },
+    {
+      "id": "[W3] CTE College and Career Ready - Weekly Schedule of Classes",
+      "title": "[W3] CTE College and Career Ready - Weekly Schedule of Classes",
       "type": "Notes",
       "date": "08/25/25"
     },
