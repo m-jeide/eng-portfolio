@@ -1,0 +1,19 @@
+{
+  "title": "[W3] CTE College and Career Ready - Weekly Schedule of Classes",
+  "date": "08/25/25",
+  "type": "Notes",
+  "brief": [
+    "Create a mock schedule for our first college semester"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Handout",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
