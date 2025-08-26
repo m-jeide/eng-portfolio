@@ -62,19 +62,41 @@
   }
 
   function render(page, ctx) {
-    const title = page.title || ctx.id;
-    const date  = page.date || "";
-    const type  = page.type || "";
-    const brief = Array.isArray(page.brief) ? page.brief : [];
+    // helpers scoped to render
+    function stripExt(s) { return String(s).replace(/\.[^.]+$/, ""); }
+    function tpl(str, vars) {
+      return String(str).replace(/\{(\w+)\}/g, (_, k) => (k in vars ? vars[k] : `{${k}}`));
+    }
+
+    // derive identifiers from ctx and URL
+    const fromCtx   = ctx && ctx.id ? String(ctx.id) : "";
+    const pathClean = decodeURIComponent(location.pathname.replace(/\/+$/, ""));
+    const urlTail   = pathClean.split("/").pop() || "";
+    const idStr     = fromCtx || urlTail;
+
+    const fileBase  = stripExt((idStr.split("/").pop() || ""));
+    const parentDir = decodeURIComponent(pathClean.split("/").slice(-2, -1)[0] || "");
+
+    // fields from page JSON
+    const rawTitle = page.title || page.name || ctx.id || fileBase;
+    const date     = page.date || "";
+    const type     = page.type || "";
+    const brief    = Array.isArray(page.brief) ? page.brief : [];
     const elements = Array.isArray(page.elements) ? page.elements : [];
 
+    // allow {file}, {class}, {id} in titles
+    const title = tpl(rawTitle, { file: fileBase, class: parentDir, id: idStr });
+
+    // set browser tab title
     document.title = `${title} · Matthew's Engineering Portfolio`;
 
+    // chips
     const chips = [
       ctx.cls ? `<span class="chip chip-class">${escapeHtml(ctx.cls)}</span>` : "",
       type ? `<span class="chip chip-type">${escapeHtml(type)}</span>` : ""
     ].join("");
 
+    // header
     const header = `
       <header class="page-header">
         <h1 class="page-title">${escapeHtml(title)}</h1>
@@ -83,15 +105,18 @@
       </header>
     `;
 
+    // abstract
     const abstractHtml = brief.length
       ? `<section class="abstract element">
-           <h2 class="element-title">Abstract</h2>
-           <div class="card"><ul class="brief">${brief.map(li => `<li>${escapeHtml(li)}</li>`).join("")}</ul></div>
-         </section>`
+          <h2 class="element-title">Abstract</h2>
+          <div class="card"><ul class="brief">${brief.map(li => `<li>${escapeHtml(li)}</li>`).join("")}</ul></div>
+        </section>`
       : "";
 
+    // elements
     const elementsHtml = renderElements(elements, ctx, page);
 
+    // mount
     app.innerHTML = header + abstractHtml + elementsHtml;
   }
 
