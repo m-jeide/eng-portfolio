@@ -57,7 +57,10 @@ body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-u
 .results-panel.open { opacity: 1; transform: translateY(0); max-height: 1600px }
 
 /* About */
-.about { padding-top: 6px }
+.about { 
+  padding-top: 6px; 
+  padding-bottom: 130px
+}
 .about-title {
   font-size: clamp(36px, 6vw, 56px);
   line-height: 1.05;
@@ -180,6 +183,11 @@ a.btn.full-btn:hover {
   background: var(--accent);
   color: #000;
   transform: translateY(-2px);
+}
+
+a.btn, a.btn:visited {
+  color: inherit;          /* force inherit instead of browser link color */
+  text-decoration: none;   /* kill underline */
 }
 
 a:focus-visible, button:focus-visible, .tile:focus-visible {
