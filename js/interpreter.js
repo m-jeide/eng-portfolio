@@ -68,6 +68,8 @@
     const brief = Array.isArray(page.brief) ? page.brief : [];
     const elements = Array.isArray(page.elements) ? page.elements : [];
 
+    document.title = `${title} · Matthew's Engineering Portfolio`;
+
     const chips = [
       ctx.cls ? `<span class="chip chip-class">${escapeHtml(ctx.cls)}</span>` : "",
       type ? `<span class="chip chip-type">${escapeHtml(type)}</span>` : ""
