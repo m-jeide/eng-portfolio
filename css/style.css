@@ -149,7 +149,15 @@ ul.brief li { margin:.2rem 0 }
 .image-frame { width: 100%; height: 300px; object-fit: cover; display: block; border: 0 }
 
 /* Buttons + fun */
-a.btn { display:inline-block; margin-top:8px; padding:8px 10px; border-radius:10px; border:1.5px solid var(--accent); text-decoration:none; color: var(--text) }
+a.btn.full-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  padding: 12px 0;
+  border-radius: 12px;
+  font-weight: 600;
+}
 a.btn:hover { background:rgba(110,231,255,.12) }
 a:focus-visible, button:focus-visible, .tile:focus-visible { outline:none; animation:wobble .35s }
 @keyframes wobble { 0%{transform:rotate(0)} 25%{transform:rotate(-1.8deg)} 50%{transform:rotate(1.8deg)} 100%{transform:rotate(0)} }
