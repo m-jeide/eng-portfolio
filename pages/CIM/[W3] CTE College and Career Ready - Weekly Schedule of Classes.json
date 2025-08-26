@@ -11,7 +11,7 @@
       "items": [
         {
           "label": "Handout",
-          "src": "resources/{class}/EDD/{title}/{title}.pdf"
+          "src": "resources/EDD/{type}/{title}/{title}.pdf"
         }
       ]
     }

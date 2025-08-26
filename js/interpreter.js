@@ -204,6 +204,10 @@
   }
 
   // ---------- helpers ----------
+  function filenameStem(id) {
+    const last = String(id || "").split("/").pop() || "";
+    return last.replace(/\.[^.]+$/, "");
+  }
   function normalizeItems(el) {
     if (Array.isArray(el.items)) return el.items;
     if (el.src) return [{ src: el.src, label: el.label }];
