@@ -216,10 +216,20 @@
   function normalizeType(t) { return String(t || "").toLowerCase().replace(/\s+/g, ""); }
   function isHttp(url) { return /^https?:\/\//i.test(url || ""); }
   function expandTemplatePath(p, page, ctx) {
-    return String(p || "")
-      .replace(/\{title\}/g, page.title || ctx.id || "")
+    const idStr = String(ctx.id || "");
+    const file  = filenameStem(idStr); // helper already in this file
+    // Allow {file}, {class}, {id} inside title before using {title} in paths
+    const templatedTitle = String(page.title || idStr)
+      .replace(/\{file\}/g, file)
       .replace(/\{class\}/g, ctx.cls || "")
-      .replace(/\{type\}/g, page.type || "");
+      .replace(/\{id\}/g, idStr);
+
+    return String(p || "")
+      .replace(/\{title\}/g, templatedTitle)
+      .replace(/\{class\}/g, ctx.cls || "")
+      .replace(/\{type\}/g, page.type || "")
+      .replace(/\{id\}/g, idStr)
+      .replace(/\{file\}/g, file);
   }
   function encodeLocalPath(p) { return String(p || "").split("/").map(seg => seg === "" ? "" : encodeURIComponent(seg)).join("/"); }
   function makeSrc(p, page, ctx) {
