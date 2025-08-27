@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "08/26/25",
+  "type": "Notes",
+  "brief": [
+    "In class notes for college"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Handout",
+          "src": "resources/EDD/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
