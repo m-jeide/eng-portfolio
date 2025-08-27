@@ -1,6 +1,12 @@
 {
   "CIM": [
     {
+      "id": "[W3] EDD&CIM [NOTES] College Prep",
+      "title": "[W3] EDD&CIM [NOTES] College Prep",
+      "type": "Notes",
+      "date": "08/26/25"
+    },
+    {
       "id": "[W3] CTE College and Career Ready - Weekly Schedule of Classes",
       "title": "[W3] CTE College and Career Ready - Weekly Schedule of Classes",
       "type": "Notes",
@@ -156,6 +162,12 @@
     }
   ],
   "EDD": [
+    {
+      "id": "[W3] EDD&CIM [NOTES] College Prep",
+      "title": "[W3] EDD&CIM [NOTES] College Prep",
+      "type": "Notes",
+      "date": "08/26/25"
+    },
     {
       "id": "[W2] 60 Second Elevator Pitch",
       "title": "[W2] 60 Second Elevator Pitch",
