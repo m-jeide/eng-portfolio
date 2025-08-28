@@ -167,9 +167,9 @@ a.btn.full-btn {
   margin-top: 12px;
   padding: 14px 0;
   font-size: 1rem;
-  background: var(--button-bg, #0f1115);
-  color: var(--button-text, #e7e9ee);
-  border: none;
+  background: var(--button-bg, var(--card));
+  color: var(--button-text, var(--text));
+  border: 1px solid var(--hair);
 }
 
 @media (prefers-color-scheme: light) {
@@ -180,8 +180,8 @@ a.btn.full-btn {
 }
 
 a.btn.full-btn:hover {
-  background: var(--accent);
-  color: #000;
+  background: var(--button-text, var(--text));
+  color: var(--button-bg, var(--card));
   transform: translateY(-2px);
 }
 
