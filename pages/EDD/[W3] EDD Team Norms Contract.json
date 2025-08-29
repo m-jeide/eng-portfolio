@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "08/29/25",
+  "type": "Project",
+  "brief": [
+    "Prepare a team norms contract for our EDD project"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Contract",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
