@@ -3,15 +3,14 @@
   "date": "08/29/25",
   "type": "Project",
   "brief": [
-    "Prepare a team norms contract for our EDD project",
-    "NOTE: Team name was updated to M.O.J.O. afterwards"
+    "Week 3 report of our EDD progress."
   ],
   "elements": [
     {
       "type": "PDF",
       "items": [
         {
-          "label": "Contract",
+          "label": "Report",
           "src": "resources/{class}/{type}/{title}/{title}.pdf"
         }
       ]
