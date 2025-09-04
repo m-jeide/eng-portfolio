@@ -30,13 +30,43 @@
       "id": "Engineering Technology",
       "title": "Engineering Technology",
       "type": "Certifications",
-      "date": "8/22/25"
+      "date": "08/22/25"
     },
     {
       "id": "Manufacturing Principles",
       "title": "Manufacturing Principles",
       "type": "Certifications",
-      "date": "8/22/25"
+      "date": "08/22/25"
+    },
+    {
+      "id": "Electronics II",
+      "title": "Electronics II",
+      "type": "Certifications",
+      "date": "03/17/25"
+    },
+    {
+      "id": "Electronics I",
+      "title": "Electronics I",
+      "type": "Certifications",
+      "date": "12/26/24"
+    },
+    {
+      "id": "Engineering Principles II",
+      "title": "Engineering Principles II",
+      "type": "Certifications",
+      "date": "05/30/24"
+    },
+    {
+      "id": "Robotics I",
+      "title": "Robotics I",
+      "type": "Certifications",
+      "date": "05/30/24"
+    },
+    {
+      "id": "Engineering Principles I",
+      "title": "Engineering Principles I",
+      "type": "Certifications",
+      "date": "05/15/24"
     }
   ],
   "DE": [
@@ -171,7 +201,7 @@
     {
       "id": "[W3] EDD Week 3 Report",
       "title": "[W3] EDD Week 3 Report",
-      "type": "Project",
+      "type": "Weekly Report",
       "date": "08/29/25"
     },
     {
