@@ -1,6 +1,6 @@
 {
-  "title": "Engineering Technology",
-  "date": "08/22/25",
+  "title": "{file}",
+  "date": "03/17/25",
   "type": "Certifications",
   "brief": [],
   "elements": [
@@ -9,7 +9,7 @@
       "items": [
         {
           "label": "Certificate",
-          "src": "resources/{class}/{type}/{title}/Certificate.pdf"
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
         }
       ]
     } 
