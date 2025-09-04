@@ -1,6 +1,6 @@
 {
   "title": "{file}",
-  "date": "09/4/25",
+  "date": "09/04/25",
   "type": "Project",
   "brief": [
     "Create a AGV which can pick up items, store them, and follow a path.",
