@@ -1,0 +1,34 @@
+{
+  "title": "{file}",
+  "date": "09/4/25",
+  "type": "Project",
+  "brief": [
+    "Create a AGV which can pick up items, store them, and follow a path.",
+    "Teammates: Samuel Webster, Preston Maxwell",
+    "ONGOING"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Sketch by Matthew Jeide",
+          "src": "resources/{class}/{type}/{title}/Matthew_Sketch.pdf"
+        },
+        {
+          "label": "Flowchart by Preston Maxwell",
+          "src": "resources/{class}/{type}/{title}/Flowchart.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Image",
+      "items": [
+        {
+          "label": "Initial Code for Testbed by Preston Maxwell",
+          "src": "resources/{class}/{type}/{title}/Initial_Code.png"
+        }
+      ]
+    }
+  ]
+}
