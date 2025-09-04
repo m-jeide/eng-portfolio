@@ -1,6 +1,12 @@
 {
   "CIM": [
     {
+      "id": "AGV",
+      "title": "AGV",
+      "type": "Project",
+      "date": "09/04/25"
+    },
+    {
       "id": "[W3] EDD&CIM [NOTES] College Prep",
       "title": "[W3] EDD&CIM [NOTES] College Prep",
       "type": "Notes",
@@ -23,12 +29,6 @@
       "title": "[W2] CIM Introduction to the VEX V5Robotics Platform",
       "type": "Notes",
       "date": "08/24/25"
-    },
-    {
-      "id": "AGV",
-      "title": "AGV",
-      "type": "Project",
-      "date": "09/4/25"
     }
   ],
   "Certifications": [
