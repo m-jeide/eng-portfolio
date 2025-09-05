@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "09/05/25",
+  "type": "Project",
+  "brief": [
+    "Questions about the topic we wish to explore in EDD."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Handout",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
