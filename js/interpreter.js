@@ -14,6 +14,13 @@
     app.innerHTML = `<div class="error-screen"><h2>Load error</h2><p class="muted">${escapeHtml(String(err))}</p></div>`;
   });
 
+  // Re-trigger animations when returning via back/forward cache
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) {
+      animateIn();
+    }
+  });
+
   async function boot() {
     const { cls, id } = parseRoute();
     if (!cls || !id) {
@@ -120,10 +127,20 @@
     // mount with enter animation wrapper
     const body = header + abstractHtml + elementsHtml;
     app.innerHTML = `<div class="page-anim">${body}</div>`;
-    // trigger animation next frame
+    animateIn();
+  }
+
+  // Robustly trigger the page enter animation (works on cache restores)
+  function animateIn() {
+    const el = app.querySelector('.page-anim');
+    if (!el) return;
+    // remove class if already present to restart transition
+    el.classList.remove('show');
+    // force reflow so the browser registers the initial state
+    void el.offsetWidth; // eslint-disable-line no-unused-expressions
+    // next frame, add the class to animate to final state
     requestAnimationFrame(() => {
-      const el = app.querySelector('.page-anim');
-      if (el) el.classList.add('show');
+      el.classList.add('show');
     });
   }
 
