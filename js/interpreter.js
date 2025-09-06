@@ -11,7 +11,14 @@
   const PDF_ZOOM = "100"; // percent. Alternatives that often work: "page-width", "175"
 
   boot().catch(err => {
-    app.innerHTML = card(`<h2>Load error</h2><p class="muted">${escapeHtml(String(err))}</p>`);
+    app.innerHTML = `<div class="error-screen"><h2>Load error</h2><p class="muted">${escapeHtml(String(err))}</p></div>`;
+  });
+
+  // Re-trigger animations when returning via back/forward cache
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) {
+      animateIn();
+    }
   });
 
   async function boot() {
@@ -25,6 +32,7 @@
 
     const jsonUrl = buildJsonUrl(cls, id);
     const page = await fetchJson(jsonUrl);
+    beginPreload(page, { cls, id });
     render(page, { cls, id });
   }
 
@@ -96,12 +104,12 @@
       type ? `<span class="chip chip-type">${escapeHtml(type)}</span>` : ""
     ].join("");
 
-    // header
+    // header with staggered animation
     const header = `
       <header class="page-header">
-        <h1 class="page-title">${escapeHtml(title)}</h1>
-        <div class="page-tags">${chips}</div>
-        ${date ? `<div class="page-date">${escapeHtml(date)}</div>` : ""}
+        <h1 class="page-title stagger" style="--delay:.10s">${escapeHtml(title)}</h1>
+        <div class="page-tags stagger" style="--delay:.22s">${chips}</div>
+        ${date ? `<div class="page-date stagger" style="--delay:.34s">${escapeHtml(date)}</div>` : ""}
       </header>
     `;
 
@@ -116,8 +124,50 @@
     // elements
     const elementsHtml = renderElements(elements, ctx, page);
 
-    // mount
-    app.innerHTML = header + abstractHtml + elementsHtml;
+    // mount with enter animation wrapper
+    const body = header + abstractHtml + elementsHtml;
+    app.innerHTML = `<div class="page-anim">${body}</div>`;
+    animateIn();
+  }
+
+  // Robustly trigger the page enter animation (works on cache restores)
+  function animateIn() {
+    const el = app.querySelector('.page-anim');
+    if (!el) return;
+    // remove class if already present to restart transition
+    el.classList.remove('show');
+    // force reflow so the browser registers the initial state
+    void el.offsetWidth; // eslint-disable-line no-unused-expressions
+    // next frame, add the class to animate to final state
+    requestAnimationFrame(() => {
+      el.classList.add('show');
+    });
+  }
+
+  // Preload resources referenced by the page while loading animation runs
+  function beginPreload(page, ctx) {
+    try {
+      const elements = Array.isArray(page.elements) ? page.elements : [];
+      const urls = [];
+      for (const el of elements) {
+        const items = normalizeItems(el);
+        for (const it of items) {
+          const src = makeSrc(it.src, page, ctx);
+          if (!src) continue;
+          urls.push(src);
+        }
+      }
+      for (const url of urls) {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = url;
+        document.head.appendChild(link);
+        if (/\.(png|jpe?g|gif|webp|avif)(\?|$)/i.test(url)) {
+          const img = new Image();
+          img.src = url;
+        }
+      }
+    } catch {}
   }
 
   function renderElements(elements, ctx, page) {
@@ -130,21 +180,21 @@
   }
 
   const RENDERERS = {
-    synopsis: (el) => {
+    synopsis: (el, _ctx, i) => {
       const text = el.content || el.text || "";
-      return section("Synopsis", `<div class="card">${richText(text)}</div>`);
+      return section("Synopsis", `<div class="card">${richText(text)}</div>`, i);
     },
-    designbrief: (el) => {
+    designbrief: (el, _ctx, i) => {
       if (Array.isArray(el.items)) {
         const blocks = el.items.map((txt) =>
           `<div class="card" style="margin-top:10px">${richText(txt)}</div>`).join("");
-        return section("Design Brief", blocks);
+        return section("Design Brief", blocks, i);
       }
-      return section("Design Brief", `<div class="card">${richText(el.content || "")}</div>`);
+      return section("Design Brief", `<div class="card">${richText(el.content || "")}</div>`, i);
     },
-    notes: (el) => section(el.label || "Notes", `<div class="card">${richText(el.content || "")}</div>`),
+    notes: (el, _ctx, i) => section(el.label || "Notes", `<div class="card">${richText(el.content || "")}</div>`, i),
 
-    pdf: (el, ctx, _i, page) => {
+    pdf: (el, ctx, i, page) => {
       const items = normalizeItems(el);
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
@@ -162,10 +212,10 @@
                   ${actions}
                 </figure>`;
       }).join("");
-      return section(el.label || "PDF", content);
+      return section(el.label || "PDF", content, i);
     },
 
-    video: (el, ctx, _i, page) => {
+    video: (el, ctx, i, page) => {
       const items = normalizeItems(el);
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
@@ -176,10 +226,10 @@
                   <figcaption class="media-caption">${label}</figcaption>
                 </figure>`;
       }).join("");
-      return section(el.label || "Video", content);
+      return section(el.label || "Video", content, i);
     },
 
-    image: (el, ctx, _i, page) => {
+    image: (el, ctx, i, page) => {
       const items = normalizeItems(el);
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
@@ -191,13 +241,14 @@
                   <figcaption class="media-caption">${label}</figcaption>
                 </figure>`;
       }).join("");
-      return section(el.label || "Image", content);
+      return section(el.label || "Image", content, i);
     },
     images: (el, ctx, i, page) => RENDERERS.image(el, ctx, i, page)
   };
 
-  function section(title, innerHtml) {
-    return `<section class="element">
+  function section(title, innerHtml, i) {
+    const delay = 0.42 + (Number(i) || 0) * 0.12; // seconds
+    return `<section class="element stagger" style="--delay:${delay.toFixed(2)}s">
       <h2 class="element-title">${escapeHtml(title)}</h2>
       ${innerHtml}
     </section>`;
