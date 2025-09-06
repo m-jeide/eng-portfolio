@@ -107,12 +107,15 @@
       const query = q.value.trim().toLowerCase();
       const cls = sel.value;
       const pool = cls ? all.filter(x => x.cls === cls) : all;
-      const matches = query ? pool.filter(x => x._hay.includes(query)) : pool;
+      // If there's a query, filter by haystack; otherwise, show most recent first
+      const matches = query
+        ? pool.filter(x => x._hay.includes(query))
+        : [...pool].sort((a, b) => b._when - a._when);
       const top = matches.slice(0, 10);
       resultsList.innerHTML = top.map(renderRow).join("") || `<div class="muted">No matches</div>`;
 
-      // open if focused or query present, else close
-      const shouldOpen = document.activeElement === q || !!query;
+      // open if focused, query present, or a class is selected
+      const shouldOpen = document.activeElement === q || !!query || !!cls;
       resultsPanel.classList.toggle("open", shouldOpen);
     };
 
@@ -120,7 +123,11 @@
 
     q.addEventListener("focus", run);
     q.addEventListener("input", debounced);
-    q.addEventListener("blur", () => setTimeout(() => resultsPanel.classList.toggle("open", !!q.value.trim()), 50));
+    q.addEventListener("blur", () => setTimeout(() => {
+      const hasQuery = !!q.value.trim();
+      const hasClass = !!sel.value;
+      resultsPanel.classList.toggle("open", hasQuery || hasClass);
+    }, 50));
     sel.addEventListener("change", run);
 
     // start collapsed
