@@ -11,7 +11,7 @@
   const PDF_ZOOM = "100"; // percent. Alternatives that often work: "page-width", "175"
 
   boot().catch(err => {
-    app.innerHTML = card(`<h2>Load error</h2><p class="muted">${escapeHtml(String(err))}</p>`);
+    app.innerHTML = `<div class="error-screen"><h2>Load error</h2><p class="muted">${escapeHtml(String(err))}</p></div>`;
   });
 
   async function boot() {
@@ -25,6 +25,7 @@
 
     const jsonUrl = buildJsonUrl(cls, id);
     const page = await fetchJson(jsonUrl);
+    beginPreload(page, { cls, id });
     render(page, { cls, id });
   }
 
@@ -116,8 +117,40 @@
     // elements
     const elementsHtml = renderElements(elements, ctx, page);
 
-    // mount
-    app.innerHTML = header + abstractHtml + elementsHtml;
+    // mount with enter animation wrapper
+    const body = header + abstractHtml + elementsHtml;
+    app.innerHTML = `<div class="page-anim">${body}</div>`;
+    // trigger animation next frame
+    requestAnimationFrame(() => {
+      const el = app.querySelector('.page-anim');
+      if (el) el.classList.add('show');
+    });
+  }
+
+  // Preload resources referenced by the page while loading animation runs
+  function beginPreload(page, ctx) {
+    try {
+      const elements = Array.isArray(page.elements) ? page.elements : [];
+      const urls = [];
+      for (const el of elements) {
+        const items = normalizeItems(el);
+        for (const it of items) {
+          const src = makeSrc(it.src, page, ctx);
+          if (!src) continue;
+          urls.push(src);
+        }
+      }
+      for (const url of urls) {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = url;
+        document.head.appendChild(link);
+        if (/\.(png|jpe?g|gif|webp|avif)(\?|$)/i.test(url)) {
+          const img = new Image();
+          img.src = url;
+        }
+      }
+    } catch {}
   }
 
   function renderElements(elements, ctx, page) {
