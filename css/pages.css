@@ -9,13 +9,20 @@
   background: var(--bg);
 }
 .page-topbar .home-link {
-  display: inline-block;
-  padding: 10px 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 6px 0;
+  border-radius: 10px;
+  border: 1px solid var(--hair);
   color: var(--text);
   text-decoration: none;
-  font-weight: 700;
+  background: var(--panel);
 }
-.page-topbar .home-link:hover { text-decoration: underline }
+.page-topbar .home-link:hover { background: rgba(110,231,255,.10); border-color: rgba(110,231,255,.35) }
+.page-topbar .home-link .home-icon { width: 22px; height: 22px; display: block }
 
 /* Page header */
 .page-header { margin: 8px 0 18px }
