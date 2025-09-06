@@ -153,10 +153,19 @@
 }
 .error-screen .muted { color: rgba(255,255,255,.9) }
 
-/* --- Page enter animation --- */
+/* --- Page enter animation (slower + stagger support) --- */
 .page-anim {
   opacity: 0;
-  transform: translateY(8px) scale(0.985);
-  transition: opacity .28s ease, transform .32s ease;
+  transform: translateY(12px) scale(0.98);
+  transition: opacity .85s ease, transform .85s ease;
 }
 .page-anim.show { opacity: 1; transform: translateY(0) scale(1) }
+
+/* Staggered children: apply to title, tags, date, sections */
+.stagger {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .85s ease, transform .85s ease;
+  transition-delay: var(--delay, .05s);
+}
+.page-anim.show .stagger { opacity: 1; transform: none }

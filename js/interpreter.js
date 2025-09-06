@@ -97,12 +97,12 @@
       type ? `<span class="chip chip-type">${escapeHtml(type)}</span>` : ""
     ].join("");
 
-    // header
+    // header with staggered animation
     const header = `
       <header class="page-header">
-        <h1 class="page-title">${escapeHtml(title)}</h1>
-        <div class="page-tags">${chips}</div>
-        ${date ? `<div class="page-date">${escapeHtml(date)}</div>` : ""}
+        <h1 class="page-title stagger" style="--delay:.10s">${escapeHtml(title)}</h1>
+        <div class="page-tags stagger" style="--delay:.22s">${chips}</div>
+        ${date ? `<div class="page-date stagger" style="--delay:.34s">${escapeHtml(date)}</div>` : ""}
       </header>
     `;
 
@@ -163,21 +163,21 @@
   }
 
   const RENDERERS = {
-    synopsis: (el) => {
+    synopsis: (el, _ctx, i) => {
       const text = el.content || el.text || "";
-      return section("Synopsis", `<div class="card">${richText(text)}</div>`);
+      return section("Synopsis", `<div class="card">${richText(text)}</div>`, i);
     },
-    designbrief: (el) => {
+    designbrief: (el, _ctx, i) => {
       if (Array.isArray(el.items)) {
         const blocks = el.items.map((txt) =>
           `<div class="card" style="margin-top:10px">${richText(txt)}</div>`).join("");
-        return section("Design Brief", blocks);
+        return section("Design Brief", blocks, i);
       }
-      return section("Design Brief", `<div class="card">${richText(el.content || "")}</div>`);
+      return section("Design Brief", `<div class="card">${richText(el.content || "")}</div>`, i);
     },
-    notes: (el) => section(el.label || "Notes", `<div class="card">${richText(el.content || "")}</div>`),
+    notes: (el, _ctx, i) => section(el.label || "Notes", `<div class="card">${richText(el.content || "")}</div>`, i),
 
-    pdf: (el, ctx, _i, page) => {
+    pdf: (el, ctx, i, page) => {
       const items = normalizeItems(el);
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
@@ -195,10 +195,10 @@
                   ${actions}
                 </figure>`;
       }).join("");
-      return section(el.label || "PDF", content);
+      return section(el.label || "PDF", content, i);
     },
 
-    video: (el, ctx, _i, page) => {
+    video: (el, ctx, i, page) => {
       const items = normalizeItems(el);
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
@@ -209,10 +209,10 @@
                   <figcaption class="media-caption">${label}</figcaption>
                 </figure>`;
       }).join("");
-      return section(el.label || "Video", content);
+      return section(el.label || "Video", content, i);
     },
 
-    image: (el, ctx, _i, page) => {
+    image: (el, ctx, i, page) => {
       const items = normalizeItems(el);
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
@@ -224,13 +224,14 @@
                   <figcaption class="media-caption">${label}</figcaption>
                 </figure>`;
       }).join("");
-      return section(el.label || "Image", content);
+      return section(el.label || "Image", content, i);
     },
     images: (el, ctx, i, page) => RENDERERS.image(el, ctx, i, page)
   };
 
-  function section(title, innerHtml) {
-    return `<section class="element">
+  function section(title, innerHtml, i) {
+    const delay = 0.42 + (Number(i) || 0) * 0.12; // seconds
+    return `<section class="element stagger" style="--delay:${delay.toFixed(2)}s">
       <h2 class="element-title">${escapeHtml(title)}</h2>
       ${innerHtml}
     </section>`;
