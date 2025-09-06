@@ -34,7 +34,8 @@
 
       // wire search UX
       wireSearch();
-      // initialize type options disabled until a class is selected
+      // initialize counts + type options
+      updateClassOptionCounts();
       if (typeof updateTypeOptions === "function") updateTypeOptions("");
     } catch (err) {
       resultsList.innerHTML = `<div class="muted">Failed to load manifest</div>`;
@@ -146,15 +147,36 @@
     resultsPanel.classList.remove("open");
   }
 
+  // Add counts to Class dropdown labels
+  function updateClassOptionCounts() {
+    if (!sel) return;
+    const total = all.length;
+    // Base option: All classes (N)
+    if (sel.options && sel.options.length > 0) {
+      const baseOpt = sel.options[0];
+      if (baseOpt && baseOpt.value === "") baseOpt.textContent = `All classes (${total})`;
+    }
+    // Per-class counts
+    const byClass = new Map();
+    for (const it of all) byClass.set(it.cls, (byClass.get(it.cls) || 0) + 1);
+    for (let i = 0; i < sel.options.length; i++) {
+      const opt = sel.options[i];
+      if (!opt.value) continue; // skip base
+      const c = byClass.get(opt.value) || 0;
+      opt.textContent = `${opt.value} (${c})`;
+    }
+  }
+
   // Populate assignment-type options based on selected class
   function updateTypeOptions(cls) {
     if (!typ) return;
     // Reset current options
     while (typ.firstChild) typ.removeChild(typ.firstChild);
-    // Always include an "All types" option
+    // Always include an "All types" option with count when class selected
     const base = document.createElement("option");
     base.value = "";
-    base.textContent = "All types";
+    const totalInClass = cls ? all.filter(x => x.cls === cls).length : 0;
+    base.textContent = cls ? `All types (${totalInClass})` : "All types";
     typ.appendChild(base);
 
     // Disable if no class selected
@@ -178,7 +200,8 @@
     for (const t of types) {
       const opt = document.createElement("option");
       opt.value = t;
-      opt.textContent = t;
+      const n = counts.get(t) || 0;
+      opt.textContent = `${t} (${n})`;
       typ.appendChild(opt);
     }
 
