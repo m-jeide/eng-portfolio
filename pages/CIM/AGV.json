@@ -1,6 +1,6 @@
 {
   "title": "{file}",
-  "date": "09/04/25",
+  "date": "09/07/25",
   "type": "Project",
   "brief": [
     "Create a AGV which can pick up items, store them, and follow a path.",
@@ -27,6 +27,28 @@
         {
           "label": "Initial Code for Testbed by Preston Maxwell",
           "src": "resources/{class}/{type}/{title}/Initial_Code.png"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "F360 Design by Matthew Jeide and Preston Maxwell",
+          "src": "resources/{class}/{type}/{title}/Assembly Drawing.pdf"
+        },
+        {
+          "label": "Cost Analysis by Preston Maxwell and Samuel Webster (based on F360 Design)",
+          "src": "resources/{class}/{type}/{title}/Cost Analysis.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Image",
+      "items": [
+        {
+          "label": "9/5/2025 Assembly by Matthew Jeide",
+          "src": "resources/{class}/{type}/{title}/Assembly.JPG"
         }
       ]
     }
