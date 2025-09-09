@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "09/08/25",
+  "type": "Element A",
+  "brief": [
+    "Perform market research on existing products to determine strengths and weaknesses."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
