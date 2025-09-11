@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "09/05/25",
+  "type": "Element A",
+  "brief": [
+    "Summary and critiques of patents related to our project"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
