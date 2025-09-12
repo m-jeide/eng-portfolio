@@ -83,13 +83,16 @@
   // Row renderer with chips
   function renderRow(it) {
     const right = [it.date].filter(Boolean).join("");
+    const cls = (it.cls || "").trim();
+    const typ = (it.type || "").trim();
+    const same = cls && typ && cls.toLowerCase() === typ.toLowerCase();
+    const chipsHtml = same
+      ? `${chipClass(cls)}`
+      : `${chipClass(cls)}${chipType(typ)}`;
     return `<div class="item">
       <div class="item-left">
         <a class="title" href="${it.href}">${escapeHtml(it.title)}</a>
-        <span class="chips">
-          ${chipClass(it.cls)}
-          ${chipType(it.type)}
-        </span>
+        <span class="chips">${chipsHtml}</span>
       </div>
       <span class="item-right">${escapeHtml(right)}</span>
     </div>`;

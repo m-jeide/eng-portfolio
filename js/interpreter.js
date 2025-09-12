@@ -98,10 +98,13 @@
     // set browser tab title
     document.title = `${title} · Matthew's Engineering Portfolio`;
 
-    // chips
+    // chips (merge duplicate tag values, case-insensitive)
+    const hasClass = !!ctx.cls;
+    const hasType  = !!type;
+    const sameTag  = hasClass && hasType && String(ctx.cls).trim().toLowerCase() === String(type).trim().toLowerCase();
     const chips = [
-      ctx.cls ? `<span class="chip chip-class">${escapeHtml(ctx.cls)}</span>` : "",
-      type ? `<span class="chip chip-type">${escapeHtml(type)}</span>` : ""
+      hasClass ? `<span class="chip chip-class">${escapeHtml(ctx.cls)}</span>` : "",
+      hasType && !sameTag ? `<span class="chip chip-type">${escapeHtml(type)}</span>` : ""
     ].join("");
 
     // header with staggered animation
