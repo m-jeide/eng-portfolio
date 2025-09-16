@@ -1,0 +1,26 @@
+/*
+  Beta mode stylesheet.
+  This file is only loaded when a page is opened with ?beta or ?mode=beta.
+  Add experimental overrides here so you can prototype designs without
+  affecting the default experience.
+*/
+
+html.beta-mode {
+  /* Example: override CSS variables or layout tweaks for beta mode here. */
+}
+
+body.beta-mode::after {
+  content: "beta";
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(17, 24, 39, 0.8);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 999px;
+  z-index: 9999;
+  pointer-events: none;
+}
