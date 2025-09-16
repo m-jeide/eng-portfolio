@@ -1,5 +1,6 @@
 (function () {
   const app = document.getElementById("app");
+  const IS_BETA = !!window.IS_BETA;
 
   const BASE = normalizeBase(window.SITE_BASE || "/");
   const OWNER = window.REPO_OWNER;
@@ -199,7 +200,9 @@
 
     pdf: (el, ctx, i, page) => {
       const items = normalizeItems(el);
-      const sectionTitle = sectionTitleWithItems(el, "PDF", items);
+      const sectionTitle = IS_BETA
+        ? sectionTitleWithItems(el, "PDF", items)
+        : (el.label || "PDF");
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
         const rawLabel = it.label || it.title || "PDF";
@@ -222,7 +225,9 @@
 
     video: (el, ctx, i, page) => {
       const items = normalizeItems(el);
-      const sectionTitle = sectionTitleWithItems(el, "Video", items);
+      const sectionTitle = IS_BETA
+        ? sectionTitleWithItems(el, "Video", items)
+        : (el.label || "Video");
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
         const embed = toVideoEmbed(src);
@@ -237,7 +242,9 @@
 
     image: (el, ctx, i, page) => {
       const items = normalizeItems(el);
-      const sectionTitle = sectionTitleWithItems(el, "Image", items);
+      const sectionTitle = IS_BETA
+        ? sectionTitleWithItems(el, "Image", items)
+        : (el.label || "Image");
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
         const label = escapeHtml(it.label || it.title || "Image");
