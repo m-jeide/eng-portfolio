@@ -199,9 +199,11 @@
 
     pdf: (el, ctx, i, page) => {
       const items = normalizeItems(el);
+      const sectionTitle = sectionTitleWithItems(el, "PDF", items);
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
-        const label = escapeHtml(it.label || "PDF");
+        const rawLabel = it.label || it.title || "PDF";
+        const label = escapeHtml(rawLabel);
         const embedUrl = `${src}#zoom=${encodeURIComponent(PDF_ZOOM)}`;
         const iframe = `<iframe class="pdf-frame" src="${embedUrl}"></iframe>`;
         const actions = `
@@ -215,28 +217,30 @@
                   ${actions}
                 </figure>`;
       }).join("");
-      return section(el.label || "PDF", content, i);
+      return section(sectionTitle, content, i);
     },
 
     video: (el, ctx, i, page) => {
       const items = normalizeItems(el);
+      const sectionTitle = sectionTitleWithItems(el, "Video", items);
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
         const embed = toVideoEmbed(src);
-        const label = escapeHtml(it.label || "Video");
+        const label = escapeHtml(it.label || it.title || "Video");
         return `<figure class="media">
                   <div class="media-center">${embed}</div>
                   <figcaption class="media-caption">${label}</figcaption>
                 </figure>`;
       }).join("");
-      return section(el.label || "Video", content, i);
+      return section(sectionTitle, content, i);
     },
 
     image: (el, ctx, i, page) => {
       const items = normalizeItems(el);
+      const sectionTitle = sectionTitleWithItems(el, "Image", items);
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
-        const label = escapeHtml(it.label || "Image");
+        const label = escapeHtml(it.label || it.title || "Image");
         const alt = escapeHtml(it.alt || it.label || page.title || "");
         const img = `<img class="image-frame" src="${src}" alt="${alt}" loading="lazy">`;
         return `<figure class="media">
@@ -244,7 +248,7 @@
                   <figcaption class="media-caption">${label}</figcaption>
                 </figure>`;
       }).join("");
-      return section(el.label || "Image", content, i);
+      return section(sectionTitle, content, i);
     },
     images: (el, ctx, i, page) => RENDERERS.image(el, ctx, i, page)
   };
@@ -258,6 +262,15 @@
   }
 
   // ---------- helpers ----------
+  function sectionTitleWithItems(el, defaultTitle, items) {
+    const base = el && el.label ? String(el.label) : defaultTitle;
+    const labels = (items || [])
+      .map(it => (it && (it.label || it.title || it.name)) ? String(it.label || it.title || it.name) : "")
+      .filter(Boolean);
+    if (!labels.length) return base;
+    return `${base} - ${labels.join(" & ")}`;
+  }
+
   function filenameStem(id) {
     const last = String(id || "").split("/").pop() || "";
     return last.replace(/\.[^.]+$/, "");

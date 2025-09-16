@@ -5,11 +5,6 @@
   affecting the default experience.
 */
 
-html.beta-mode {
-  --pdf-w-max: 720px;
-  --pdf-h: clamp(640px, 72vh, 1080px);
-}
-
 body.beta-mode::after {
   content: "beta";
   position: fixed;
@@ -35,26 +30,26 @@ body.beta-mode main#app.container {
 }
 
 body.beta-mode .page-topbar {
-  border: none;
-  background: rgba(12, 14, 19, 0.78);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  margin: 0 calc(50% - 50vw);
-  padding: 10px clamp(32px, 8vw, 170px) 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin: 6px calc(50% - 50vw) 24px;
+  padding: 8px max(24px, calc((100vw - 1100px) / 2 + 24px));
+  background: rgba(15, 19, 27, 0.62);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 36px rgba(5, 12, 24, 0.32);
 }
 
 body.beta-mode .page-topbar .home-link {
   width: 46px;
   height: 46px;
   margin: 0;
-  border: none;
-  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(110, 231, 255, 0.25);
+  background: rgba(13, 18, 28, 0.45);
   border-radius: 12px;
 }
 
 body.beta-mode .page-topbar .home-link:hover {
-  background: rgba(110, 231, 255, 0.16);
+  background: rgba(110, 231, 255, 0.22);
 }
 
 body.beta-mode .page-header {
@@ -83,12 +78,20 @@ body.beta-mode .image-frame {
 
 body.beta-mode .card,
 body.beta-mode .tile {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(15, 19, 27, 0.58);
 }
 
 body.beta-mode .chip {
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(231, 233, 238, 0.78);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+}
+
+body.beta-mode .chip-class {
+  background: rgba(110, 231, 255, 0.22);
+}
+
+body.beta-mode .chip-type {
+  background: rgba(160, 172, 255, 0.22);
 }
 
 body.beta-mode .media {
