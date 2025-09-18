@@ -199,6 +199,12 @@
   ],
   "EDD": [
     {
+      "id": "[W4] EDD Research Summary Sheet",
+      "title": "[W4] EDD Research Summary Sheet",
+      "type": "Element A",
+      "date": "09/16/25"
+    },
+    {
       "id": "[W5] EDD Week 5 Report",
       "title": "[W5] EDD Week 5 Report",
       "type": "Weekly Report",
@@ -219,7 +225,7 @@
     {
       "id": "[W3] The Ten Mighty Questions of EDD",
       "title": "[W3] The Ten Mighty Questions of EDD",
-      "type": "Project",
+      "type": "Element A",
       "date": "09/05/25"
     },
     {
@@ -231,7 +237,7 @@
     {
       "id": "[W3] EDD Team Norms Contract",
       "title": "[W3] EDD Team Norms Contract",
-      "type": "Project",
+      "type": "Element A",
       "date": "08/29/25"
     },
     {
@@ -261,7 +267,7 @@
     {
       "id": "[W2] EDD Problem Selection",
       "title": "[W2] EDD Problem Selection",
-      "type": "Notes",
+      "type": "Element A",
       "date": "08/22/25"
     },
     {
