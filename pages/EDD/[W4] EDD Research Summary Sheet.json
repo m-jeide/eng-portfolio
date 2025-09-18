@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "09/16/25",
+  "type": "Element A",
+  "brief": [
+    "Research prexisting products to our topic."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
