@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "09/19/25",
+  "type": "Elements",
+  "brief": [
+    "Detailed report of current Element A findings and analysis."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
