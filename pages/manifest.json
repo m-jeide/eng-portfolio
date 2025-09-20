@@ -199,6 +199,12 @@
   ],
   "EDD": [
     {
+      "id": "EDD Element A",
+      "title": "EDD Element A",
+      "type": "Elements",
+      "date": "09/19/25"
+    },
+    {
       "id": "[W4] EDD Research Summary Sheet",
       "title": "[W4] EDD Research Summary Sheet",
       "type": "Element A",
