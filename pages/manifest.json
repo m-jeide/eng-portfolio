@@ -199,6 +199,12 @@
   ],
   "EDD": [
     {
+      "id": "[W6] EDD Week 6 Report",
+      "title": "[W6] EDD Week 6 Report",
+      "type": "Weekly Report",
+      "date": "09/22/25"
+    },
+    {
       "id": "EDD Element A",
       "title": "EDD Element A",
       "type": "Elements",
