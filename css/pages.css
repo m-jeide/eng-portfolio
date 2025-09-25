@@ -85,9 +85,16 @@
   margin: 0 0 12px;
   padding-left: 20px;
   color: var(--muted);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  list-style: disc;
+}
+.reference-brief li { margin: 4px 0; }
+.reference-brief-empty {
+  padding-left: 0;
+}
+.type-reference-date {
+  color: var(--muted);
+  font-size: .95rem;
+  margin: -4px 0 8px;
 }
 .type-reference-body {
   display: flex;

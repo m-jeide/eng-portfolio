@@ -377,7 +377,8 @@
       if (!refType) return `<div class="muted">No matching assignments.</div>`;
       return `<div class="muted">No assignments found for ${escapeHtml(refType)}.</div>`;
     }
-    const list = items.map((item, index) => renderTypeReferenceItem(item, ctx, registerItem, index)).join("");
+    const sortedItems = [...items].sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+    const list = sortedItems.map((item, index) => renderTypeReferenceItem(item, ctx, registerItem, index)).join("");
     return `<div class="type-reference">${list}</div>`;
   }
 
@@ -386,13 +387,25 @@
     const page = item.page;
     const entry = item.entry;
     const href = item.href || buildAssignmentHref(item.cls || ctx.cls, item.id);
-    const title = page.title || entry.title || entry.id;
-    const anchorId = typeof registerItem === "function" ? registerItem(title, entry.id) : null;
+    const replacements = {
+      file: filenameStem(entry.id),
+      class: item.cls || ctx.cls || "",
+      id: entry.id || "",
+      type: entry.type || page.type || ""
+    };
+    let displayTitle = page.title ? applyTemplate(page.title, replacements) : "";
+    if (!displayTitle || /\{\w+\}/.test(displayTitle)) {
+      const fallbackRaw = entry.title || entry.id || page.title || "";
+      displayTitle = applyTemplate(fallbackRaw, replacements) || entry.id;
+    }
+    const anchorId = typeof registerItem === "function" ? registerItem(displayTitle, entry.id) : null;
     const idAttr = anchorId ? ` id="${anchorId}"` : "";
     const brief = Array.isArray(page.brief) ? page.brief : [];
     const briefHtml = brief.length
       ? `<ul class="reference-brief">${brief.map(line => `<li>${escapeHtml(line)}</li>`).join("")}</ul>`
-      : `<div class="reference-brief muted">No abstract provided.</div>`;
+      : `<div class="reference-brief reference-brief-empty muted">No abstract provided.</div>`;
+    const dateStr = entry.date || page.date || "";
+    const dateHtml = dateStr ? `<div class="type-reference-date">${escapeHtml(dateStr)}</div>` : "";
     const elements = Array.isArray(page.elements) ? page.elements : [];
     let bodyHtml = "";
     if (elements.length === 1) {
@@ -404,7 +417,8 @@
     }
     return `<article class="card type-reference-item"${idAttr}>
       <header class="type-reference-header">
-        <h3 class="type-reference-title"><a href="${href}">${escapeHtml(title)}</a></h3>
+        <h3 class="type-reference-title"><a href="${href}">${escapeHtml(displayTitle)}</a></h3>
+        ${dateHtml}
         ${briefHtml}
       </header>
       <div class="type-reference-body">${bodyHtml}</div>
@@ -610,6 +624,9 @@
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "")
       .slice(0, 80);
+  }
+  function applyTemplate(str, vars) {
+    return String(str || "").replace(/\{(\w+)\}/g, (_, key) => (key in vars ? vars[key] : `{${key}}`));
   }
   function extractReferenceType(el) {
     if (!el) return "";
