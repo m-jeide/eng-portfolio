@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EDD Elements • Portfolio</title>
+
+  <script src="/eng-portfolio/site.config.js"></script>
+  <script>document.write('<base href="' + (window.SITE_BASE || "/") + '">');</script>
+
+  <link rel="icon" type="image/x-icon" href="/eng-portfolio/favicon.ico">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+  <nav class="page-topbar">
+    <a href="./" class="home-link" aria-label="Home">
+      <img src="resources/icons/home.svg" alt="" class="home-icon" />
+    </a>
+  </nav>
+
+  <main class="container">
+    <h1 class="section-title">EDD Elements</h1>
+    <div id="eddElementList" class="list"></div>
+  </main>
+
+  <script src="js/edd-elements.js" defer></script>
+</body>
+</html>

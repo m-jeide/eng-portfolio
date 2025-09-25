@@ -239,4 +239,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (resumeLink && window.RESUME_URL) {
     resumeLink.href = window.RESUME_URL;
   }
+
+  const specialty = window.SPECIALTY_FLAGS || {};
+  const eddSection = document.getElementById("eddElementsSection");
+  const eddLink = document.getElementById("eddElementsLink");
+  if (specialty && specialty.EDD_ELEMENTS) {
+    if (eddSection) eddSection.hidden = false;
+    if (eddLink && window.SITE_BASE) {
+      const base = String(window.SITE_BASE || "/");
+      eddLink.href = (base.endsWith("/") ? base : `${base}/`) + "edd-elements.html";
+    }
+  } else if (eddSection) {
+    eddSection.remove();
+  }
 });
