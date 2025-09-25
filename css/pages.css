@@ -52,6 +52,11 @@
   font-weight: 800;
   margin: 0 0 10px;
 }
+.element-subtitle {
+  margin: -6px 0 12px;
+  font-size: .95rem;
+  color: var(--muted);
+}
 
 .page-toc .card {
   padding: 14px;

@@ -293,18 +293,23 @@
 
   function section(title, innerHtml, i) {
     const delay = 0.42 + (Number(i) || 0) * 0.12; // seconds
-    const { id, text } = registerSection(title, i);
+    const { heading, subtitle } = normalizeSectionHeading(title);
+    const { id, text } = registerSection(heading, i);
+    const subtitleHtml = subtitle ? `<div class="element-subtitle">${escapeHtml(subtitle)}</div>` : "";
+    const subtitleBlock = subtitleHtml ? `${subtitleHtml}\n      ` : "";
     return `<section class="element stagger" id="${id}" style="--delay:${delay.toFixed(2)}s">
       <h2 class="element-title">${escapeHtml(text)}</h2>
-      ${innerHtml}
+      ${subtitleBlock}${innerHtml}
     </section>`;
   }
 
   function registerSection(title, index) {
-    const text = title == null ? `Section ${(Number(index) || 0) + 1}` : String(title);
+    const idx = (Number(index) || 0) + 1;
+    const raw = title == null ? "" : String(title);
+    const text = raw.trim() ? raw : `Section ${idx}`;
     const target = sectionCollector || fallbackSectionState;
     const counts = target.counts || (target.counts = Object.create(null));
-    const base = slugify(text) || `section-${(Number(index) || 0) + 1}`;
+    const base = slugify(text) || `section-${idx}`;
     let id = base;
     if (counts[id]) {
       counts[id] += 1;
@@ -319,13 +324,35 @@
   }
 
   // ---------- helpers ----------
+  function normalizeSectionHeading(title) {
+    if (title && typeof title === "object" && ("heading" in title || "subtitle" in title)) {
+      const heading = String(title.heading || "");
+      const subtitle = title.subtitle == null ? "" : String(title.subtitle);
+      return { heading, subtitle };
+    }
+    const text = title == null ? "" : String(title);
+    return { heading: text, subtitle: "" };
+  }
+
   function sectionTitleWithItems(el, defaultTitle, items) {
     const base = el && el.label ? String(el.label) : defaultTitle;
     const labels = (items || [])
       .map(it => (it && (it.label || it.title || it.name)) ? String(it.label || it.title || it.name) : "")
       .filter(Boolean);
-    if (!labels.length) return base;
-    return `${base} - ${labels.join(" & ")}`;
+    const combined = labels.length ? `${base} - ${labels.join(" & ")}` : base;
+    if (IS_BETA) {
+      const prefix = `${defaultTitle} - `;
+      let heading = combined;
+      if (heading.startsWith(prefix)) {
+        heading = heading.slice(prefix.length).trim();
+      }
+      if (!heading) heading = base || defaultTitle;
+      const subtitle = heading.trim().toLowerCase() === String(defaultTitle).trim().toLowerCase()
+        ? ""
+        : defaultTitle;
+      return { heading, subtitle };
+    }
+    return combined;
   }
 
   function filenameStem(id) {
