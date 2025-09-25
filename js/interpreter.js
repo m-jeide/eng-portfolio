@@ -14,6 +14,8 @@
   let sectionCollector = null;
   const fallbackSectionState = { counts: Object.create(null), list: null };
 
+  app.addEventListener('click', handleLocalAnchorClick);
+
   boot().catch(err => {
     app.innerHTML = `<div class="error-screen"><h2>Load error</h2><p class="muted">${escapeHtml(String(err))}</p></div>`;
   });
@@ -202,7 +204,7 @@
     if (!Array.isArray(sections) || sections.length <= 2) return "";
     const items = sections.map(({ id, title }) => {
       const safeTitle = escapeHtml(title);
-      return `<li class="toc-item"><a href="#${id}">${safeTitle}</a></li>`;
+      return `<li class="toc-item"><a href="#${id}" data-local-anchor="${id}">${safeTitle}</a></li>`;
     }).join("");
     return `
       <section class="page-toc element stagger" style="--delay:.38s">
@@ -231,9 +233,7 @@
 
     pdf: (el, ctx, i, page) => {
       const items = normalizeItems(el);
-      const sectionTitle = IS_BETA
-        ? sectionTitleWithItems(el, "PDF", items)
-        : (el.label || "PDF");
+      const sectionTitle = sectionTitleWithItems(el, "PDF", items);
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
         const rawLabel = it.label || it.title || "PDF";
@@ -256,9 +256,7 @@
 
     video: (el, ctx, i, page) => {
       const items = normalizeItems(el);
-      const sectionTitle = IS_BETA
-        ? sectionTitleWithItems(el, "Video", items)
-        : (el.label || "Video");
+      const sectionTitle = sectionTitleWithItems(el, "Video", items);
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
         const embed = toVideoEmbed(src);
@@ -273,9 +271,7 @@
 
     image: (el, ctx, i, page) => {
       const items = normalizeItems(el);
-      const sectionTitle = IS_BETA
-        ? sectionTitleWithItems(el, "Image", items)
-        : (el.label || "Image");
+      const sectionTitle = sectionTitleWithItems(el, "Image", items);
       const content = items.map(it => {
         const src = makeSrc(it.src, page, ctx);
         const label = escapeHtml(it.label || it.title || "Image");
@@ -394,6 +390,20 @@
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "")
       .slice(0, 80);
+  }
+  function handleLocalAnchorClick(event) {
+    const origin = event.target;
+    if (!(origin instanceof Element)) return;
+    const target = origin.closest('a[data-local-anchor]');
+    if (!target || !app.contains(target)) return;
+    const id = target.getAttribute('data-local-anchor');
+    if (!id) return;
+    const section = document.getElementById(id);
+    if (!section) return;
+    event.preventDefault();
+    const { pathname, search } = location;
+    history.replaceState(null, '', `${pathname}${search}#${id}`);
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
   function toVideoEmbed(src) {
     const url = String(src || "");
