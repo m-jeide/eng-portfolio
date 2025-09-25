@@ -11,6 +11,9 @@
   // Tweak this if you want bigger or smaller PDF text later
   const PDF_ZOOM = "100"; // percent. Alternatives that often work: "page-width", "175"
 
+  let sectionCollector = null;
+  const fallbackSectionState = { counts: Object.create(null), list: null };
+
   boot().catch(err => {
     app.innerHTML = `<div class="error-screen"><h2>Load error</h2><p class="muted">${escapeHtml(String(err))}</p></div>`;
   });
@@ -125,11 +128,13 @@
         </section>`
       : "";
 
-    // elements
-    const elementsHtml = renderElements(elements, ctx, page);
+    fallbackSectionState.counts = Object.create(null);
+    const collectorState = { list: [], counts: Object.create(null) };
+    const elementsHtml = withSectionCollector(collectorState, () => renderElements(elements, ctx, page));
+    const tocHtml = renderTableOfContents(collectorState.list);
 
     // mount with enter animation wrapper
-    const body = header + abstractHtml + elementsHtml;
+    const body = header + abstractHtml + tocHtml + elementsHtml;
     app.innerHTML = `<div class="page-anim">${body}</div>`;
     animateIn();
   }
@@ -174,6 +179,16 @@
     } catch {}
   }
 
+  function withSectionCollector(state, fn) {
+    const prev = sectionCollector;
+    sectionCollector = state;
+    try {
+      return fn();
+    } finally {
+      sectionCollector = prev;
+    }
+  }
+
   function renderElements(elements, ctx, page) {
     if (!elements.length) return "";
     return elements.map((el, i) => {
@@ -181,6 +196,22 @@
       const renderer = RENDERERS[t] || renderUnknown;
       return renderer(el, ctx, i, page);
     }).join("");
+  }
+
+  function renderTableOfContents(sections) {
+    if (!Array.isArray(sections) || sections.length <= 2) return "";
+    const items = sections.map(({ id, title }) => {
+      const safeTitle = escapeHtml(title);
+      return `<li class="toc-item"><a href="#${id}">${safeTitle}</a></li>`;
+    }).join("");
+    return `
+      <section class="page-toc element stagger" style="--delay:.38s">
+        <h2 class="element-title">Contents</h2>
+        <div class="card">
+          <ol class="toc-list">${items}</ol>
+        </div>
+      </section>
+    `;
   }
 
   const RENDERERS = {
@@ -262,10 +293,29 @@
 
   function section(title, innerHtml, i) {
     const delay = 0.42 + (Number(i) || 0) * 0.12; // seconds
-    return `<section class="element stagger" style="--delay:${delay.toFixed(2)}s">
-      <h2 class="element-title">${escapeHtml(title)}</h2>
+    const { id, text } = registerSection(title, i);
+    return `<section class="element stagger" id="${id}" style="--delay:${delay.toFixed(2)}s">
+      <h2 class="element-title">${escapeHtml(text)}</h2>
       ${innerHtml}
     </section>`;
+  }
+
+  function registerSection(title, index) {
+    const text = title == null ? `Section ${(Number(index) || 0) + 1}` : String(title);
+    const target = sectionCollector || fallbackSectionState;
+    const counts = target.counts || (target.counts = Object.create(null));
+    const base = slugify(text) || `section-${(Number(index) || 0) + 1}`;
+    let id = base;
+    if (counts[id]) {
+      counts[id] += 1;
+      id = `${base}-${counts[id]}`;
+    } else {
+      counts[id] = 1;
+    }
+    if (target.list) {
+      target.list.push({ id, title: text });
+    }
+    return { id, text };
   }
 
   // ---------- helpers ----------
@@ -310,6 +360,13 @@
     const expanded = expandTemplatePath(p, page, ctx).replace(/^\/+/, "");
     if (isHttp(expanded)) return expanded;
     return BASE + encodeLocalPath(expanded);
+  }
+  function slugify(input) {
+    return String(input || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 80);
   }
   function toVideoEmbed(src) {
     const url = String(src || "");
