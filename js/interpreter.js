@@ -13,6 +13,8 @@
 
   let sectionCollector = null;
   const fallbackSectionState = { counts: Object.create(null), list: null };
+  let manifestPromise = null;
+  const pageCache = new Map();
 
   app.addEventListener('click', handleLocalAnchorClick);
 
@@ -39,7 +41,7 @@
     const jsonUrl = buildJsonUrl(cls, id);
     const page = await fetchJson(jsonUrl);
     beginPreload(page, { cls, id });
-    render(page, { cls, id });
+    await render(page, { cls, id });
   }
 
   // Supports ?class=DE&id=... and pretty URLs /eng-portfolio/DE/<id>
@@ -75,7 +77,7 @@
     return r.json();
   }
 
-  function render(page, ctx) {
+  async function render(page, ctx) {
     // helpers scoped to render
     function stripExt(s) { return String(s).replace(/\.[^.]+$/, ""); }
     function tpl(str, vars) {
@@ -131,8 +133,9 @@
       : "";
 
     fallbackSectionState.counts = Object.create(null);
+    const resolvedElements = await resolveElementsData(elements, ctx, page);
     const collectorState = { list: [], counts: Object.create(null) };
-    const elementsHtml = withSectionCollector(collectorState, () => renderElements(elements, ctx, page));
+    const elementsHtml = withSectionCollector(collectorState, () => renderElements(resolvedElements, ctx, page));
     const tocHtml = renderTableOfContents(collectorState.list);
 
     // mount with enter animation wrapper
@@ -179,6 +182,61 @@
         }
       }
     } catch {}
+  }
+
+  async function resolveElementsData(elements, ctx, page) {
+    if (!Array.isArray(elements) || !elements.length) return [];
+    const result = [];
+    for (const el of elements) {
+      if (normalizeType(el.type) === "type-reference") {
+        result.push(await resolveTypeReferenceElement(el, ctx));
+      } else {
+        result.push(el);
+      }
+    }
+    return result;
+  }
+
+  async function resolveTypeReferenceElement(el, ctx) {
+    const targetType = extractReferenceType(el);
+    if (!targetType || !ctx || !ctx.cls) {
+      return { ...el, referenceType: targetType || "", referenceItems: [] };
+    }
+    let manifest;
+    try {
+      manifest = await fetchManifestCached();
+    } catch (err) {
+      console.warn("Failed to load manifest for type-reference", err);
+      return { ...el, referenceType: targetType, referenceItems: [] };
+    }
+    const entries = Array.isArray(manifest[ctx.cls]) ? manifest[ctx.cls] : [];
+    const targetLower = targetType.trim().toLowerCase();
+    const matches = entries.filter(item => String(item.type || "").trim().toLowerCase() === targetLower);
+    if (!matches.length) {
+      return { ...el, referenceType: targetType, referenceItems: [] };
+    }
+    const items = await Promise.all(matches.map(async (item) => {
+      try {
+        const pageData = await fetchPageJsonCached(ctx.cls, item.id);
+        return {
+          entry: item,
+          page: pageData,
+          href: buildAssignmentHref(ctx.cls, item.id),
+          cls: ctx.cls,
+          id: item.id,
+          timestamp: toTimestamp(item.date)
+        };
+      } catch (err) {
+        console.warn("Failed to load referenced assignment", item.id, err);
+        return null;
+      }
+    }));
+    const filteredItems = items.filter(Boolean);
+    if (!filteredItems.length) {
+      return { ...el, referenceType: targetType, referenceItems: [] };
+    }
+    filteredItems.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+    return { ...el, referenceType: targetType, referenceItems: filteredItems };
   }
 
   function withSectionCollector(state, fn) {
@@ -304,8 +362,117 @@
         }).join("");
       }, i, { skipDefaultToc: multiple });
     },
-    images: (el, ctx, i, page) => RENDERERS.image(el, ctx, i, page)
+    images: (el, ctx, i, page) => RENDERERS.image(el, ctx, i, page),
+
+    "type-reference": (el, ctx, i) => {
+      const refType = (el && el.referenceType) ? String(el.referenceType) : extractReferenceType(el);
+      const items = Array.isArray(el.referenceItems) ? el.referenceItems : [];
+      const heading = el && el.label ? String(el.label) : (refType ? `${refType} Assignments` : "References");
+      return section(heading, ({ registerItem, sectionId }) => renderTypeReferenceBody(items, refType, ctx, registerItem, sectionId), i, { skipDefaultToc: false });
+    }
   };
+
+  function renderTypeReferenceBody(items, refType, ctx, registerItem, sectionId) {
+    if (!Array.isArray(items) || !items.length) {
+      if (!refType) return `<div class="muted">No matching assignments.</div>`;
+      return `<div class="muted">No assignments found for ${escapeHtml(refType)}.</div>`;
+    }
+    const list = items.map((item, index) => renderTypeReferenceItem(item, ctx, registerItem, index)).join("");
+    return `<div class="type-reference">${list}</div>`;
+  }
+
+  function renderTypeReferenceItem(item, ctx, registerItem, index) {
+    if (!item || !item.page || !item.entry) return "";
+    const page = item.page;
+    const entry = item.entry;
+    const href = item.href || buildAssignmentHref(item.cls || ctx.cls, item.id);
+    const title = page.title || entry.title || entry.id;
+    const anchorId = typeof registerItem === "function" ? registerItem(title, entry.id) : null;
+    const idAttr = anchorId ? ` id="${anchorId}"` : "";
+    const brief = Array.isArray(page.brief) ? page.brief : [];
+    const briefHtml = brief.length
+      ? `<ul class="reference-brief">${brief.map(line => `<li>${escapeHtml(line)}</li>`).join("")}</ul>`
+      : `<div class="reference-brief muted">No abstract provided.</div>`;
+    const elements = Array.isArray(page.elements) ? page.elements : [];
+    let bodyHtml = "";
+    if (elements.length === 1) {
+      const refCtx = { cls: item.cls || ctx.cls, id: item.id };
+      bodyHtml = renderElementPreview(elements[0], refCtx, page);
+    }
+    if (!bodyHtml) {
+      bodyHtml = `<div class="reference-actions"><a class="btn" href="${href}">View Assignment</a></div>`;
+    }
+    return `<article class="card type-reference-item"${idAttr}>
+      <header class="type-reference-header">
+        <h3 class="type-reference-title"><a href="${href}">${escapeHtml(title)}</a></h3>
+        ${briefHtml}
+      </header>
+      <div class="type-reference-body">${bodyHtml}</div>
+    </article>`;
+  }
+
+  function renderElementPreview(el, refCtx, refPage) {
+    if (!el) return "";
+    const type = normalizeType(el.type);
+    if (!type) return "";
+    const items = normalizeItems(el);
+    switch (type) {
+      case "pdf":
+        if (!items.length) return "";
+        return items.map(it => {
+          const src = makeSrc(it.src, refPage, refCtx);
+          const rawLabel = it.label || it.title || "PDF";
+          const label = escapeHtml(rawLabel);
+          const embedUrl = `${src}#zoom=${encodeURIComponent(PDF_ZOOM)}`;
+          const iframe = `<iframe class="pdf-frame" src="${embedUrl}"></iframe>`;
+          const actions = `
+            <div class="media-actions">
+              <a class="btn" href="${embedUrl}" target="_blank" rel="noopener">Open in new tab</a>
+              <a class="btn" href="${src}" download>Download</a>
+            </div>`;
+          return `<figure class="media">
+                    <div class="media-center">${iframe}</div>
+                    <figcaption class="media-caption">${label}</figcaption>
+                    ${actions}
+                  </figure>`;
+        }).join("");
+      case "video":
+        if (!items.length) return "";
+        return items.map(it => {
+          const src = makeSrc(it.src, refPage, refCtx);
+          const embed = toVideoEmbed(src);
+          const label = escapeHtml(it.label || it.title || "Video");
+          return `<figure class="media">
+                    <div class="media-center">${embed}</div>
+                    <figcaption class="media-caption">${label}</figcaption>
+                  </figure>`;
+        }).join("");
+      case "image":
+      case "images":
+        if (!items.length) return "";
+        return items.map(it => {
+          const src = makeSrc(it.src, refPage, refCtx);
+          const label = escapeHtml(it.label || it.title || "Image");
+          const alt = escapeHtml(it.alt || it.label || refPage.title || "");
+          const img = `<img class="image-frame" src="${src}" alt="${alt}" loading="lazy">`;
+          return `<figure class="media">
+                    <div class="media-center">${img}</div>
+                    <figcaption class="media-caption">${label}</figcaption>
+                  </figure>`;
+        }).join("");
+      case "synopsis": {
+        const text = el.content || el.text || "";
+        return `<div class="card">${richText(text)}</div>`;
+      }
+      case "notes":
+      case "designbrief": {
+        const content = el.content || el.text || "";
+        return `<div class="card">${richText(content)}</div>`;
+      }
+      default:
+        return "";
+    }
+  }
 
   function section(title, innerContent, i, opts) {
     const delay = 0.42 + (Number(i) || 0) * 0.12; // seconds
@@ -443,6 +610,50 @@
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "")
       .slice(0, 80);
+  }
+  function extractReferenceType(el) {
+    if (!el) return "";
+    const candidates = [el.referenceType, el.targetType, el.target, el.reference, el.value, el.lookup, el.label];
+    for (const candidate of candidates) {
+      if (candidate && String(candidate).trim()) return String(candidate).trim();
+    }
+    return "";
+  }
+  function fetchManifestCached() {
+    if (!manifestPromise) {
+      manifestPromise = fetch(BASE + "pages/manifest.json", { cache: "no-store" })
+        .then(r => {
+          if (!r.ok) throw new Error("manifest.json not found");
+          return r.json();
+        });
+    }
+    return manifestPromise;
+  }
+  function fetchPageJsonCached(cls, id) {
+    const key = `${cls}||${id}`;
+    if (!pageCache.has(key)) {
+      const url = buildJsonUrl(cls, id);
+      pageCache.set(key, fetchJson(url));
+    }
+    return pageCache.get(key);
+  }
+  function buildAssignmentHref(cls, id) {
+    const encodedClass = encodeURIComponent(cls);
+    const encodedId = String(id || "").split("/").map(encodeURIComponent).join("/");
+    return BASE + `${encodedClass}/${encodedId}`;
+  }
+  function toTimestamp(dateStr) {
+    if (!dateStr) return 0;
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+      const [y, m, d] = dateStr.split("-").map(n => parseInt(n, 10));
+      return new Date(y, m - 1, d).getTime();
+    }
+    if (/^\d{2}\/\d{2}\/\d{2}$/.test(dateStr)) {
+      const [mm, dd, yy] = dateStr.split("/").map(n => parseInt(n, 10));
+      const year = 2000 + yy;
+      return new Date(year, mm - 1, dd).getTime();
+    }
+    return 0;
   }
   function handleLocalAnchorClick(event) {
     const origin = event.target;
