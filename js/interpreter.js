@@ -234,63 +234,110 @@
     pdf: (el, ctx, i, page) => {
       const items = normalizeItems(el);
       const sectionTitle = sectionTitleWithItems(el, "PDF", items);
-      const content = items.map(it => {
-        const src = makeSrc(it.src, page, ctx);
-        const rawLabel = it.label || it.title || "PDF";
-        const label = escapeHtml(rawLabel);
-        const embedUrl = `${src}#zoom=${encodeURIComponent(PDF_ZOOM)}`;
-        const iframe = `<iframe class="pdf-frame" src="${embedUrl}"></iframe>`;
-        const actions = `
-          <div class="media-actions">
-            <a class="btn" href="${embedUrl}" target="_blank" rel="noopener">Open in new tab</a>
-            <a class="btn" href="${src}" download>Download</a>
-          </div>`;
-        return `<figure class="media">
-                  <div class="media-center">${iframe}</div>
-                  <figcaption class="media-caption">${label}</figcaption>
-                  ${actions}
-                </figure>`;
-      }).join("");
-      return section(sectionTitle, content, i);
+      const multiple = items.length > 1;
+      const fallbackLabel = el && el.label ? String(el.label) : "PDF";
+      return section(sectionTitle, ({ registerItem, sectionId }) => {
+        return items.map((it, index) => {
+          const src = makeSrc(it.src, page, ctx);
+          const rawLabel = it.label || it.title || fallbackLabel;
+          const displayLabel = escapeHtml(rawLabel || `${fallbackLabel} ${index + 1}`);
+          const embedUrl = `${src}#zoom=${encodeURIComponent(PDF_ZOOM)}`;
+          const iframe = `<iframe class="pdf-frame" src="${embedUrl}"></iframe>`;
+          const actions = `
+            <div class="media-actions">
+              <a class="btn" href="${embedUrl}" target="_blank" rel="noopener">Open in new tab</a>
+              <a class="btn" href="${src}" download>Download</a>
+            </div>`;
+          const tocTitle = rawLabel || `${fallbackLabel} ${index + 1}`;
+          const anchorId = multiple ? registerItem(tocTitle, tocTitle) : sectionId;
+          const figureId = multiple ? ` id="${anchorId}"` : "";
+          return `<figure class="media"${figureId}>
+                    <div class="media-center">${iframe}</div>
+                    <figcaption class="media-caption">${displayLabel}</figcaption>
+                    ${actions}
+                  </figure>`;
+        }).join("");
+      }, i, { skipDefaultToc: multiple });
     },
 
     video: (el, ctx, i, page) => {
       const items = normalizeItems(el);
       const sectionTitle = sectionTitleWithItems(el, "Video", items);
-      const content = items.map(it => {
-        const src = makeSrc(it.src, page, ctx);
-        const embed = toVideoEmbed(src);
-        const label = escapeHtml(it.label || it.title || "Video");
-        return `<figure class="media">
-                  <div class="media-center">${embed}</div>
-                  <figcaption class="media-caption">${label}</figcaption>
-                </figure>`;
-      }).join("");
-      return section(sectionTitle, content, i);
+      const multiple = items.length > 1;
+      const fallbackLabel = el && el.label ? String(el.label) : "Video";
+      return section(sectionTitle, ({ registerItem, sectionId }) => {
+        return items.map((it, index) => {
+          const src = makeSrc(it.src, page, ctx);
+          const embed = toVideoEmbed(src);
+          const rawLabel = it.label || it.title || fallbackLabel;
+          const displayLabel = escapeHtml(rawLabel || `${fallbackLabel} ${index + 1}`);
+          const tocTitle = rawLabel || `${fallbackLabel} ${index + 1}`;
+          const anchorId = multiple ? registerItem(tocTitle, tocTitle) : sectionId;
+          const figureId = multiple ? ` id="${anchorId}"` : "";
+          return `<figure class="media"${figureId}>
+                    <div class="media-center">${embed}</div>
+                    <figcaption class="media-caption">${displayLabel}</figcaption>
+                  </figure>`;
+        }).join("");
+      }, i, { skipDefaultToc: multiple });
     },
 
     image: (el, ctx, i, page) => {
       const items = normalizeItems(el);
       const sectionTitle = sectionTitleWithItems(el, "Image", items);
-      const content = items.map(it => {
-        const src = makeSrc(it.src, page, ctx);
-        const label = escapeHtml(it.label || it.title || "Image");
-        const alt = escapeHtml(it.alt || it.label || page.title || "");
-        const img = `<img class="image-frame" src="${src}" alt="${alt}" loading="lazy">`;
-        return `<figure class="media">
-                  <div class="media-center">${img}</div>
-                  <figcaption class="media-caption">${label}</figcaption>
-                </figure>`;
-      }).join("");
-      return section(sectionTitle, content, i);
+      const multiple = items.length > 1;
+      const fallbackLabel = el && el.label ? String(el.label) : "Image";
+      return section(sectionTitle, ({ registerItem, sectionId }) => {
+        return items.map((it, index) => {
+          const src = makeSrc(it.src, page, ctx);
+          const rawLabel = it.label || it.title || fallbackLabel;
+          const displayLabel = escapeHtml(rawLabel || `${fallbackLabel} ${index + 1}`);
+          const alt = escapeHtml(it.alt || it.label || page.title || "");
+          const img = `<img class="image-frame" src="${src}" alt="${alt}" loading="lazy">`;
+          const tocTitle = rawLabel || `${fallbackLabel} ${index + 1}`;
+          const anchorId = multiple ? registerItem(tocTitle, tocTitle) : sectionId;
+          const figureId = multiple ? ` id="${anchorId}"` : "";
+          return `<figure class="media"${figureId}>
+                    <div class="media-center">${img}</div>
+                    <figcaption class="media-caption">${displayLabel}</figcaption>
+                  </figure>`;
+        }).join("");
+      }, i, { skipDefaultToc: multiple });
     },
     images: (el, ctx, i, page) => RENDERERS.image(el, ctx, i, page)
   };
 
-  function section(title, innerHtml, i) {
+  function section(title, innerContent, i, opts) {
     const delay = 0.42 + (Number(i) || 0) * 0.12; // seconds
-    const { heading, subtitle } = normalizeSectionHeading(title);
+    const meta = normalizeSectionHeading(title);
+    const heading = meta.heading;
+    const subtitle = meta.subtitle;
+    const options = opts || {};
     const { id, text } = registerSection(heading, i);
+    const skipDefaultToc = options.skipDefaultToc || false;
+
+    if (!skipDefaultToc) {
+      recordTocEntry(id, text);
+    }
+
+    let itemCount = 0;
+    const builderContext = {
+      sectionId: id,
+      registerItem(itemTitle, slugHint) {
+        itemCount += 1;
+        const display = String(itemTitle && String(itemTitle).trim() ? itemTitle : `${text} ${itemCount}`);
+        const slugSource = slugHint && String(slugHint).trim() ? slugHint : display;
+        const base = `${id}-${slugify(slugSource) || `item-${itemCount}`}`;
+        const anchorId = claimId(base, `${id}-item-${itemCount}`);
+        recordTocEntry(anchorId, display);
+        return anchorId;
+      }
+    };
+
+    const innerHtml = typeof innerContent === 'function'
+      ? innerContent(builderContext)
+      : innerContent;
+
     const subtitleHtml = subtitle ? `<div class="element-subtitle">${escapeHtml(subtitle)}</div>` : "";
     const subtitleBlock = subtitleHtml ? `${subtitleHtml}\n      ` : "";
     return `<section class="element stagger" id="${id}" style="--delay:${delay.toFixed(2)}s">
@@ -303,19 +350,8 @@
     const idx = (Number(index) || 0) + 1;
     const raw = title == null ? "" : String(title);
     const text = raw.trim() ? raw : `Section ${idx}`;
-    const target = sectionCollector || fallbackSectionState;
-    const counts = target.counts || (target.counts = Object.create(null));
     const base = slugify(text) || `section-${idx}`;
-    let id = base;
-    if (counts[id]) {
-      counts[id] += 1;
-      id = `${base}-${counts[id]}`;
-    } else {
-      counts[id] = 1;
-    }
-    if (target.list) {
-      target.list.push({ id, title: text });
-    }
+    const id = claimId(base, `section-${idx}`);
     return { id, text };
   }
 
@@ -383,6 +419,23 @@
     const expanded = expandTemplatePath(p, page, ctx).replace(/^\/+/, "");
     if (isHttp(expanded)) return expanded;
     return BASE + encodeLocalPath(expanded);
+  }
+  function recordTocEntry(id, title) {
+    const target = sectionCollector || fallbackSectionState;
+    if (!target.list) return;
+    const text = title == null ? String(id || "") : String(title);
+    target.list.push({ id, title: text });
+  }
+  function claimId(base, fallback) {
+    const target = sectionCollector || fallbackSectionState;
+    const counts = target.counts || (target.counts = Object.create(null));
+    const primary = slugify(base);
+    const secondary = slugify(fallback);
+    const root = primary || secondary || "section";
+    const seen = counts[root] || 0;
+    counts[root] = seen + 1;
+    if (seen === 0) return root;
+    return `${root}-${seen + 1}`;
   }
   function slugify(input) {
     return String(input || "")
