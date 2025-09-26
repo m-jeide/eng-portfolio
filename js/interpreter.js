@@ -342,7 +342,7 @@
       }
       return section("Design Brief", `<div class="card">${richText(el.content || "")}</div>`, i);
     },
-    notes: (el, _ctx, i) => section(el.label || "Notes", `<div class="card">${richText(el.content || "")}</div>`, i),
+    notes: (el, _ctx, i) => section(el.label || "Notes", `<div class="card">${richText(el.content || "", { preserveLineBreaks: true })}</div>`, i),
 
     pdf: (el, ctx, i, page) => {
       const items = normalizeItems(el);
@@ -862,9 +862,15 @@
   function card(inner) { return `<div class="card" style="padding:14px;border-radius:14px">${inner}</div>`; }
   function normalizeBase(b) { return b && !b.endsWith("/") ? b + "/" : (b || "/"); }
   function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;","&gt;":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
-  function richText(s) {
+  function richText(s, opts = {}) {
     const esc = escapeHtml(String(s));
     const linked = esc.replace(/(https?:\/\/[^\s)]+)/g, '<a href="$1" class="btn">$1</a>');
-    return linked.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/\*([^*]+)\*/g, "<em>$1</em>");
+    let html = linked
+      .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+      .replace(/\*([^*]+)\*/g, "<em>$1</em>");
+    if (opts.preserveLineBreaks) {
+      html = html.replace(/\r\n|\r|\n/g, "<br>");
+    }
+    return html;
   }
 })();
