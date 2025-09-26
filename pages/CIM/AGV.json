@@ -1,11 +1,10 @@
 {
   "title": "{file}",
-  "date": "09/08/25",
+  "date": "09/24/25",
   "type": "Project",
   "brief": [
-    "Create a AGV which can pick up items, store them, and follow a path.",
-    "Teammates: Samuel Webster, Preston Maxwell",
-    "ONGOING"
+    "Create a AGV which can pick up items, store them, and follow a designated path.",
+    "Teammates: Samuel Webster, Preston Maxwell"
   ],
   "elements": [
     {
@@ -51,8 +50,52 @@
       "type": "Image",
       "items": [
         {
-          "label": "9/5/2025 Assembly by Matthew Jeide",
+          "label": "Assembly by Matthew Jeide (9/5/2025)",
           "src": "resources/{class}/{type}/{title}/Assembly.JPG"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "AGV Vehicle Inspection",
+          "src": "resources/{class}/{type}/{title}/Automated Guided Vehicle Inspection #2.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Image",
+      "items": [
+        {
+          "label": "Final Assembly by Matthew Jeide and Preston Maxwell (9/24/2025)",
+          "src": "resources/{class}/{type}/{title}/Final Assembly.png"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Final Code for AGV by Samuel Webster",
+          "src": "resources/{class}/{type}/{title}/Final Code.pdf"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Communication Log",
+          "src": "resources/{class}/{type}/{title}/Communication Log.pdf"
+        },
+        {
+          "label": "Technical Report",
+          "src": "resources/{class}/{type}/{title}/Technical Report.pdf"
+        },
+        {
+          "label": "Potential Failure Mode and Effects Analysis (FMEA)",
+          "src": "resources/{class}/{type}/{title}/Potential Failure Mode and Effects Analysis.pdf"
         }
       ]
     }
