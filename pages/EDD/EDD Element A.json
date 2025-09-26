@@ -7,27 +7,28 @@
   ],
   "elements": [
     {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Element A Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    },
+    {
+      "type": "notes",
+      "label": "Problem Statement",
+      "content": "The team has found that commercial offerings labeled as 'girls’ STEM toys' often present narrower technical content, stereotyped themes, and uneven value relative to gender-neutral alternatives, which can dampen girls’ early interest in STEM."
+    },
+    {
       "type": "reference",
       "label": "Design documentation that informed Element A",
-      "target": "EDD/[W4] EDD Week 4 Report",
-      "brief": [
-        "Summarizes the research sprint leading into Element A.",
-        "Highlights the prototype test results referenced in this update."
-      ]
+      "target": "EDD/[W4] EDD Week 4 Report"
     },
     {
       "type": "type-reference",
       "label": "Element A References",
       "targetType": "Element A"
-    },
-    {
-      "type": "PDF",
-      "items": [
-        {
-          "label": "Report",
-          "src": "resources/{class}/{type}/{title}/{title}.pdf"
-        }
-      ]
     }
   ]
 }
