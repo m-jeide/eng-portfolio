@@ -188,8 +188,11 @@
     if (!Array.isArray(elements) || !elements.length) return [];
     const result = [];
     for (const el of elements) {
-      if (normalizeType(el.type) === "type-reference") {
+      const type = normalizeType(el.type);
+      if (type === "type-reference") {
         result.push(await resolveTypeReferenceElement(el, ctx));
+      } else if (type === "reference") {
+        result.push(await resolveReferenceElement(el, ctx));
       } else {
         result.push(el);
       }
@@ -237,6 +240,58 @@
     }
     filteredItems.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
     return { ...el, referenceType: targetType, referenceItems: filteredItems };
+  }
+
+  async function resolveReferenceElement(el, ctx) {
+    const target = extractReferenceTarget(el, ctx);
+    if (!target) {
+      return { ...el, referenceItem: null, referenceError: "Missing reference target." };
+    }
+
+    let pageData = null;
+    let loadError = "";
+    try {
+      pageData = await fetchPageJsonCached(target.cls, target.id);
+    } catch (err) {
+      console.warn("Failed to load reference target", target.cls, target.id, err);
+      loadError = `Assignment ${target.cls}/${target.id} not found.`;
+    }
+
+    const overrides = {
+      title: firstNonEmpty(el.entryTitle, el.title, el.targetTitle),
+      type: firstNonEmpty(el.entryType, el.assignmentType, el.targetType),
+      date: firstNonEmpty(el.entryDate, el.assignmentDate, el.targetDate, el.date),
+      brief: Array.isArray(el.brief) ? [...el.brief] : null,
+      elements: extractReferencePreviewElements(el)
+    };
+
+    const entryTitle = firstNonEmpty(overrides.title, pageData && pageData.title, pageData && pageData.name, target.id);
+    const entryType = firstNonEmpty(overrides.type, pageData && pageData.type);
+    const entryDate = firstNonEmpty(overrides.date, pageData && pageData.date);
+
+    const entry = {
+      id: target.id,
+      title: entryTitle,
+      type: entryType,
+      date: entryDate
+    };
+
+    const page = buildReferencePageSnapshot(pageData, entry, overrides);
+
+    const referenceItem = {
+      entry,
+      page,
+      href: buildAssignmentHref(target.cls, target.id),
+      cls: target.cls,
+      id: target.id,
+      timestamp: toTimestamp(entry.date)
+    };
+
+    const result = { ...el, referenceItem };
+    if (loadError) {
+      result.referenceError = loadError;
+    }
+    return result;
   }
 
   function withSectionCollector(state, fn) {
@@ -364,6 +419,11 @@
     },
     images: (el, ctx, i, page) => RENDERERS.image(el, ctx, i, page),
 
+    reference: (el, ctx, i) => {
+      const heading = el && el.label ? String(el.label) : "Reference";
+      return section(heading, ({ registerItem }) => renderReferenceBody(el, ctx, registerItem), i, { skipDefaultToc: false });
+    },
+
     "type-reference": (el, ctx, i) => {
       const refType = (el && el.referenceType) ? String(el.referenceType) : extractReferenceType(el);
       const items = Array.isArray(el.referenceItems) ? el.referenceItems : [];
@@ -380,6 +440,17 @@
     const sortedItems = [...items].sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
     const list = sortedItems.map((item, index) => renderTypeReferenceItem(item, ctx, registerItem, index)).join("");
     return `<div class="type-reference">${list}</div>`;
+  }
+
+  function renderReferenceBody(el, ctx, registerItem) {
+    const item = el && el.referenceItem;
+    if (!item) {
+      const message = el && el.referenceError ? el.referenceError : "Referenced assignment not available.";
+      return `<div class="muted">${escapeHtml(message)}</div>`;
+    }
+    const card = renderTypeReferenceItem(item, ctx, registerItem, 0);
+    const warning = el && el.referenceError ? `<div class="reference-warning muted">${escapeHtml(el.referenceError)}</div>` : "";
+    return `<div class="type-reference">${card}</div>${warning}`;
   }
 
   function renderTypeReferenceItem(item, ctx, registerItem, index) {
@@ -633,6 +704,95 @@
     const candidates = [el.referenceType, el.targetType, el.target, el.reference, el.value, el.lookup, el.label];
     for (const candidate of candidates) {
       if (candidate && String(candidate).trim()) return String(candidate).trim();
+    }
+    return "";
+  }
+  function extractReferenceTarget(el, ctx) {
+    if (!el) return null;
+    const candidates = [el.target, el.reference, el.value, el.lookup];
+    let parsed = null;
+    for (const candidate of candidates) {
+      parsed = mergeReferenceTarget(parsed, parseReferenceTargetCandidate(candidate));
+    }
+    parsed = mergeReferenceTarget(parsed, parseReferenceTargetCandidate({
+      cls: el.targetClass || el.class || el.cls,
+      id: el.targetId || el.assignmentId
+    }));
+    if ((!parsed || !parsed.id) && typeof el.assignment === "string") {
+      parsed = mergeReferenceTarget(parsed, { cls: null, id: String(el.assignment).trim() });
+    }
+    if (!parsed || !parsed.id) return null;
+    const cls = parsed.cls && String(parsed.cls).trim() ? String(parsed.cls).trim() : (ctx && ctx.cls ? String(ctx.cls).trim() : "");
+    if (!cls) return null;
+    const id = String(parsed.id).trim();
+    if (!id) return null;
+    return { cls, id };
+  }
+  function parseReferenceTargetCandidate(candidate) {
+    if (!candidate) return null;
+    if (typeof candidate === "string") {
+      const str = candidate.trim();
+      if (!str) return null;
+      const parts = str.split("/");
+      if (parts.length >= 2) {
+        const cls = parts.shift();
+        const id = parts.join("/").trim();
+        return { cls: cls ? cls.trim() : "", id };
+      }
+      return { cls: "", id: str };
+    }
+    if (typeof candidate === "object") {
+      const cls = candidate.cls || candidate.class || candidate.course || candidate.department || "";
+      const id = candidate.id || candidate.assignment || candidate.value || candidate.name || "";
+      if (!cls && !id) return null;
+      return {
+        cls: cls ? String(cls).trim() : "",
+        id: id ? String(id).trim() : ""
+      };
+    }
+    return null;
+  }
+  function mergeReferenceTarget(current, update) {
+    if (!update) return current;
+    if (!current) return update;
+    const cls = current.cls || update.cls;
+    const id = current.id || update.id;
+    return { cls, id };
+  }
+  function buildReferencePageSnapshot(pageData, entry, overrides) {
+    const snapshot = pageData ? { ...pageData } : {};
+    snapshot.title = firstNonEmpty(snapshot.title, entry.title);
+    snapshot.type = firstNonEmpty(snapshot.type, entry.type);
+    if (overrides.brief) {
+      snapshot.brief = [...overrides.brief];
+    } else if (Array.isArray(snapshot.brief)) {
+      snapshot.brief = [...snapshot.brief];
+    } else {
+      snapshot.brief = [];
+    }
+    if (overrides.elements) {
+      snapshot.elements = overrides.elements;
+    } else if (Array.isArray(snapshot.elements)) {
+      snapshot.elements = snapshot.elements;
+    } else {
+      snapshot.elements = [];
+    }
+    return snapshot;
+  }
+  function extractReferencePreviewElements(el) {
+    if (!el) return null;
+    if (Array.isArray(el.previewElements)) return el.previewElements;
+    if (Array.isArray(el.preview)) return el.preview;
+    if (el.previewElement && typeof el.previewElement === "object") return [el.previewElement];
+    if (el.preview && typeof el.preview === "object") return [el.preview];
+    if (Array.isArray(el.elements)) return el.elements;
+    return null;
+  }
+  function firstNonEmpty(...values) {
+    for (const value of values) {
+      if (value == null) continue;
+      const str = String(value);
+      if (str.trim()) return str;
     }
     return "";
   }

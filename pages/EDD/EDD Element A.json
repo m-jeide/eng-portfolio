@@ -7,6 +7,15 @@
   ],
   "elements": [
     {
+      "type": "reference",
+      "label": "Design documentation that informed Element A",
+      "target": "EDD/[W4] EDD Week 4 Report",
+      "brief": [
+        "Summarizes the research sprint leading into Element A.",
+        "Highlights the prototype test results referenced in this update."
+      ]
+    },
+    {
       "type": "type-reference",
       "label": "Element A References",
       "targetType": "Element A"
