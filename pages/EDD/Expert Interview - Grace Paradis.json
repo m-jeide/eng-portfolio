@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "09/08/25",
+  "type": "Element A",
+  "brief": [
+    "Consulted an expert in child development to inform our design."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Report about Interview",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
