@@ -446,16 +446,17 @@
 
   function renderReferenceBody(el, ctx, registerItem) {
     const item = el && el.referenceItem;
+    const labelOverride = el && el.label ? String(el.label) : "";
     if (!item) {
       const message = el && el.referenceError ? el.referenceError : "Referenced assignment not available.";
       return `<div class="muted">${escapeHtml(message)}</div>`;
     }
-    const card = renderTypeReferenceItem(item, ctx, registerItem, 0);
+    const card = renderTypeReferenceItem(item, ctx, registerItem, 0, { labelOverride });
     const warning = el && el.referenceError ? `<div class="reference-warning muted">${escapeHtml(el.referenceError)}</div>` : "";
     return `<div class="type-reference">${card}</div>${warning}`;
   }
 
-  function renderTypeReferenceItem(item, ctx, registerItem, index) {
+  function renderTypeReferenceItem(item, ctx, registerItem, index, opts) {
     if (!item || !item.page || !item.entry) return "";
     const page = item.page;
     const entry = item.entry;
@@ -466,12 +467,17 @@
       id: entry.id || "",
       type: entry.type || page.type || ""
     };
+    const options = opts || {};
+    const overrideLabel = options.labelOverride && String(options.labelOverride).trim() ? String(options.labelOverride).trim() : "";
+
     let displayTitle = page.title ? applyTemplate(page.title, replacements) : "";
     if (!displayTitle || /\{\w+\}/.test(displayTitle)) {
       const fallbackRaw = entry.title || entry.id || page.title || "";
       displayTitle = applyTemplate(fallbackRaw, replacements) || entry.id;
     }
-    const anchorId = typeof registerItem === "function" ? registerItem(displayTitle, entry.id) : null;
+    const tocTitle = overrideLabel || displayTitle;
+    const slugHint = tocTitle || entry.id;
+    const anchorId = typeof registerItem === "function" ? registerItem(tocTitle, slugHint) : null;
     const idAttr = anchorId ? ` id="${anchorId}"` : "";
     const brief = Array.isArray(page.brief) ? page.brief : [];
     const briefHtml = brief.length
