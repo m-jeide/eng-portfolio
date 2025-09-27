@@ -863,12 +863,18 @@
   function normalizeBase(b) { return b && !b.endsWith("/") ? b + "/" : (b || "/"); }
   function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;","&gt;":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
   function richText(s, opts = {}) {
-    const esc = escapeHtml(String(s));
+    const preserveBreaks = !!opts.preserveLineBreaks;
+    let input = String(s);
+    if (preserveBreaks) {
+      input = input.replace(/<br\s*\/?>(?:\n)?/gi, "\n");
+    }
+
+    const esc = escapeHtml(input);
     const linked = esc.replace(/(https?:\/\/[^\s)]+)/g, '<a href="$1" class="btn">$1</a>');
     let html = linked
       .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
       .replace(/\*([^*]+)\*/g, "<em>$1</em>");
-    if (opts.preserveLineBreaks) {
+    if (preserveBreaks) {
       html = html.replace(/\r\n|\r|\n/g, "<br>");
     }
     return html;
