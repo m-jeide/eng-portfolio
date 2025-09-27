@@ -234,11 +234,11 @@ a:focus-visible, button:focus-visible, .tile:focus-visible {
   padding: 1rem;
   text-align: center;
   font-size: 0.85rem;
-  color: #777;
-  background-color: #f9f9f9;
-  border-top: 1px solid #e0e0e0;
+  color: var(--muted);
+  background-color: var(--card);
+  border-top: 1px solid var(--hair);
 }
-.site-footer a { color: #0073e6; text-decoration: none; }
+.site-footer a { color: var(--accent); text-decoration: none; }
 .site-footer a:hover { text-decoration: underline; }
 
 .section-title.recent { font-size: 26px; font-weight: 800; }
