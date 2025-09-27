@@ -421,14 +421,16 @@
 
     reference: (el, ctx, i) => {
       const heading = el && el.label ? String(el.label) : "Reference";
-      return section(heading, ({ registerItem }) => renderReferenceBody(el, ctx, registerItem), i, { skipDefaultToc: false });
+      const hasReferenceItem = !!(el && el.referenceItem && el.referenceItem.page && el.referenceItem.entry);
+      return section(heading, ({ registerItem }) => renderReferenceBody(el, ctx, registerItem), i, { skipDefaultToc: hasReferenceItem });
     },
 
     "type-reference": (el, ctx, i) => {
       const refType = (el && el.referenceType) ? String(el.referenceType) : extractReferenceType(el);
       const items = Array.isArray(el.referenceItems) ? el.referenceItems : [];
       const heading = el && el.label ? String(el.label) : (refType ? `${refType} Assignments` : "References");
-      return section(heading, ({ registerItem, sectionId }) => renderTypeReferenceBody(items, refType, ctx, registerItem, sectionId), i, { skipDefaultToc: false });
+      const hasItems = items.length > 0;
+      return section(heading, ({ registerItem, sectionId }) => renderTypeReferenceBody(items, refType, ctx, registerItem, sectionId), i, { skipDefaultToc: hasItems });
     }
   };
 
