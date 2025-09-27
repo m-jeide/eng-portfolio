@@ -623,7 +623,19 @@
     const labels = (items || [])
       .map(it => (it && (it.label || it.title || it.name)) ? String(it.label || it.title || it.name) : "")
       .filter(Boolean);
-    const combined = labels.length ? `${base} - ${labels.join(" & ")}` : base;
+
+    const norm = (str) => String(str || "").trim().replace(/\s+/g, " ").toLowerCase();
+    const baseNorm = norm(base);
+    const seen = new Set(baseNorm ? [baseNorm] : []);
+    const uniqueLabels = [];
+    for (const label of labels) {
+      const key = norm(label);
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      uniqueLabels.push(label);
+    }
+
+    const combined = uniqueLabels.length ? `${base} - ${uniqueLabels.join(" & ")}` : base;
     if (IS_BETA) {
       const prefix = `${defaultTitle} - `;
       let heading = combined;
