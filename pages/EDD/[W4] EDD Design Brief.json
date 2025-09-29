@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "09/29/25",
+  "type": "Element A",
+  "brief": [
+    "Design brief for our EDD project."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Design Brief",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
