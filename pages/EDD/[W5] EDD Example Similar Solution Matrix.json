@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "09/28/25",
+  "type": "Element A",
+  "brief": [
+    "Created a Similar Solution Matrix comparing existing STEM kits and the proposed construction kit."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Matrix",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
