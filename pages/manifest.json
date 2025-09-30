@@ -1,6 +1,12 @@
 {
   "CIM": [
     {
+      "id": "[W8] Titan Academy CNC Milling",
+      "title": "[W8] Titan Academy CNC Milling",
+      "type": "Project",
+      "date": "09/29/25"
+    },
+    {
       "id": "AGV",
       "title": "AGV",
       "type": "Project",
