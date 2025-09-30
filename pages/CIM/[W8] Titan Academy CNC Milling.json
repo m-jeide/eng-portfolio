@@ -11,7 +11,7 @@
       "items": [
         {
           "label": "Report",
-          "src": "resources/CIM/{type}/{title}/{title}.pdf"
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
         }
       ]
     },
@@ -20,43 +20,43 @@
       "items": [
         {
           "label": "TITAN-1M",
-          "src": "resources/CIM/{type}/{title}/1M Drawing.pdf"
+          "src": "resources/{class}/{type}/{title}/1M Drawing.pdf"
         },
         {
           "label": "TITAN-2M",
-          "src": "resources/CIM/{type}/{title}/2M Drawing.pdf"
+          "src": "resources/{class}/{type}/{title}/2M Drawing.pdf"
         },
         {
           "label": "TITAN-3M",
-          "src": "resources/CIM/{type}/{title}/3M Drawing.pdf"
+          "src": "resources/{class}/{type}/{title}/3M Drawing.pdf"
         },
         {
           "label": "TITAN-4M",
-          "src": "resources/CIM/{type}/{title}/4M Drawing.pdf"
+          "src": "resources/{class}/{type}/{title}/4M Drawing.pdf"
         },
         {
           "label": "TITAN-5M",
-          "src": "resources/CIM/{type}/{title}/5M Drawing.pdf"
+          "src": "resources/{class}/{type}/{title}/5M Drawing.pdf"
         },
         {
           "label": "TITAN-6M",
-          "src": "resources/CIM/{type}/{title}/6M Drawing.pdf"
+          "src": "resources/{class}/{type}/{title}/6M Drawing.pdf"
         },
         {
           "label": "TITAN-7M",
-          "src": "resources/CIM/{type}/{title}/7M Drawing.pdf"
+          "src": "resources/{class}/{type}/{title}/7M Drawing.pdf"
         },
         {
           "label": "TITAN-8M",
-          "src": "resources/CIM/{type}/{title}/8M Drawing.pdf"
+          "src": "resources/{class}/{type}/{title}/8M Drawing.pdf"
         },
         {
           "label": "TITAN-9M",
-          "src": "resources/CIM/{type}/{title}/9M Drawing.pdf"
+          "src": "resources/{class}/{type}/{title}/9M Drawing.pdf"
         },
         {
           "label": "TITAN-10M",
-          "src": "resources/CIM/{type}/{title}/10M Drawing.pdf"
+          "src": "resources/{class}/{type}/{title}/10M Drawing.pdf"
         }
       ]
     }
