@@ -86,9 +86,9 @@
       "target": "EDD/Expert Interview - Grace Paradis"
     },
     {
-      "type": "notes",
+      "type": "reference",
       "label": "Interview with Dr. Nancy Dayne",
-      "content": "Please note this is scheduled but has not yet occurred as of 9/26/25. This page will be updated to reflect insights from the interview after it takes place."
+      "target": "EDD/Expert Interview - Nancy Dayne"
     },
     {
       "type": "reference",
