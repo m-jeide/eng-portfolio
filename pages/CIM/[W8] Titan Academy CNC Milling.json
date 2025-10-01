@@ -10,17 +10,16 @@
       "type": "PDF",
       "items": [
         {
-          "label": "Report",
-          "src": "resources/{class}/{type}/{title}/{title}.pdf"
-        }
-      ]
-    },
-    {
-      "type": "PDF",
-      "items": [
+          "label": "TITAN-1M",
+          "src": "resources/{class}/{type}/{title}/1M Part.pdf"
+        },
         {
           "label": "TITAN-1M",
           "src": "resources/{class}/{type}/{title}/1M Drawing.pdf"
+        },
+        {
+          "label": "TITAN-2M",
+          "src": "resources/{class}/{type}/{title}/2M Part.pdf"
         },
         {
           "label": "TITAN-2M",
@@ -28,7 +27,15 @@
         },
         {
           "label": "TITAN-3M",
+          "src": "resources/{class}/{type}/{title}/3M Part.pdf"
+        },
+        {
+          "label": "TITAN-3M",
           "src": "resources/{class}/{type}/{title}/3M Drawing.pdf"
+        },
+        {
+          "label": "TITAN-4M",
+          "src": "resources/{class}/{type}/{title}/4M Part.pdf"
         },
         {
           "label": "TITAN-4M",
@@ -36,7 +43,15 @@
         },
         {
           "label": "TITAN-5M",
+          "src": "resources/{class}/{type}/{title}/5M Part.pdf"
+        },
+        {
+          "label": "TITAN-5M",
           "src": "resources/{class}/{type}/{title}/5M Drawing.pdf"
+        },
+        {
+          "label": "TITAN-6M",
+          "src": "resources/{class}/{type}/{title}/6M Part.pdf"
         },
         {
           "label": "TITAN-6M",
@@ -44,7 +59,15 @@
         },
         {
           "label": "TITAN-7M",
+          "src": "resources/{class}/{type}/{title}/7M Part.pdf"
+        },
+        {
+          "label": "TITAN-7M",
           "src": "resources/{class}/{type}/{title}/7M Drawing.pdf"
+        },
+        {
+          "label": "TITAN-8M",
+          "src": "resources/{class}/{type}/{title}/8M Part.pdf"
         },
         {
           "label": "TITAN-8M",
@@ -52,11 +75,28 @@
         },
         {
           "label": "TITAN-9M",
+          "src": "resources/{class}/{type}/{title}/9M Part.pdf"
+        },
+        {
+          "label": "TITAN-9M",
           "src": "resources/{class}/{type}/{title}/9M Drawing.pdf"
         },
         {
           "label": "TITAN-10M",
+          "src": "resources/{class}/{type}/{title}/10M Part.pdf"
+        },
+        {
+          "label": "TITAN-10M",
           "src": "resources/{class}/{type}/{title}/10M Drawing.pdf"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
         }
       ]
     }
