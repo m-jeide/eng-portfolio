@@ -211,10 +211,16 @@
   ],
   "EDD": [
     {
-      "id": "[W6] EDD Week 6 Report copy",
-      "title": "[W6] EDD Week 6 Report copy",
+      "id": "[W7] EDD Week 7 Report",
+      "title": "[W7] EDD Week 7 Report",
       "type": "Weekly Report",
       "date": "10/01/25"
+    },
+    {
+      "id": "Expert Interview - Nancy Dayne",
+      "title": "Expert Interview - Nancy Dayne",
+      "type": "Element A",
+      "date": "09/30/25"
     },
     {
       "id": "[W4] EDD Design Brief",
@@ -231,12 +237,6 @@
     {
       "id": "Expert Interview - Grace Paradis",
       "title": "Expert Interview - Grace Paradis",
-      "type": "Element A",
-      "date": "09/23/25"
-    },
-    {
-      "id": "Expert Interview - Nancy Dayne",
-      "title": "Expert Interview - Nancy Dayne",
       "type": "Element A",
       "date": "09/23/25"
     },
