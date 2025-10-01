@@ -16,6 +16,11 @@
       ]
     },
     {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/GANTT CHART.png",
+      "label": "Gantt Chart Showcasing the Team's Progress"
+    },
+    {
       "type": "notes",
       "label": "Problem Statement",
       "content": "The team has found that commercial offerings labeled as girls’ STEM toys' often present narrower technical content, stereotyped themes, and uneven value relative to gender-neutral alternatives, which can dampen girls’ early interest in STEM."
