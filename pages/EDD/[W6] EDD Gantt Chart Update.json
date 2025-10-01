@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "10/01/25",
+  "type": "Element A",
+  "brief": [
+    "Updated Gantt chart to reflect current project timeline and milestones."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Handout",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
