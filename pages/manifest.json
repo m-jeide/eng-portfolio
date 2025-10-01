@@ -211,6 +211,12 @@
   ],
   "EDD": [
     {
+      "id": "[W6] EDD Gantt Chart Update",
+      "title": "[W6] EDD Gantt Chart Update",
+      "type": "Element A",
+      "date": "10/01/25"
+    },
+    {
       "id": "[W7] EDD Week 7 Report",
       "title": "[W7] EDD Week 7 Report",
       "type": "Weekly Report",
