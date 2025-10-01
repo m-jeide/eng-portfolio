@@ -1,0 +1,28 @@
+{
+  "title": "{file}",
+  "date": "09/30/25",
+  "type": "Notes",
+  "brief": [
+    "Practice designing on Fusion 360 utilizing Titan Academy resources"
+  ],
+  "elements": [
+    {
+      "type": "Video",
+      "items": [
+        {
+          "label": "Video Presentation",
+          "src": "https://www.youtube.com/watch?v=DYMjx5_uVW4"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Presentation",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
