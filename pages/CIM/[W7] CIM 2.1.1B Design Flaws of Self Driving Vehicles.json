@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "10/01/25",
+  "type": "Notes",
+  "brief": [
+    "Analyze flaws and problems with self-driving cars"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
