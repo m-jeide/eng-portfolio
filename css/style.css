@@ -42,7 +42,14 @@ body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-u
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
-.site-header__assignment { font-weight: 700; font-size: 20px; flex-basis: 100%; margin-top: 2px }
+.site-header__assignment {
+  font-weight: 600;
+  font-size: 0.95rem;
+  flex-basis: 100%;
+  margin-top: 4px;
+  color: var(--muted);
+  text-align: center;
+}
 .search, .select {
   padding: 12px 14px; border-radius: 12px;
   border: 1px solid var(--hair);
