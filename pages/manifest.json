@@ -1,6 +1,12 @@
 {
   "CIM": [
     {
+      "id": "[W7] CIM [FMEA] Design Flaws for the AGV Introduction to FMEA",
+      "title": "[W7] CIM [FMEA] Design Flaws for the AGV Introduction to FMEA",
+      "type": "Notes",
+      "date": "10/01/25"
+    },
+    {
       "id": "[W7] Design Flaws of Self Driving Vehicles",
       "title": "[W7] Design Flaws of Self Driving Vehicles",
       "type": "Notes",
