@@ -4,8 +4,7 @@
     manifestPromise: null,
     allItems: [],
     classes: null,
-    config: null,
-    wired: false
+    config: null
   };
 
   function init(options) {
@@ -13,11 +12,12 @@
     if (state.initPromise) {
       return state.initPromise;
     }
-    state.initPromise = bootstrap(opts).catch(err => {
+    const run = bootstrap(opts);
+    state.initPromise = run;
+    run.finally(() => {
       state.initPromise = null;
-      throw err;
     });
-    return state.initPromise;
+    return run;
   }
 
   async function bootstrap(options) {
@@ -26,10 +26,6 @@
 
     const elements = collectElements(cfg);
     if (!elements) return null;
-
-    if (elements.search && shouldSkipForBeta(elements.search)) {
-      return null;
-    }
 
     const all = await loadItems(cfg.base, cfg.classes);
 
@@ -78,12 +74,6 @@
     }
 
     return { search, classSelect, typeSelect, resultsPanel, resultsList, recentList };
-  }
-
-  function shouldSkipForBeta(searchInput) {
-    if (global.IS_BETA) return false;
-    const host = searchInput.closest("[data-beta-only]");
-    return !!host;
   }
 
   async function loadItems(base, hintedClasses) {
@@ -212,10 +202,11 @@
   }
 
   function wireSearch(elements, all, updateTypeOptions) {
-    if (state.wired) return;
-    state.wired = true;
-
+    if (!elements || !elements.search) return;
     const { search, classSelect, typeSelect, resultsPanel, resultsList } = elements;
+    if (search.dataset.searchBound === "true") return;
+    search.dataset.searchBound = "true";
+
     let debounceTimer = null;
 
     function renderMatches() {
