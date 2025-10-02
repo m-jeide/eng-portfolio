@@ -8,6 +8,18 @@
   const BR    = window.REPO_BRANCH || "main";
   const CLASSES = Array.isArray(window.CLASSES) ? window.CLASSES : [];
 
+  if (window.IS_BETA && window.PortfolioSearch) {
+    window.PortfolioSearch.init({
+      base: window.SITE_BASE || "/",
+      classes: CLASSES,
+      searchInputId: "q",
+      classSelectId: "cls",
+      typeSelectId: "typ",
+      resultsPanelId: "resultsPanel",
+      resultsListId: "resultsList"
+    }).catch(() => {});
+  }
+
   // Tweak this if you want bigger or smaller PDF text later
   const PDF_ZOOM = "100"; // percent. Alternatives that often work: "page-width", "175"
 
@@ -105,6 +117,14 @@
 
     // set browser tab title
     document.title = `${title} · Matthew's Engineering Portfolio`;
+
+    if (window.IS_BETA) {
+      const assignmentHeader = document.getElementById("headerAssignmentName");
+      if (assignmentHeader) {
+        assignmentHeader.textContent = title;
+        assignmentHeader.hidden = false;
+      }
+    }
 
     // chips (merge duplicate tag values, case-insensitive)
     const hasClass = !!ctx.cls;

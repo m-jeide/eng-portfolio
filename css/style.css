@@ -27,12 +27,14 @@
 html, body { height: 100% }
 body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial, sans-serif }
 .container { width:min(100%, 1100px); margin:0 auto; padding:28px 24px 48px }
+[data-beta-only] { display: none }
 
 /* Top bar */
-.brand { font-weight: 800; font-size: 22px }
+.brand { font-weight: 800; font-size: 22px; text-decoration: none; color: inherit }
 .toolbar {
   position: sticky; top: 0; z-index: 20;
-  display: flex; gap: 10px; align-items: center;
+  display: flex; align-items: center; flex-wrap: wrap;
+  column-gap: 10px; row-gap: 6px;
   /* Full-bleed header background while inside a centered container */
   width: 100vw;
   margin: 6px calc(50% - 50vw) 18px;
@@ -40,6 +42,7 @@ body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-u
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
+.site-header__assignment { font-weight: 700; font-size: 20px; flex-basis: 100%; margin-top: 2px }
 .search, .select {
   padding: 12px 14px; border-radius: 12px;
   border: 1px solid var(--hair);

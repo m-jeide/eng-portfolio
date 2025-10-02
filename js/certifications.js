@@ -2,6 +2,21 @@
   const BASE = normalizeBase(window.SITE_BASE || "/");
   const list = document.getElementById("certList");
 
+  if (window.IS_BETA && window.PortfolioSearch) {
+    const classes = Array.isArray(window.CLASSES) && window.CLASSES.length
+      ? window.CLASSES
+      : ["DE", "CIM", "EDD"];
+    window.PortfolioSearch.init({
+      base: window.SITE_BASE || "/",
+      classes,
+      searchInputId: "q",
+      classSelectId: "cls",
+      typeSelectId: "typ",
+      resultsPanelId: "resultsPanel",
+      resultsListId: "resultsList"
+    }).catch(() => {});
+  }
+
   try {
     const manifest = await fetchManifest();
     const items = (manifest.Certifications || []).map(it => enrich(it, "Certifications"));

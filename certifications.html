@@ -13,6 +13,24 @@
   <link rel="stylesheet" href="css/pages.css" />
 </head>
 <body>
+  <header class="toolbar site-header" data-beta-only>
+    <a class="brand" href="./">Matthew's Engineering Portfolio</a>
+    <input id="q" class="search" placeholder="Search title, id, or type" />
+    <select id="cls" class="select">
+      <option value="">All classes</option>
+    </select>
+    <select id="typ" class="select" disabled>
+      <option value="">All types</option>
+    </select>
+    <div id="headerAssignmentName" class="site-header__assignment" hidden></div>
+  </header>
+
+  <div class="container" data-beta-only>
+    <section id="resultsPanel" class="results-panel">
+      <div id="resultsList" class="list"></div>
+    </section>
+  </div>
+
   <nav class="page-topbar">
     <a href="./" class="home-link" aria-label="Home">
       <img src="resources/icons/home.svg" alt="" class="home-icon" />
@@ -24,6 +42,7 @@
     <div id="certList" class="list"></div>
   </main>
 
+  <script src="js/search.js" defer></script>
   <script src="js/certifications.js" defer></script>
 </body>
 </html>

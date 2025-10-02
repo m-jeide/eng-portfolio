@@ -14,20 +14,19 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <main class="container">
-    <!-- Top bar -->
-    <header class="toolbar">
-      <div class="brand">Matthew's Engineering Portfolio</div>
-      <input id="q" class="search" placeholder="Search title, id, or type" />
-      <select id="cls" class="select">
-        <option value="">All classes</option>
-      </select>
-      <select id="typ" class="select" disabled>
-        <option value="">All types</option>
-      </select>
-    </header>
+  <header class="toolbar site-header">
+    <a class="brand" href="./">Matthew's Engineering Portfolio</a>
+    <input id="q" class="search" placeholder="Search title, id, or type" />
+    <select id="cls" class="select">
+      <option value="">All classes</option>
+    </select>
+    <select id="typ" class="select" disabled>
+      <option value="">All types</option>
+    </select>
+    <div id="headerAssignmentName" class="site-header__assignment" hidden></div>
+  </header>
 
-    <!-- Top results -->
+  <main class="container">
     <section id="resultsPanel" class="results-panel">
       <h2 class="section-title">Top results</h2>
       <div id="resultsList" class="list"></div>
@@ -92,6 +91,7 @@
 
   </main>
 
+  <script src="js/search.js" defer></script>
   <script src="js/index.js" defer></script>
 
   <footer class="site-footer">

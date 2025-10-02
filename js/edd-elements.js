@@ -3,6 +3,21 @@
   const enabled = !!(window.SPECIALTY_FLAGS && window.SPECIALTY_FLAGS.EDD_ELEMENTS);
   const list = document.getElementById("eddElementList");
 
+  if (window.IS_BETA && window.PortfolioSearch) {
+    const classes = Array.isArray(window.CLASSES) && window.CLASSES.length
+      ? window.CLASSES
+      : ["DE", "CIM", "EDD"];
+    window.PortfolioSearch.init({
+      base: window.SITE_BASE || "/",
+      classes,
+      searchInputId: "q",
+      classSelectId: "cls",
+      typeSelectId: "typ",
+      resultsPanelId: "resultsPanel",
+      resultsListId: "resultsList"
+    }).catch(() => {});
+  }
+
   if (!list) return;
 
   if (!enabled) {
