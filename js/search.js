@@ -327,20 +327,4 @@
   }
 
   global.PortfolioSearch = { init };
-
-  function autoInit() {
-    if (global.__PORTFOLIO_SEARCH_AUTO_INIT__) return;
-    global.__PORTFOLIO_SEARCH_AUTO_INIT__ = true;
-    try {
-      init({ base: global.SITE_BASE || "/", classes: global.CLASSES }).catch(() => {});
-    } catch (err) {
-      /* swallow */
-    }
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", autoInit, { once: true });
-  } else {
-    autoInit();
-  }
 })(window);
