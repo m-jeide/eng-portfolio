@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "10/01/25",
+  "type": "Notes",
+  "brief": [
+    "Apply FEMA principles to our CIM AGV project"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
