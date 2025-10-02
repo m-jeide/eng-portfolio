@@ -3,7 +3,7 @@
   const enabled = !!(window.SPECIALTY_FLAGS && window.SPECIALTY_FLAGS.EDD_ELEMENTS);
   const list = document.getElementById("eddElementList");
 
-  if (window.IS_BETA && window.PortfolioSearch) {
+  if (window.PortfolioSearch) {
     const classes = Array.isArray(window.CLASSES) && window.CLASSES.length
       ? window.CLASSES
       : ["DE", "CIM", "EDD"];

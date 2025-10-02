@@ -8,7 +8,7 @@
   const BR    = window.REPO_BRANCH || "main";
   const CLASSES = Array.isArray(window.CLASSES) ? window.CLASSES : [];
 
-  if (window.IS_BETA && window.PortfolioSearch) {
+  if (window.PortfolioSearch) {
     window.PortfolioSearch.init({
       base: window.SITE_BASE || "/",
       classes: CLASSES,
