@@ -168,10 +168,19 @@
 /* PDF */
 .pdf-frame {
   width: clamp(var(--media-w-min), var(--media-w-vw), var(--pdf-w-max));
-  height: var(--pdf-h);
+  height: auto;
+  max-height: var(--pdf-h);
   border: 1px solid var(--hair);
   border-radius: 12px;
   background: #000;
+}
+
+/*
+ * When JavaScript can't sniff the PDF's aspect ratio we retain the legacy
+ * fixed height so embeds remain readable even without autosizing support.
+ */
+.pdf-frame:not([data-pdf-aspect]) {
+  height: var(--pdf-h);
 }
 
 /* Video */

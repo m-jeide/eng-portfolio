@@ -27,6 +27,14 @@
   const fallbackSectionState = { counts: Object.create(null), list: null };
   let manifestPromise = null;
   const pageCache = new Map();
+  const pdfAspectCache = new Map();
+  const pdfAutosizeState = {
+    observer: null,
+    observed: new Set(),
+    windowListenerAttached: false
+  };
+  const PDF_AUTOSIZE_MIN_HEIGHT = 320;
+  const PDF_AUTOSIZE_MAX_HEIGHT = 1600;
 
   app.addEventListener('click', handleLocalAnchorClick);
 
@@ -161,6 +169,7 @@
     // mount with enter animation wrapper
     const body = header + abstractHtml + tocHtml + elementsHtml;
     app.innerHTML = `<div class="page-anim">${body}</div>`;
+    schedulePdfAutosize(app);
     animateIn();
   }
 
@@ -375,7 +384,7 @@
           const rawLabel = it.label || it.title || fallbackLabel;
           const displayLabel = escapeHtml(rawLabel || `${fallbackLabel} ${index + 1}`);
           const embedUrl = `${src}#zoom=${encodeURIComponent(PDF_ZOOM)}`;
-          const iframe = `<iframe class="pdf-frame" src="${embedUrl}"></iframe>`;
+          const iframe = `<iframe class="pdf-frame" src="${embedUrl}" data-pdf-src="${escapeHtml(src)}"></iframe>`;
           const actions = `
             <div class="media-actions">
               <a class="btn" href="${embedUrl}" target="_blank" rel="noopener">Open in new tab</a>
@@ -537,7 +546,7 @@
           const rawLabel = it.label || it.title || "PDF";
           const label = escapeHtml(rawLabel);
           const embedUrl = `${src}#zoom=${encodeURIComponent(PDF_ZOOM)}`;
-          const iframe = `<iframe class="pdf-frame" src="${embedUrl}"></iframe>`;
+          const iframe = `<iframe class="pdf-frame" src="${embedUrl}" data-pdf-src="${escapeHtml(src)}"></iframe>`;
           const actions = `
             <div class="media-actions">
               <a class="btn" href="${embedUrl}" target="_blank" rel="noopener">Open in new tab</a>
@@ -585,6 +594,149 @@
       default:
         return "";
     }
+  }
+
+  function schedulePdfAutosize(root) {
+    const scope = root || document;
+    if (!scope || typeof scope.querySelectorAll !== 'function') return;
+    const frames = Array.from(scope.querySelectorAll('iframe.pdf-frame'));
+    if (!frames.length) return;
+
+    ensurePdfAutosizeHooks();
+
+    for (const frame of frames) {
+      if (!frame || frame.dataset.pdfAutosizeInit === '1') continue;
+      frame.dataset.pdfAutosizeInit = '1';
+      observePdfFrame(frame);
+      const rawUrl = frame.dataset.pdfSrc;
+      if (rawUrl) {
+        getPdfAspectRatio(rawUrl).then((ratio) => {
+          if (!ratio) return;
+          frame.dataset.pdfAspect = String(ratio);
+          updatePdfFrameHeight(frame);
+        }).catch(() => {});
+      }
+    }
+  }
+
+  function ensurePdfAutosizeHooks() {
+    if (!pdfAutosizeState.windowListenerAttached) {
+      window.addEventListener('resize', handlePdfWindowResize, { passive: true });
+      pdfAutosizeState.windowListenerAttached = true;
+    }
+    if (!pdfAutosizeState.observer && typeof ResizeObserver !== 'undefined') {
+      pdfAutosizeState.observer = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          const frame = entry && entry.target;
+          if (!pdfAutosizeState.observed.has(frame)) continue;
+          updatePdfFrameHeight(frame);
+        }
+      });
+    }
+  }
+
+  function observePdfFrame(frame) {
+    if (!frame) return;
+    pdfAutosizeState.observed.add(frame);
+    if (pdfAutosizeState.observer) {
+      pdfAutosizeState.observer.observe(frame);
+    }
+    updatePdfFrameHeight(frame);
+  }
+
+  function handlePdfWindowResize() {
+    prunePdfFrames();
+    for (const frame of pdfAutosizeState.observed) {
+      updatePdfFrameHeight(frame);
+    }
+  }
+
+  function prunePdfFrames() {
+    for (const frame of Array.from(pdfAutosizeState.observed)) {
+      if (frame.isConnected) continue;
+      pdfAutosizeState.observed.delete(frame);
+      if (pdfAutosizeState.observer) {
+        try {
+          pdfAutosizeState.observer.unobserve(frame);
+        } catch (err) {
+          // ignore stale unobserve failures
+        }
+      }
+    }
+  }
+
+  function updatePdfFrameHeight(frame) {
+    if (!frame || !frame.isConnected) return;
+    const ratio = Number(frame.dataset.pdfAspect);
+    if (!ratio || !isFinite(ratio) || ratio <= 0) {
+      frame.style.removeProperty('height');
+      return;
+    }
+
+    const width = frame.clientWidth;
+    if (!width) return;
+
+    const unclamped = width * ratio;
+    const height = Math.min(
+      PDF_AUTOSIZE_MAX_HEIGHT,
+      Math.max(PDF_AUTOSIZE_MIN_HEIGHT, unclamped)
+    );
+
+    frame.style.height = `${height.toFixed(2)}px`;
+  }
+
+  async function getPdfAspectRatio(url) {
+    if (pdfAspectCache.has(url)) {
+      return pdfAspectCache.get(url);
+    }
+
+    const promise = (async () => {
+      try {
+        const response = await fetch(url, { mode: 'cors', credentials: 'omit' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const buffer = await response.arrayBuffer();
+        const ratio = sniffPdfAspectRatio(buffer);
+        return ratio && isFinite(ratio) && ratio > 0 ? ratio : null;
+      } catch (err) {
+        console.warn('PDF autosize failed for', url, err);
+        return null;
+      }
+    })();
+
+    pdfAspectCache.set(url, promise);
+    return promise;
+  }
+
+  function sniffPdfAspectRatio(arrayBuffer) {
+    if (!arrayBuffer) return null;
+    if (typeof TextDecoder === 'undefined') return null;
+    const bytes = new Uint8Array(arrayBuffer);
+    const sliceLength = Math.min(bytes.length, 120000);
+    const decoder = new TextDecoder('latin1');
+    const sample = decoder.decode(bytes.subarray(0, sliceLength));
+
+    const mediaBoxMatch = findMediaBox(sample);
+    if (!mediaBoxMatch) return null;
+
+    const numbers = mediaBoxMatch.split(/[,\s]+/).map(Number).filter(n => !Number.isNaN(n));
+    if (numbers.length < 4) return null;
+
+    const [x0, y0, x1, y1] = numbers;
+    const width = Math.abs(x1 - x0);
+    const height = Math.abs(y1 - y0);
+    if (!width || !height) return null;
+
+    return height / width;
+  }
+
+  function findMediaBox(sample) {
+    if (!sample) return null;
+    const pageScoped = /\/Type\s*\/Page[\s\S]{0,4000}?\/MediaBox\s*\[([^\]]+)\]/.exec(sample);
+    if (pageScoped && pageScoped[1]) {
+      return pageScoped[1];
+    }
+    const globalMatch = /\/MediaBox\s*\[([^\]]+)\]/.exec(sample);
+    return globalMatch ? globalMatch[1] : null;
   }
 
   function section(title, innerContent, i, opts) {
