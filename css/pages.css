@@ -1,9 +1,9 @@
 /* --- Page-specific styling (interpreter) --- */
 
 main#app.container {
-  width: min(100%, 1140px);
+  width: min(100%, 1280px);
   margin: 0 auto;
-  padding: 48px clamp(32px, 6vw, 72px) 96px;
+  padding: 48px clamp(32px, 5vw, 80px) 96px;
 }
 
 /* Topbar back home */
