@@ -1,0 +1,35 @@
+{
+  "title": "{file}",
+  "date": "10/03/25",
+  "type": "Weekly Report",
+  "brief": [
+    "Analyze and critique current product solutions for our EDD project."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Product #1",
+          "src": "resources/{class}/{type}/{title}/Product #1 Critique Sheet.pdf"
+        },
+        {
+          "label": "Product #2",
+          "src": "resources/{class}/{type}/{title}/Product #2 Critique Sheet.pdf"
+        },
+        {
+          "label": "Product #3",
+          "src": "resources/{class}/{type}/{title}/Product #3 Critique Sheet.pdf"
+        },
+        {
+          "label": "Product #4",
+          "src": "resources/{class}/{type}/{title}/Product #4 Critique Sheet.pdf"
+        },
+        {
+          "label": "Product #5",
+          "src": "resources/{class}/{type}/{title}/Product #5 Critique Sheet.pdf"
+        }
+      ]
+    }
+  ]
+}
