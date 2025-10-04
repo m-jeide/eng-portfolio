@@ -8,6 +8,8 @@
   --ring: rgba(110,231,255,.18);
   --accent: #6ee7ff;
   --hair: rgba(255,255,255,.12);
+  --site-header-bg: rgba(15, 19, 27, 0.22);
+  --site-header-border-color: transparent;
 }
 @media (prefers-color-scheme: light) {
   :root {
@@ -19,10 +21,8 @@
     --ring: rgba(0,122,255,.12);
     --accent: #007aff;
     --hair: rgba(0,0,0,.08);
-  }
-  .site-header {
-    background: rgba(246, 247, 251, 0.85);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    --site-header-bg: rgba(255, 255, 255, 0.96);
+    --site-header-border-color: rgba(0, 0, 0, 0.08);
   }
   .search, .select {
     background: rgba(255, 255, 255, 0.72);
@@ -71,8 +71,8 @@ body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-u
 .site-header {
   margin: 4px calc(50% - 50vw) 16px;
   padding: 6px max(20px, calc((100vw - 1100px)/2 + 20px));
-  background: rgba(15, 19, 27, 0.22);
-  border-bottom: none;
+  background: var(--site-header-bg);
+  border-bottom: 1px solid var(--site-header-border-color);
   box-shadow: none;
 }
 .container.site-header__results {
