@@ -163,6 +163,7 @@ main#app.container {
   --media-w-min: 560px;
   --media-w-vw: 70vw;
   --pdf-w-max: 860px;
+  --pdf-w-landscape-max: 1100px;
   --pdf-h: clamp(900px, 85vh, 1600px);   /* tall for readability */
   --video-w-max: 860px;
   --img-w-max: 900px;
@@ -172,6 +173,7 @@ main#app.container {
     --media-w-min: 300px;
     --media-w-vw: 92vw;
     --pdf-w-max: 92vw;
+    --pdf-w-landscape-max: 92vw;
     --pdf-h: 92vh;
     --video-w-max: 92vw;
     --img-w-max: 92vw;
@@ -186,6 +188,9 @@ main#app.container {
   border: none;
   border-radius: 12px;
   background: #000;
+}
+.pdf-frame.pdf-frame--landscape {
+  width: clamp(var(--media-w-min), 82vw, var(--pdf-w-landscape-max));
 }
 
 /*

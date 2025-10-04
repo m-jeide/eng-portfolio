@@ -667,8 +667,12 @@
     const ratio = Number(frame.dataset.pdfAspect);
     if (!ratio || !isFinite(ratio) || ratio <= 0) {
       frame.style.removeProperty('height');
+      frame.classList.remove('pdf-frame--landscape');
       return;
     }
+
+    const isLandscape = ratio < 1;
+    frame.classList.toggle('pdf-frame--landscape', isLandscape);
 
     const width = frame.clientWidth;
     if (!width) return;
