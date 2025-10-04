@@ -24,14 +24,6 @@
     --site-header-bg: transparent;
     --site-header-border-color: transparent;
   }
-  .search, .select {
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(0, 122, 255, 0.32);
-    color: #0d1321;
-  }
-  .search:focus, .select:focus {
-    border-color: rgba(0, 122, 255, 0.45);
-  }
   .card, .tile {
     background: rgba(255, 255, 255, 0.82);
   }
@@ -94,8 +86,8 @@ body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-u
 .search, .select {
   padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid rgba(110, 231, 255, 0.25);
-  background: rgba(13, 18, 28, 0.45);
+  border: 1px solid var(--hair);
+  background: var(--panel);
   color: var(--text);
 }
 .search { flex: 1 }
