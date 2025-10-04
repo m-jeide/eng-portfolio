@@ -22,11 +22,16 @@ body.beta-mode::after {
 }
 
 body.beta-mode main#app.container {
-  width: min(100%, 960px);
-  margin: 0;
-  margin-left: clamp(24px, 10vw, 160px);
-  margin-right: auto;
-  padding: 48px 40px 96px;
+  width: min(100%, 1140px);
+  margin: 0 auto;
+  padding: 48px clamp(32px, 6vw, 72px) 96px;
+}
+
+body.beta-mode .container.site-header__results {
+  width: min(100%, 1140px);
+  margin: 0 auto;
+  padding-left: clamp(32px, 6vw, 72px);
+  padding-right: clamp(32px, 6vw, 72px);
 }
 
 body.beta-mode [data-beta-only] { display: block; }
@@ -131,13 +136,13 @@ body.beta-mode .chip-type {
 }
 
 body.beta-mode .media {
-  align-items: flex-start;
+  align-items: center;
 }
 
 body.beta-mode .media-caption,
 body.beta-mode .media-actions {
-  text-align: left;
-  justify-content: flex-start;
+  text-align: center;
+  justify-content: center;
 }
 
 @media (prefers-color-scheme: light) {
