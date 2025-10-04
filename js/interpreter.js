@@ -1,6 +1,5 @@
 (function () {
   const app = document.getElementById("app");
-  const IS_BETA = !!window.IS_BETA;
 
   const BASE = normalizeBase(window.SITE_BASE || "/");
   const OWNER = window.REPO_OWNER;
@@ -126,12 +125,10 @@
     // set browser tab title
     document.title = `${title} · Matthew's Engineering Portfolio`;
 
-    if (window.IS_BETA) {
-      const assignmentHeader = document.getElementById("headerAssignmentName");
-      if (assignmentHeader) {
-        assignmentHeader.textContent = title;
-        assignmentHeader.hidden = false;
-      }
+    const assignmentHeader = document.getElementById("headerAssignmentName");
+    if (assignmentHeader) {
+      assignmentHeader.textContent = title;
+      assignmentHeader.hidden = false;
     }
 
     // chips (merge duplicate tag values, case-insensitive)
@@ -816,19 +813,16 @@
     }
 
     const combined = uniqueLabels.length ? `${base} - ${uniqueLabels.join(" & ")}` : base;
-    if (IS_BETA) {
-      const prefix = `${defaultTitle} - `;
-      let heading = combined;
-      if (heading.startsWith(prefix)) {
-        heading = heading.slice(prefix.length).trim();
-      }
-      if (!heading) heading = base || defaultTitle;
-      const subtitle = heading.trim().toLowerCase() === String(defaultTitle).trim().toLowerCase()
-        ? ""
-        : defaultTitle;
-      return { heading, subtitle };
+    const prefix = `${defaultTitle} - `;
+    let heading = combined;
+    if (heading.startsWith(prefix)) {
+      heading = heading.slice(prefix.length).trim();
     }
-    return combined;
+    if (!heading) heading = base || defaultTitle;
+    const normalizedDefault = String(defaultTitle).trim().toLowerCase();
+    const normalizedHeading = heading.trim().toLowerCase();
+    const subtitle = normalizedHeading === normalizedDefault ? "" : defaultTitle;
+    return { heading, subtitle };
   }
 
   function filenameStem(id) {
