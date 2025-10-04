@@ -723,7 +723,13 @@
     const height = Math.abs(y1 - y0);
     if (!width || !height) return null;
 
-    return height / width;
+    const rotation = findPageRotation(sample);
+    const normalizedRotation = rotation == null
+      ? 0
+      : ((Number(rotation) % 360) + 360) % 360;
+    const swapped = normalizedRotation === 90 || normalizedRotation === 270;
+
+    return swapped ? width / height : height / width;
   }
 
   function findMediaBox(sample) {
@@ -734,6 +740,16 @@
     }
     const globalMatch = /\/MediaBox\s*\[([^\]]+)\]/.exec(sample);
     return globalMatch ? globalMatch[1] : null;
+  }
+
+  function findPageRotation(sample) {
+    if (!sample) return null;
+    const pageScoped = /\/Type\s*\/Page[\s\S]{0,4000}?\/Rotate\s+(-?\d+)/.exec(sample);
+    if (pageScoped && pageScoped[1] != null) {
+      return Number(pageScoped[1]);
+    }
+    const globalMatch = /\/Rotate\s+(-?\d+)/.exec(sample);
+    return globalMatch && globalMatch[1] != null ? Number(globalMatch[1]) : null;
   }
 
   function section(title, innerContent, i, opts) {
