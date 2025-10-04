@@ -41,13 +41,12 @@ body.beta-mode .page-topbar { display: none; }
 body.beta-mode .site-header {
   margin: 4px calc(50% - 50vw) 16px;
   padding: 6px max(20px, calc((100vw - 1100px) / 2 + 20px));
-  background: rgba(15, 19, 27, 0.62);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 19, 27, 0.22);
   box-shadow: none;
 }
 
 body.beta-mode .site-header .brand {
-  font-size: clamp(22px, 3vw, 32px);
+  font-size: clamp(18px, 2.4vw, 26px);
 }
 
 body.beta-mode .site-header__assignment {
@@ -150,8 +149,7 @@ body.beta-mode .media-actions {
   body.beta-mode .site-header {
     margin: 4px calc(50% - 50vw) 16px;
     padding: 6px max(20px, calc((100vw - 1100px) / 2 + 20px));
-    background: rgba(246, 247, 251, 0.82);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(246, 247, 251, 0.38);
     box-shadow: none;
   }
 
