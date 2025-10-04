@@ -8,7 +8,7 @@
   --ring: rgba(110,231,255,.18);
   --accent: #6ee7ff;
   --hair: rgba(255,255,255,.12);
-  --site-header-bg: rgba(15, 19, 27, 0.22);
+  --site-header-bg: transparent;
   --site-header-border-color: transparent;
 }
 @media (prefers-color-scheme: light) {
@@ -21,8 +21,8 @@
     --ring: rgba(0,122,255,.12);
     --accent: #007aff;
     --hair: rgba(0,0,0,.08);
-    --site-header-bg: rgba(255, 255, 255, 0.96);
-    --site-header-border-color: rgba(0, 0, 0, 0.08);
+    --site-header-bg: transparent;
+    --site-header-border-color: transparent;
   }
   .search, .select {
     background: rgba(255, 255, 255, 0.72);
