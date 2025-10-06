@@ -51,6 +51,11 @@
       "target": "EDD/[W8] Element B Document and Analysis of Prior Solution Attempts"
     },
     {
+      "type": "reference",
+      "label": "Analysis of Prior Solution Attempts-Patents (From Element A, but used here as well)",
+      "target": "EDD/[W5] EDD Patent Summary Sheet"
+    },
+    {
       "type": "notes",
       "label": "Conclusion",
       "content": "Evaluation of prior patents and market products reveals a consistent gap: while technical creativity and commercial viability are evident, few solutions harness the motivational and cognitive benefits of guardian co-play. Existing products either oversimplify learning into single-use experiences or isolate children in independent tasks and lack guided reflection. <br>The team concludes that effective future designs must integrate:<br>1.\tAuthentic Inquiry through Shared Facilitation – Activities should require dialogue between guardian and learner, embedding prediction, testing, and evidence discussion.<br>2.\tInclusive, Neutral Design Aesthetics – Packaging and color schemes must invite participation across genders and family types, avoiding the “for girls only” stigma.<br>3.\tSustainable Co-Play Infrastructure – Reusable, modular components and simple observation guides should empower guardians to scaffold without specialized training.<br>These principles will guide the next development stage (Element C), in which the team will conceptualize a STEM toy structured explicitly around guardian-child co-play. The design will merge mechanical authenticity, incremental challenge, and accessible facilitation prompts, advancing both educational rigor and family inclusion within the STEM-toy market."
