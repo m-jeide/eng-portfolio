@@ -1,0 +1,64 @@
+{
+  "title": "{file}",
+  "date": "10/03/25",
+  "type": "Elements",
+  "brief": [
+    "Detailed report of current Element B findings and analysis."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Element B Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/GANTT CHART.png",
+      "label": "Gantt Chart Showcasing the Team's Progress"
+    },
+    {
+      "type": "notes",
+      "label": "Problem Statement",
+      "content": "Commercially available STEM toys designed for children—particularly those marketed towards girls—often fail to sustain inquiry-driven engagement. Many rely on aesthetic gender cues or brief, consumable activities rather than authentic, developmentally appropriate pathways into engineering and scientific reasoning. In addition, most existing products provide limited opportunity for meaningful guardian co-play, an essential element for scaffolding persistence and confidence during early STEM learning."
+    },
+    {
+      "type": "notes",
+      "label": "Statement of Purpose",
+      "content": "This element evaluates previous attempts to understand how prior patents and existing products have approached the challenge of designing inclusive, inquiry-based STEM experiences for children aged 6-13. Research included searches of the United States Patent and Trademark Office (USPTO) and analyses of widely distributed commercial products from online retailers such as Amazon. Each was examined for educational alignment, inclusivity, and facilitation of guardian-child collaboration.<br>The team reviewed ten prior solutions—five patents and five market products. The evaluation emphasized the degree to which design enables co-learning, shared discovery, and family participation rather than isolated child play. Patterns emerging from this review indicate that, although mechanical creativity and educational intention are present across several models, few systems provided structured, accessible ways for guardians to guide or extend learning. These findings inform the team’s next design stage, which will deliberately center guardian co-play as a driver of persistence and equity in STEM engagement."
+    },
+    {
+      "type": "notes",
+      "label": "Patent Searches of Prior Solutions",
+      "content": "Patent #1 – Toy Construction Kit<br>Source: Much, J. (1978). Toy Construction Kit (U.S. Patent No. US4182072A). U.S. Patent and Trademark Office.<br>This modular construction system employs interlocking plate members joined by tongue-and-groove joints to form hollow prisms.<br>Pros: Highly modular; cost-efficient; supports explanatory engineering.<br>Cons: Numerous small parts hinder family co-play with younger learners; compressive plastic fits wear out; lacks explicit guidance for cooperative problem-solving.<br>Patent #2 – Science Party Kit and Method<br>Source: Norman, P. A. (2005). Science Party Kit and Method (U.S. Patent No. US7476103B1). U.S. Patent and Trademark Office.<br>This boxed kit enables supervised demonstrations such as bottle-rocket experiments.<br>Pros: Strong safety orientation; naturally promotes group and guardian participation.<br>Cons: Relies on adult availability and outdoor conditions; uses consumables; narrow topic scope.<br>Patent #3 – Screenless Smart Learning Toy and System<br>Source: Profilio, N., Starley J., Egbert, J., & Monson, R. (2023). Screenless Smart Learning Toy and System (U.S. Patent No. US12205485B2). U.S. Patent and Trademark Office.<br>An RFID-enabled wooden block interacts with tagged tiles to produce audio and light cues.<br>Pros: Encourages joint storytelling and verbal interaction—promising for guardian co-play; reduces screen dependence.<br>Cons: Requires management of numerous physical pieces; unclear parental facilitation framework; privacy considerations.<br>Patent #4 – Themed Building Toy<br>Source: Jichi, H. (2016). Themed Building Toy (U.S. Patent No. US20170144081A1). U.S. Patent and Trademark Office.<br>A twist-lock construction kit marketed specifically to appeal to girls’ interest in STEM.<br>Pros: Attempts inclusivity; theming may attract family participation through visual appeal. <br>Cons: Gendered marketing limits universality; lacks mechanisms for shared problem-solving or progressive challenge.<br>Patent #5 – Multi-Dimensional Building Block Toy Component and Set<br>Source: Deng, S. (2019). Multi-Dimensional Building Block Toy Component and Set (U.S. Patent No. US11273386B2). U.S. Patent and Trademark Office.<br>A building system allowing attachment on multiple block faces for more complex spatial construction. <br>Pros: Enhances creativity; encourages teamwork when multiple participants build collaboratively.<br>Cons: Provides no explicit instructional or co-play guidance; minimal educational scaffolding. <br>Patent Section Summary:<br>The patents collectively demonstrate that while mechanical and safety aspects have evolved, explicit frameworks for adult-child co-participation remain largely absent. Designs seldom consider the dynamics of learning—how guidance, dialogue, and observation by a guardian can reinforce scientific reasoning and persistence."
+    },
+    {
+      "type": "reference",
+      "label": "Prior Solutions-Product Critique",
+      "target": "EDD/[W7] EDD Element B2 Prior Solutions-Product Critique"
+    },
+    {
+      "type": "notes",
+      "label": "Exisiting & Competitive Products",
+      "content": "Product #1 – Sillibird 12-in-1 Solar Robot Building Kit<br>Pros: Affordable, screen-free, and family-friendly; fosters collaboration when guardians assist in complex builds.<br>Cons: Fragile components and unclear instructions limit independent success; heavy reliance on optimal sunlight discourages sustained joint engagement indoors.<br>Product #2 – Uncle Brick Mechanical Technic Arm Set<br>Pros: Realistic mechanics and precision; rewarding for guardian-child teams assembling complex systems.<br>Cons: Too advanced for most children without adult oversight; steep learning curve undermines accessibility; high price restricts broad family adoption.<br>Product #3 – Lucky Doug Metal Model Car Kit<br>Pros: Durable design; cooperative building encourages communication between learners and guardians.<br>Cons: Single-model design limits replay value; intricate assembly can cause frustration if adult support if absent.<br>Product #4 – Doctor Jupiter Girls’ Science Kit<br>Pros: Extensive range of experiments suitable for family science sessions; clear manual supports guided learning.<br>Cons: Consumables limit repeated co-play; gendered packaging may discourage broader household participation; organization issues reduce ease of shared setup.<br>Product #5 – Kids Smart Watch Gift for Girls<br>Pros: Safe, offline play option promoting responsibility discussions between guardians and children.<br>Cons: Minimal authentic STEM content; novelty focus overshadows educational content; limited lifespan of engagement.<br>Product Section Summary:<br>Across the reviewed products, opportunities for guardian co-play are inconsistent and often incidental. Mechanical kits depend on parental assembly assistance rather than designed co-learning roles, while science kits briefly involve supervision but not collaborative reasoning. Marketed “girls’ STEM” kits further constrain shared participation by emphasizing style cues over shared discovery. This pattern reinforces the need for an intentionally structured co-play framework integrated into the team’s prototype."
+    },
+    {
+      "type": "reference",
+      "label": "Analysis of Prior Solution Attempts-Patents",
+      "target": "EDD/[W8] Element B Document and Analysis of Prior Solution Attempts"
+    },
+    {
+      "type": "notes",
+      "label": "Conclusion",
+      "content": "Evaluation of prior patents and market products reveals a consistent gap: while technical creativity and commercial viability are evident, few solutions harness the motivational and cognitive benefits of guardian co-play. Existing products either oversimplify learning into single-use experiences or isolate children in independent tasks and lack guided reflection. <br>The team concludes that effective future designs must integrate:<br>1.\tAuthentic Inquiry through Shared Facilitation – Activities should require dialogue between guardian and learner, embedding prediction, testing, and evidence discussion.<br>2.\tInclusive, Neutral Design Aesthetics – Packaging and color schemes must invite participation across genders and family types, avoiding the “for girls only” stigma.<br>3.\tSustainable Co-Play Infrastructure – Reusable, modular components and simple observation guides should empower guardians to scaffold without specialized training.<br>These principles will guide the next development stage (Element C), in which the team will conceptualize a STEM toy structured explicitly around guardian-child co-play. The design will merge mechanical authenticity, incremental challenge, and accessible facilitation prompts, advancing both educational rigor and family inclusion within the STEM-toy market."
+    },
+    {
+      "type": "notes",
+      "label": "Citations",
+      "content": "Brinkley, C. (1989). Educational toy for teaching construction and recognition of predetermined forms (U.S. Patent No. US 4998883A). U.S. Patent and Trademark Office.<br>Deng, S. (2019). Multi-dimensional building block toy component and set (U.S. Patent No. US 11273386B2). U.S. Patent and Trademark Office.<br>Doctor Jupiter. (n.d.). Girls’ Science Kit. Amazon. https://www.amazon.com/Doctor-Jupiter-8-10-12-14-Experiments-Educational/dp/B0CG9QG2SF<br>Cosjoype. (n.d.). Kids Smart Watch Gift for Girls. Amazon. https://www.amazon.com/Watches-Pedometer-Flashlight-Educational-Birthday/dp/B0BP7JJWHC<br>Jichi, H. (2016). Themed building toy (U.S. Patent Application No. US 2017/0144081A1). U.S. Patent and Trademark Office.<br>Lucky Doug. (n.d.). Metal Model Car Kit. Amazon. https://www.amazon.com/Lucky-Doug-Building-Kit-Model/dp/B0BWPZCKXT<br>Much, J. (1978). Toy construction kit (U.S. Patent No. US 4182072A). U.S. Patent and Trademark Office.<br>Norman, P. A. (2005). Science party kit and method (U.S. Patent No. US 7476103 B1). U.S. Patent and Trademark Office.<br>Profilio, N., Starley, J., Egbert, J., & Monson, R. (2023). Screenless smart learning toy and system (U.S. Patent No. US 12205485B2). U.S. Patent and Trademark Office.<br>Sillbird. (n.d.). 12-in-1 Solar Robot Building Kit. Amazon. https://a.co/d/eexuCW5<br>Uncle Brick. (n.d.). Mechanical Technic Arm Building Set. Amazon. https://www.amazon.com/Mechanical-Technic-Building-Control-Educational/dp/B0FHQ3VPM6"
+    }
+  ]
+}
