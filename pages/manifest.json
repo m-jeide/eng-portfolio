@@ -235,6 +235,12 @@
       "date": "10/03/25"
     },
     {
+      "id": "EDD Element B",
+      "title": "EDD Element B",
+      "type": "Elements",
+      "date": "10/03/25"
+    },
+    {
       "id": "[W6] EDD Gantt Chart Update",
       "title": "[W6] EDD Gantt Chart Update",
       "type": "Element A",
