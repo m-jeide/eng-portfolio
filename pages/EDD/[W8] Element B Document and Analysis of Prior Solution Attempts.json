@@ -1,0 +1,27 @@
+{
+  "title": "{file}",
+  "date": "10/03/25",
+  "type": "Element B",
+  "brief": [
+    "Analyze and critique current and previous patent solutions for our EDD project."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Patent #1",
+          "src": "resources/{class}/{type}/{title}/Patent 1 Summary Sheet.pdf"
+        },
+        {
+          "label": "Patent #2",
+          "src": "resources/{class}/{type}/{title}/Patent 2 Summary Sheet.pdf"
+        },
+        {
+          "label": "Patent #3",
+          "src": "resources/{class}/{type}/{title}/Patent 3 Summary Sheet.pdf"
+        }
+      ]
+    }
+  ]
+}
