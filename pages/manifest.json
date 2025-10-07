@@ -1,6 +1,12 @@
 {
   "CIM": [
     {
+      "id": "[W9] CIM 2.1.2 [NOTES] Design for Manufacturing",
+      "title": "[W9] CIM 2.1.2 [NOTES] Design for Manufacturing",
+      "type": "Notes",
+      "date": "10/06/25"
+    },
+    {
       "id": "[W7] CIM [FMEA] Design Flaws for the AGV Introduction to FMEA",
       "title": "[W7] CIM [FMEA] Design Flaws for the AGV Introduction to FMEA",
       "type": "Notes",
