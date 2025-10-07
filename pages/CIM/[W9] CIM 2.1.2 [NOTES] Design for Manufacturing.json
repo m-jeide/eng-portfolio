@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "10/06/25",
+  "type": "Notes",
+  "brief": [
+    "Take notes on Design for Manufacturing principles."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
