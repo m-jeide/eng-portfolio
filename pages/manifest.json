@@ -1,6 +1,12 @@
 {
   "CIM": [
     {
+      "id": "[W9] Universal Laser System Interface",
+      "title": "[W9] Universal Laser System Interface",
+      "type": "Notes",
+      "date": "10/09/25"
+    },
+    {
       "id": "[W9] CIM 2.1.2 [NOTES] Design for Manufacturing",
       "title": "[W9] CIM 2.1.2 [NOTES] Design for Manufacturing",
       "type": "Notes",
