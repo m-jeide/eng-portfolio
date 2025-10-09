@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "10/09/25",
+  "type": "Notes",
+  "brief": [
+    "Take notes on how to use the Universal Laser System Interface."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
