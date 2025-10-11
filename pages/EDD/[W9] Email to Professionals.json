@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "10/10/25",
+  "type": "Element C",
+  "brief": [
+    "Prepare an email draft to professionals for feedback on our EDD project."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Handout",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
