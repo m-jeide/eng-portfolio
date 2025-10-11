@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "10/10/25",
+  "type": "Element C",
+  "brief": [
+    "Brainstorm 10 ideas/sketches for our potential EDD solution. "
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Sketches by Matthew Jeide",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
