@@ -10,8 +10,21 @@
       "type": "PDF",
       "items": [
         {
-          "label": "Notes",
+          "label": "Handout",
           "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Image",
+      "items": [
+        {
+          "label": "Adobe Illustrator Progress Check",
+          "src": "resources/{class}/{type}/{title}/Progress.png"
+        },
+        {
+          "label": "Finished Keychain",
+          "src": "resources/{class}/{type}/{title}/Finished Keychain.png"
         }
       ]
     }
