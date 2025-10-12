@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "10/10/25",
+  "type": "Element C",
+  "brief": [
+    "Create a matrix comparing our solution to similar existing solutions."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Matrix",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
