@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "10/10/25",
+  "type": "Element C",
+  "brief": [
+    "Outline the design and product specifications for our EDD solution."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Handout",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
