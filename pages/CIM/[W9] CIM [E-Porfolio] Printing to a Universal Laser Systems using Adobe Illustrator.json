@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "10/10/25",
+  "type": "Notes",
+  "brief": [
+    "Design and engrave a keychain utilizing Adobe Illustrator and the Universal Laser System."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
