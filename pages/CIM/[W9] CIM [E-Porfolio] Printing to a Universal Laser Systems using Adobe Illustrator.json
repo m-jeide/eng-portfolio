@@ -19,6 +19,10 @@
       "type": "Image",
       "items": [
         {
+          "label": "Reference Image",
+          "src": "resources/{class}/{type}/{title}/Reference.jpg"
+        },
+        {
           "label": "Adobe Illustrator Progress Check",
           "src": "resources/{class}/{type}/{title}/Progress.png"
         },
