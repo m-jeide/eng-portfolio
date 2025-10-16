@@ -19,14 +19,15 @@
     }).catch(() => {});
   }
 
-  // Tweak this if you want bigger or smaller PDF text later
-  const PDF_ZOOM = "100"; // percent. Alternatives that often work: "page-width", "175"
+  // Tweak these if you want different default PDF zoom behavior.
+  const PDF_DEFAULT_ZOOM = "100"; // percent. Alternatives that often work: "page-width", "175"
+  const PDF_SINGLE_PAGE_ZOOM = "page-width"; // Fit wide drawings when only one page.
 
   let sectionCollector = null;
   const fallbackSectionState = { counts: Object.create(null), list: null };
   let manifestPromise = null;
   const pageCache = new Map();
-  const pdfAspectCache = new Map();
+  const pdfMetadataCache = new Map();
   const pdfAutosizeState = {
     observer: null,
     observed: new Set(),
@@ -380,8 +381,8 @@
           const src = makeSrc(it.src, page, ctx);
           const rawLabel = it.label || it.title || fallbackLabel;
           const displayLabel = escapeHtml(rawLabel || `${fallbackLabel} ${index + 1}`);
-          const embedUrl = `${src}#zoom=${encodeURIComponent(PDF_ZOOM)}`;
-          const iframe = `<iframe class="pdf-frame" src="${embedUrl}" data-pdf-src="${escapeHtml(src)}"></iframe>`;
+          const embedUrl = buildPdfViewerUrl(src, PDF_DEFAULT_ZOOM);
+          const iframe = `<iframe class="pdf-frame" src="${embedUrl}" data-pdf-src="${escapeHtml(src)}" data-pdf-initial-zoom="${escapeHtml(PDF_DEFAULT_ZOOM)}"></iframe>`;
           const actions = `
             <div class="media-actions">
               <a class="btn" href="${embedUrl}" target="_blank" rel="noopener">Open in new tab</a>
@@ -542,8 +543,8 @@
           const src = makeSrc(it.src, refPage, refCtx);
           const rawLabel = it.label || it.title || "PDF";
           const label = escapeHtml(rawLabel);
-          const embedUrl = `${src}#zoom=${encodeURIComponent(PDF_ZOOM)}`;
-          const iframe = `<iframe class="pdf-frame" src="${embedUrl}" data-pdf-src="${escapeHtml(src)}"></iframe>`;
+          const embedUrl = buildPdfViewerUrl(src, PDF_DEFAULT_ZOOM);
+          const iframe = `<iframe class="pdf-frame" src="${embedUrl}" data-pdf-src="${escapeHtml(src)}" data-pdf-initial-zoom="${escapeHtml(PDF_DEFAULT_ZOOM)}"></iframe>`;
           const actions = `
             <div class="media-actions">
               <a class="btn" href="${embedUrl}" target="_blank" rel="noopener">Open in new tab</a>
@@ -607,11 +608,20 @@
       observePdfFrame(frame);
       const rawUrl = frame.dataset.pdfSrc;
       if (rawUrl) {
-        getPdfAspectRatio(rawUrl).then((ratio) => {
-          if (!ratio) return;
-          frame.dataset.pdfAspect = String(ratio);
+        getPdfDetails(rawUrl).then((details) => {
+          if (!details) return;
+          const { ratio, pageCount } = details;
+          if (ratio) {
+            frame.dataset.pdfAspect = String(ratio);
+          }
+          if (pageCount != null) {
+            frame.dataset.pdfPageCount = String(pageCount);
+          }
           updatePdfFrameHeight(frame);
+          applyPreferredPdfZoom(frame);
         }).catch(() => {});
+      } else {
+        applyPreferredPdfZoom(frame);
       }
     }
   }
@@ -635,10 +645,14 @@
   function observePdfFrame(frame) {
     if (!frame) return;
     pdfAutosizeState.observed.add(frame);
+    if (!frame.dataset.pdfAppliedZoom && frame.dataset.pdfInitialZoom) {
+      frame.dataset.pdfAppliedZoom = frame.dataset.pdfInitialZoom;
+    }
     if (pdfAutosizeState.observer) {
       pdfAutosizeState.observer.observe(frame);
     }
     updatePdfFrameHeight(frame);
+    applyPreferredPdfZoom(frame);
   }
 
   function handlePdfWindowResize() {
@@ -686,9 +700,41 @@
     frame.style.height = `${height.toFixed(2)}px`;
   }
 
-  async function getPdfAspectRatio(url) {
-    if (pdfAspectCache.has(url)) {
-      return pdfAspectCache.get(url);
+  function applyPreferredPdfZoom(frame) {
+    if (!frame || !frame.isConnected) return;
+    const pageCountRaw = frame.dataset.pdfPageCount;
+    if (!pageCountRaw) return;
+    const pageCount = Number(pageCountRaw);
+    if (pageCount === 1 && PDF_SINGLE_PAGE_ZOOM) {
+      setPdfFrameZoom(frame, PDF_SINGLE_PAGE_ZOOM);
+    }
+  }
+
+  function setPdfFrameZoom(frame, zoom) {
+    if (!frame) return;
+    const base = frame.dataset.pdfSrc;
+    if (!base) return;
+    const zoomStr = String(zoom || "").trim();
+    if (!zoomStr) return;
+    if (frame.dataset.pdfAppliedZoom === zoomStr) return;
+    const newUrl = buildPdfViewerUrl(base, zoomStr);
+    const current = frame.getAttribute('src') || '';
+    if (current !== newUrl) {
+      frame.setAttribute('src', newUrl);
+    }
+    frame.dataset.pdfAppliedZoom = zoomStr;
+    const figure = frame.closest('figure.media');
+    if (figure) {
+      const openBtn = figure.querySelector('a.btn[target="_blank"]');
+      if (openBtn) {
+        openBtn.href = newUrl;
+      }
+    }
+  }
+
+  async function getPdfDetails(url) {
+    if (pdfMetadataCache.has(url)) {
+      return pdfMetadataCache.get(url);
     }
 
     const promise = (async () => {
@@ -696,19 +742,29 @@
         const response = await fetch(url, { mode: 'cors', credentials: 'omit' });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const buffer = await response.arrayBuffer();
-        const ratio = sniffPdfAspectRatio(buffer);
-        return ratio && isFinite(ratio) && ratio > 0 ? ratio : null;
+        const details = sniffPdfDetails(buffer);
+        if (!details) return null;
+        const normalizedRatio = details.ratio && isFinite(details.ratio) && details.ratio > 0
+          ? details.ratio
+          : null;
+        const normalizedPages = Number.isFinite(details.pageCount) && details.pageCount > 0
+          ? details.pageCount
+          : null;
+        if (normalizedRatio || normalizedPages != null) {
+          return { ratio: normalizedRatio, pageCount: normalizedPages };
+        }
+        return null;
       } catch (err) {
         console.warn('PDF autosize failed for', url, err);
         return null;
       }
     })();
 
-    pdfAspectCache.set(url, promise);
+    pdfMetadataCache.set(url, promise);
     return promise;
   }
 
-  function sniffPdfAspectRatio(arrayBuffer) {
+  function sniffPdfDetails(arrayBuffer) {
     if (!arrayBuffer) return null;
     if (typeof TextDecoder === 'undefined') return null;
     const bytes = new Uint8Array(arrayBuffer);
@@ -718,8 +774,9 @@
 
     let mediaBoxMatch = findMediaBox(primarySample);
     let rotation = findPageRotation(primarySample);
+    let pageCount = findPageCount(primarySample);
 
-    if ((!mediaBoxMatch || rotation == null) && bytes.length > initialSliceLength) {
+    if ((!mediaBoxMatch || rotation == null || pageCount == null) && bytes.length > initialSliceLength) {
       const fullSample = decoder.decode(bytes);
       if (!mediaBoxMatch) {
         mediaBoxMatch = findMediaBox(fullSample);
@@ -727,24 +784,33 @@
       if (rotation == null) {
         rotation = findPageRotation(fullSample);
       }
+      if (pageCount == null) {
+        pageCount = findPageCount(fullSample);
+      }
     }
 
-    if (!mediaBoxMatch) return null;
+    let ratio = null;
+    if (mediaBoxMatch) {
+      const numbers = mediaBoxMatch.split(/[,\s]+/).map(Number).filter(n => !Number.isNaN(n));
+      if (numbers.length >= 4) {
+        const [x0, y0, x1, y1] = numbers;
+        const width = Math.abs(x1 - x0);
+        const height = Math.abs(y1 - y0);
+        if (width && height) {
+          const normalizedRotation = rotation == null
+            ? 0
+            : ((Number(rotation) % 360) + 360) % 360;
+          const swapped = normalizedRotation === 90 || normalizedRotation === 270;
+          ratio = swapped ? width / height : height / width;
+        }
+      }
+    }
 
-    const numbers = mediaBoxMatch.split(/[,\s]+/).map(Number).filter(n => !Number.isNaN(n));
-    if (numbers.length < 4) return null;
+    if (ratio || (pageCount != null && pageCount > 0)) {
+      return { ratio, pageCount };
+    }
 
-    const [x0, y0, x1, y1] = numbers;
-    const width = Math.abs(x1 - x0);
-    const height = Math.abs(y1 - y0);
-    if (!width || !height) return null;
-
-    const normalizedRotation = rotation == null
-      ? 0
-      : ((Number(rotation) % 360) + 360) % 360;
-    const swapped = normalizedRotation === 90 || normalizedRotation === 270;
-
-    return swapped ? width / height : height / width;
+    return null;
   }
 
   function findMediaBox(sample) {
@@ -774,6 +840,16 @@
     }
     const globalMatch = /\/Rotate\s+(-?\d+)/.exec(sample);
     return globalMatch && globalMatch[1] != null ? Number(globalMatch[1]) : null;
+  }
+
+  function findPageCount(sample) {
+    if (!sample) return null;
+    const match = /\/Type\s*\/Pages[\s\S]{0,800}?\/Count\s+(\d+)/.exec(sample);
+    if (match && match[1] != null) {
+      const value = Number(match[1]);
+      return Number.isFinite(value) ? value : null;
+    }
+    return null;
   }
 
   function section(title, innerContent, i, opts) {
@@ -897,6 +973,13 @@
     const expanded = expandTemplatePath(p, page, ctx).replace(/^\/+/, "");
     if (isHttp(expanded)) return expanded;
     return BASE + encodeLocalPath(expanded);
+  }
+
+  function buildPdfViewerUrl(src, zoom) {
+    const base = String(src || "").split('#')[0];
+    const zoomStr = String(zoom || "").trim();
+    if (!zoomStr) return base;
+    return `${base}#zoom=${encodeURIComponent(zoomStr)}`;
   }
   function recordTocEntry(id, title) {
     const target = sectionCollector || fallbackSectionState;
