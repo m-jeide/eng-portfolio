@@ -1,7 +1,7 @@
 {
   "title": "{file}",
   "date": "10/10/25",
-  "type": "Notes",
+  "type": "Project",
   "brief": [
     "Design and engrave a keychain utilizing Adobe Illustrator and the Universal Laser System."
   ],
@@ -29,6 +29,15 @@
         {
           "label": "Finished Keychain",
           "src": "resources/{class}/{type}/{title}/Finished Keychain.JPG"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Promotional Flyer",
+          "src": "resources/{class}/{type}/{title}/[W9] [CANVA] Keychain Business.pdf"
         }
       ]
     }
