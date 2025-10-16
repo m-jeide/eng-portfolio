@@ -712,11 +712,23 @@
     if (!arrayBuffer) return null;
     if (typeof TextDecoder === 'undefined') return null;
     const bytes = new Uint8Array(arrayBuffer);
-    const sliceLength = Math.min(bytes.length, 120000);
     const decoder = new TextDecoder('latin1');
-    const sample = decoder.decode(bytes.subarray(0, sliceLength));
+    const initialSliceLength = Math.min(bytes.length, 120000);
+    const primarySample = decoder.decode(bytes.subarray(0, initialSliceLength));
 
-    const mediaBoxMatch = findMediaBox(sample);
+    let mediaBoxMatch = findMediaBox(primarySample);
+    let rotation = findPageRotation(primarySample);
+
+    if ((!mediaBoxMatch || rotation == null) && bytes.length > initialSliceLength) {
+      const fullSample = decoder.decode(bytes);
+      if (!mediaBoxMatch) {
+        mediaBoxMatch = findMediaBox(fullSample);
+      }
+      if (rotation == null) {
+        rotation = findPageRotation(fullSample);
+      }
+    }
+
     if (!mediaBoxMatch) return null;
 
     const numbers = mediaBoxMatch.split(/[,\s]+/).map(Number).filter(n => !Number.isNaN(n));
@@ -727,7 +739,6 @@
     const height = Math.abs(y1 - y0);
     if (!width || !height) return null;
 
-    const rotation = findPageRotation(sample);
     const normalizedRotation = rotation == null
       ? 0
       : ((Number(rotation) % 360) + 360) % 360;
@@ -738,11 +749,20 @@
 
   function findMediaBox(sample) {
     if (!sample) return null;
-    const pageScoped = /\/Type\s*\/Page[\s\S]{0,4000}?\/MediaBox\s*\[([^\]]+)\]/.exec(sample);
-    if (pageScoped && pageScoped[1]) {
-      return pageScoped[1];
+    return (
+      findBox(sample, 'MediaBox') ||
+      findBox(sample, 'CropBox') ||
+      findBox(sample, 'TrimBox')
+    );
+  }
+
+  function findBox(sample, boxName) {
+    const pageScoped = new RegExp(`/Type\\s*/Page[\\s\\S]{0,4000}?/${boxName}\\s*\\[([^\\]]+)\\]`);
+    const scopedMatch = pageScoped.exec(sample);
+    if (scopedMatch && scopedMatch[1]) {
+      return scopedMatch[1];
     }
-    const globalMatch = /\/MediaBox\s*\[([^\]]+)\]/.exec(sample);
+    const globalMatch = new RegExp(`/${boxName}\\s*\\[([^\\]]+)\\]`).exec(sample);
     return globalMatch ? globalMatch[1] : null;
   }
 
