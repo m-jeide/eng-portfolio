@@ -1,0 +1,43 @@
+{
+  "title": "{file}",
+  "date": "10/15/25",
+  "type": "Notes",
+  "brief": [
+    "Perform mass analysis on practice designs."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Model 1 Drawing",
+          "src": "resources/{class}/{type}/{title}/Model 1 Drawing.pdf"
+        },
+        {
+          "label": "Model 1 Drawing (Shaded)",
+          "src": "resources/{class}/{type}/{title}/Model 1 Shaded.pdf"
+        },
+        {
+          "label": "Model 2 Drawing",
+          "src": "resources/{class}/{type}/{title}/Model 2 Drawing.pdf"
+        },
+        {
+          "label": "Model 2 Drawing (Shaded)",
+          "src": "resources/{class}/{type}/{title}/Model 2 Shaded.pdf"
+        },
+        {
+          "label": "Model 3 Drawing",
+          "src": "resources/{class}/{type}/{title}/Model 3 Drawing.pdf"
+        },
+        {
+          "label": "Model 3 Drawing (Shaded)",
+          "src": "resources/{class}/{type}/{title}/Model 3 Shaded.pdf"
+        },
+        {
+          "label": "Handout",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
