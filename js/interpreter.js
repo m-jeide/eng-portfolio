@@ -19,9 +19,8 @@
     }).catch(() => {});
   }
 
-  // Tweak these if you want different default PDF zoom behavior.
-  const PDF_DEFAULT_ZOOM = "100"; // percent. Alternatives that often work: "page-width", "175"
-  const PDF_SINGLE_PAGE_ZOOM = "page-width"; // Fit wide drawings when only one page.
+  // Tweak this if you want a different default PDF zoom behavior.
+  const PDF_DEFAULT_ZOOM = "page-width"; // Alternatives that often work: "100", "175"
 
   let sectionCollector = null;
   const fallbackSectionState = { counts: Object.create(null), list: null };
@@ -382,7 +381,7 @@
           const rawLabel = it.label || it.title || fallbackLabel;
           const displayLabel = escapeHtml(rawLabel || `${fallbackLabel} ${index + 1}`);
           const embedUrl = buildPdfViewerUrl(src, PDF_DEFAULT_ZOOM);
-          const iframe = `<iframe class="pdf-frame" src="${embedUrl}" data-pdf-src="${escapeHtml(src)}" data-pdf-initial-zoom="${escapeHtml(PDF_DEFAULT_ZOOM)}"></iframe>`;
+          const iframe = `<iframe class="pdf-frame" src="${embedUrl}" data-pdf-src="${escapeHtml(src)}"></iframe>`;
           const actions = `
             <div class="media-actions">
               <a class="btn" href="${embedUrl}" target="_blank" rel="noopener">Open in new tab</a>
@@ -544,7 +543,7 @@
           const rawLabel = it.label || it.title || "PDF";
           const label = escapeHtml(rawLabel);
           const embedUrl = buildPdfViewerUrl(src, PDF_DEFAULT_ZOOM);
-          const iframe = `<iframe class="pdf-frame" src="${embedUrl}" data-pdf-src="${escapeHtml(src)}" data-pdf-initial-zoom="${escapeHtml(PDF_DEFAULT_ZOOM)}"></iframe>`;
+          const iframe = `<iframe class="pdf-frame" src="${embedUrl}" data-pdf-src="${escapeHtml(src)}"></iframe>`;
           const actions = `
             <div class="media-actions">
               <a class="btn" href="${embedUrl}" target="_blank" rel="noopener">Open in new tab</a>
@@ -610,18 +609,12 @@
       if (rawUrl) {
         getPdfDetails(rawUrl).then((details) => {
           if (!details) return;
-          const { ratio, pageCount } = details;
+          const { ratio } = details;
           if (ratio) {
             frame.dataset.pdfAspect = String(ratio);
           }
-          if (pageCount != null) {
-            frame.dataset.pdfPageCount = String(pageCount);
-          }
           updatePdfFrameHeight(frame);
-          applyPreferredPdfZoom(frame);
         }).catch(() => {});
-      } else {
-        applyPreferredPdfZoom(frame);
       }
     }
   }
@@ -645,14 +638,10 @@
   function observePdfFrame(frame) {
     if (!frame) return;
     pdfAutosizeState.observed.add(frame);
-    if (!frame.dataset.pdfAppliedZoom && frame.dataset.pdfInitialZoom) {
-      frame.dataset.pdfAppliedZoom = frame.dataset.pdfInitialZoom;
-    }
     if (pdfAutosizeState.observer) {
       pdfAutosizeState.observer.observe(frame);
     }
     updatePdfFrameHeight(frame);
-    applyPreferredPdfZoom(frame);
   }
 
   function handlePdfWindowResize() {
@@ -698,38 +687,6 @@
     );
 
     frame.style.height = `${height.toFixed(2)}px`;
-  }
-
-  function applyPreferredPdfZoom(frame) {
-    if (!frame || !frame.isConnected) return;
-    const pageCountRaw = frame.dataset.pdfPageCount;
-    if (!pageCountRaw) return;
-    const pageCount = Number(pageCountRaw);
-    if (pageCount === 1 && PDF_SINGLE_PAGE_ZOOM) {
-      setPdfFrameZoom(frame, PDF_SINGLE_PAGE_ZOOM);
-    }
-  }
-
-  function setPdfFrameZoom(frame, zoom) {
-    if (!frame) return;
-    const base = frame.dataset.pdfSrc;
-    if (!base) return;
-    const zoomStr = String(zoom || "").trim();
-    if (!zoomStr) return;
-    if (frame.dataset.pdfAppliedZoom === zoomStr) return;
-    const newUrl = buildPdfViewerUrl(base, zoomStr);
-    const current = frame.getAttribute('src') || '';
-    if (current !== newUrl) {
-      frame.setAttribute('src', newUrl);
-    }
-    frame.dataset.pdfAppliedZoom = zoomStr;
-    const figure = frame.closest('figure.media');
-    if (figure) {
-      const openBtn = figure.querySelector('a.btn[target="_blank"]');
-      if (openBtn) {
-        openBtn.href = newUrl;
-      }
-    }
   }
 
   async function getPdfDetails(url) {
