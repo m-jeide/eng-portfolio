@@ -283,4 +283,7 @@ main#app.container {
   .page-topbar .home-link:hover {
     background: rgba(0, 122, 255, 0.18);
   }
+  .abstract .card, .element .card, .type-reference-body .card {
+    background: rgba(255, 255, 255, 0.82);
+  }
 }
