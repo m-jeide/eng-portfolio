@@ -228,20 +228,44 @@ main#app.container {
 /* --- Loading + error states --- */
 .loading-state {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 16px 0;
+  justify-content: center;
+  gap: 16px;
+  padding: 48px 0;
   color: var(--muted);
 }
 .loading-state .spinner {
-  width: 18px; height: 18px;
-  border: 2px solid var(--hair);
-  border-top-color: var(--accent);
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  background: var(--accent);
+  animation: pulse 1s ease-in-out infinite;
+  opacity: 0.8;
 }
-@keyframes spin {
-  to { transform: rotate(360deg) }
+.loading-state .loading-text {
+  opacity: 0;
+  animation: fadeInText 0.3s ease-in forwards;
+  animation-delay: 1s;
+  font-size: 0.95rem;
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .error-screen {
