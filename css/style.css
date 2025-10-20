@@ -33,6 +33,13 @@
   }
   .chip-class { background: rgba(0, 122, 255, 0.18); }
   .chip-type  { background: rgba(88, 101, 242, 0.18); }
+  .icon-img {
+    filter: invert(0);
+  }
+  .icon-btn:hover {
+    background: rgba(0, 122, 255, 0.12);
+    border-color: rgba(0, 122, 255, 0.35);
+  }
 }
 
 /* Base */
@@ -83,6 +90,98 @@ body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-u
   text-align: center;
   opacity: 0.85;
 }
+
+/* Header controls */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  position: relative;
+}
+
+/* Icon buttons */
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: transparent;
+  border: 1px solid var(--hair);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.icon-btn:hover {
+  background: rgba(110, 231, 255, 0.12);
+  border-color: rgba(110, 231, 255, 0.35);
+}
+.icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: invert(1);
+}
+
+/* Search container */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-width 0.3s ease, opacity 0.3s ease;
+}
+.search-container.expanded {
+  max-width: 400px;
+  opacity: 1;
+}
+.search-container .search {
+  flex: 1;
+  min-width: 0;
+}
+.search-container .filter-btn {
+  flex-shrink: 0;
+}
+
+/* Filter menu */
+.filter-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: var(--card);
+  border: 1px solid var(--hair);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  min-width: 200px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.filter-menu.hidden {
+  display: none;
+}
+.filter-select {
+  width: 100%;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 700px) {
+  .search-container.expanded {
+    max-width: 250px;
+  }
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+}
+
 .search, .select {
   padding: 12px 14px;
   border-radius: 12px;

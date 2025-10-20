@@ -15,13 +15,25 @@
 <body>
   <header class="toolbar site-header">
     <a class="brand" href="./">Matthew's Engineering Portfolio</a>
-    <input id="q" class="search" placeholder="Search title, id, or type" />
-    <select id="cls" class="select">
-      <option value="">All classes</option>
-    </select>
-    <select id="typ" class="select" disabled>
-      <option value="">All types</option>
-    </select>
+    <div class="header-controls">
+      <button id="searchToggle" class="icon-btn" aria-label="Toggle search">
+        <img src="resources/icons/search.png" alt="Search" class="icon-img" />
+      </button>
+      <div id="searchContainer" class="search-container collapsed">
+        <input id="q" class="search" placeholder="Search title, id, or type" />
+        <button id="filterToggle" class="icon-btn filter-btn" aria-label="Toggle filters">
+          <img src="resources/icons/filter.png" alt="Filter" class="icon-img" />
+        </button>
+      </div>
+      <div id="filterMenu" class="filter-menu hidden">
+        <select id="cls" class="select filter-select">
+          <option value="">All classes</option>
+        </select>
+        <select id="typ" class="select filter-select" disabled>
+          <option value="">All types</option>
+        </select>
+      </div>
+    </div>
     <div id="headerAssignmentName" class="site-header__assignment" hidden></div>
   </header>
 
@@ -35,6 +47,7 @@
     <div id="certList" class="list"></div>
   </main>
 
+  <script src="js/header-controls.js" defer></script>
   <script src="js/search.js" defer></script>
   <script src="js/certifications.js" defer></script>
 </body>
