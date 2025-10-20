@@ -24,6 +24,11 @@
       if (!isExpanded) {
         // Expand search and focus input
         searchContainer.classList.add('expanded');
+        searchToggle.style.maxWidth = '0';
+        searchToggle.style.opacity = '0';
+        searchToggle.style.padding = '0';
+        searchToggle.style.border = 'none';
+        searchToggle.style.margin = '0';
         setTimeout(() => {
           searchInput.focus();
         }, 100);

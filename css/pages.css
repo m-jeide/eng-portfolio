@@ -239,14 +239,14 @@ main#app.container {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: var(--accent);
+  background: #000000;
   animation: pulse 1s ease-in-out infinite;
   opacity: 0.8;
 }
 .loading-state .loading-text {
   opacity: 0;
   animation: fadeInText 0.3s ease-in forwards;
-  animation-delay: 1s;
+  animation-delay: 4s;
   font-size: 0.95rem;
 }
 @keyframes pulse {
@@ -309,5 +309,11 @@ main#app.container {
   }
   .abstract .card, .element .card, .type-reference-body .card {
     background: rgba(255, 255, 255, 0.82);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .loading-state .spinner {
+    filter: invert(1);
   }
 }

@@ -116,7 +116,7 @@ body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-u
   border: 1px solid var(--hair);
   border-radius: 50%;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, opacity 0.3s ease, max-width 0.3s ease, padding 0.3s ease, margin 0.3s ease;
 }
 .icon-btn:hover {
   background: rgba(110, 231, 255, 0.12);
