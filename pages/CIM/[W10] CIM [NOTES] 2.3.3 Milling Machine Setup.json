@@ -1,0 +1,19 @@
+{
+  "title": "[W10] CIM [NOTES] 2.3.3 Milling Machine Setup",
+  "date": "10/20/25",
+  "type": "Notes",
+  "brief": [
+    "Learn about the milling machine setup process and best practices."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
