@@ -1,0 +1,19 @@
+{
+  "title": "[W10] CIM [NOTES] 2.3.2 Speeds & Feeds",
+  "date": "10/22/25",
+  "type": "Notes",
+  "brief": [
+    "Learn about the milling machine speeds, formulas, and processes."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
