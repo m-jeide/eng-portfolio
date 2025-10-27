@@ -1,0 +1,19 @@
+{
+  "title": "[W10] EDD [Presentation] Project Proposal Concepts",
+  "date": "10/24/25",
+  "type": "Element C",
+  "brief": [
+    "Create a project proposal presentation for our potential product."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Presentation",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
