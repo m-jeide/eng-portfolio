@@ -259,16 +259,22 @@
   ],
   "EDD": [
     {
-      "id": "[W10] EDD Week 10 Report",
-      "title": "[W10] EDD Week 10 Report",
-      "type": "Weekly Report",
-      "date": "10/27/25"
-    },
-    {
       "id": "[W11] EDD Week 11 Report",
       "title": "[W11] EDD Week 11 Report",
       "type": "Weekly Report",
       "date": "10/27/25"
+    },
+    {
+      "id": "[W10] EDD [Presentation] Project Proposal Concepts",
+      "title": "[W10] EDD [Presentation] Project Proposal Concepts",
+      "type": "Element C",
+      "date": "10/24/25"
+    },
+    {
+      "id": "[W10] EDD Week 10 Report",
+      "title": "[W10] EDD Week 10 Report",
+      "type": "Weekly Report",
+      "date": "10/24/25"
     },
     {
       "id": "[W9] EDD Week 9 Report",
