@@ -1,0 +1,19 @@
+{
+  "title": "[W10] CIM [NOTES] 2.3.3 GM Code",
+  "date": "10/15/25",
+  "type": "Notes",
+  "brief": [
+    "Learn about G&M Code."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
