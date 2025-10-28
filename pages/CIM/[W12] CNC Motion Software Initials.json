@@ -1,0 +1,28 @@
+{
+  "title": "CNC Motion Software Initials",
+  "date": "10/27/25",
+  "type": "Project",
+  "brief": [
+    "Write G-code to perform a CNC motion that writes my initials (MJ)."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "G-Code",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Video",
+      "items": [
+        {
+          "label": "Video Demonstration",
+          "src": "https://www.youtube.com/watch?v=kChSxTjQnWg"
+        }
+      ]
+    }
+  ]
+}
