@@ -1,0 +1,19 @@
+{
+  "title": "[W12] CNC Superman Logo NC Code",
+  "date": "10/27/25",
+  "type": "Notes",
+  "brief": [
+    "Review sample G-code for CNC machining a Superman logo."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Handout",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
