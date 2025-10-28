@@ -1,0 +1,23 @@
+{
+  "title": "[W11] Element C [Expert Feedback] 6.0 Expert Review - PR1 Project Proposal Feedback Analysis",
+  "date": "10/27/25",
+  "type": "Element C",
+  "brief": [
+    "Analyze the expert feedback on our project proposal presentation."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Handout",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        },
+        {
+          "label": "Thank you card for experts",
+          "src": "resources/{class}/{type}/{title}/Thank You Card.pdf"
+        }
+      ]
+    }
+  ]
+}
