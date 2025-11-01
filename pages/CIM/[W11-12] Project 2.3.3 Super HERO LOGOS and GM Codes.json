@@ -1,0 +1,19 @@
+{
+  "title": "[W12] CNC Superman Logo NC Code",
+  "date": "11/01/25",
+  "type": "Notes",
+  "brief": [
+    "Draft our superhero logo in NC Viewer."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Handout",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
