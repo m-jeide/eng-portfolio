@@ -1,0 +1,66 @@
+{
+  "title": "CNC Base - Initials & Superhero",
+  "date": "11/01/25",
+  "type": "Project",
+  "brief": [
+    "Review a premade G-code design", 
+    "Practice the fundamentals of G-code",
+    "Create our own G-code of our initials",
+    "Create our own G-code of a superhero logo"
+  ],
+  "elements": [
+    {
+      "type": "Image",
+      "items": [
+        {
+          "label": "Superhero Logo - Sabrina Carpenter (CNCBase)",
+          "src": "resources/{class}/{type}/{title}/SC.png"
+        },
+        {
+          "label": "Superhero Logo - Sabrina Carpenter (Inspiration)",
+          "src": "resources/{class}/{type}/{title}/SC_inspiration.jpg"
+        }
+      ]
+    },
+    {
+      "type": "Video",
+      "items": [
+        {
+          "label": "Superhero Logo - Sabrina Carpenter (Design)", 
+          "src": "https://www.youtube.com/watch?v=pW_fYWipjZw"
+        },
+        {
+          "label": "Superhero Logo - Sabrina Carpenter (Timelapse Design)", 
+          "src": "https://www.youtube.com/watch?v=ABqFX7VxhFI"
+        }
+      ]
+    },
+    {
+      "type": "Image",
+      "items": [
+        {
+          "label": "Initials (CNCBase)",
+          "src": "resources/{class}/{type}/{title}/Initials.png"
+        }
+      ]
+    },
+    {
+      "type": "Video",
+      "items": [
+        {
+          "label": "Initials (Design)",
+          "src": "https://www.youtube.com/watch?v=kChSxTjQnWg"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Handout",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
