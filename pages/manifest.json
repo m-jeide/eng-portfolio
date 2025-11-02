@@ -307,6 +307,18 @@
   ],
   "EDD": [
     {
+      "id": "[W11] Element C 3.0 Customer Design Requirements",
+      "title": "[W11] Element C 3.0 Customer Design Requirements",
+      "type": "Element C",
+      "date": "11/02/25"
+    },
+    {
+      "id": "[W11] EDD Element C Design Brief",
+      "title": "W11: EDD Element C Design Brief",
+      "type": "Element C",
+      "date": "11/02/25"
+    },
+    {
       "id": "[W11] EDD Week 11 Report",
       "title": "[W11] EDD Week 11 Report",
       "type": "Weekly Report",
