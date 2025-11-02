@@ -1,0 +1,19 @@
+{
+  "title": "[W11] Element C 3.0 Customer Design Requirements",
+  "date": "11/02/25",
+  "type": "Element C",
+  "brief": [
+    "Analyze results from our market result and quantify consumer demand."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}

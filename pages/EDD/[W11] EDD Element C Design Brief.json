@@ -1,0 +1,19 @@
+{
+  "title": "W11: EDD Element C Design Brief",
+  "date": "11/02/25",
+  "type": "Element C",
+  "brief": [
+    "Update our design brief for our solution."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Brief",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
