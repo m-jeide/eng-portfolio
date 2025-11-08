@@ -43,8 +43,26 @@
       "type": "Video",
       "items": [
         {
-          "label": "Activity B Demonstration",
+          "label": "[VIDEO] Activity B Demonstration",
           "src": "https://www.youtube.com/watch?v=xDXuslbdYSI"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Activity C",
+          "src": "resources/{class}/{type}/{title}/Activity_C.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Video",
+      "items": [
+        {
+          "label": "[VIDEO] Activity C Demonstration",
+          "src": "https://www.youtube.com/watch?v=IzsvwdXiCgE"
         }
       ]
     }
