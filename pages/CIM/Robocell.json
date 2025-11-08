@@ -1,0 +1,21 @@
+{
+  "title": "{file}",
+  "date": "11/07/25",
+  "type": "Project",
+  "brief": [
+    "Learn how to use Robocell software",
+    "Simulate robot movements",
+    "Program a robot to perform basic tasks"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Introduction",
+          "src": "resources/{class}/{type}/{title}/Introduction.pdf"
+        }
+      ]
+    }
+  ]
+}
