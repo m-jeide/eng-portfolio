@@ -14,11 +14,25 @@
         {
           "label": "Introduction",
           "src": "resources/{class}/{type}/{title}/Introduction.pdf"
-        },
-        {
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+         {
           "label": "Activity A",
           "src": "resources/{class}/{type}/{title}/Activity_A.pdf"
         },
+         {
+          "label": "Activity A - Pick and Place",
+          "src": "resources/{class}/{type}/{title}/Activity_A2.pdf"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
         {
           "label": "Activity B",
           "src": "resources/{class}/{type}/{title}/Activity_B.pdf"
