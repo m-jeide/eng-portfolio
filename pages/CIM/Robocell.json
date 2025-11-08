@@ -14,6 +14,23 @@
         {
           "label": "Introduction",
           "src": "resources/{class}/{type}/{title}/Introduction.pdf"
+        },
+        {
+          "label": "Activity A",
+          "src": "resources/{class}/{type}/{title}/Activity_A.pdf"
+        },
+        {
+          "label": "Activity B",
+          "src": "resources/{class}/{type}/{title}/Activity_B.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Video",
+      "items": [
+        {
+          "label": "Activity B Demonstration",
+          "src": "https://www.youtube.com/watch?v=xDXuslbdYSI"
         }
       ]
     }
