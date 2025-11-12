@@ -319,6 +319,12 @@
   ],
   "EDD": [
     {
+      "id": "[W12] EDD Element C Decision Matrix",
+      "title": "[W12] EDD Element C Decision Matrix",
+      "type": "Element C",
+      "date": "11/12/25"
+    },
+    {
       "id": "[W12] EDD Week 12 Report",
       "title": "[W12] EDD Week 12 Report",
       "type": "Weekly Report",
