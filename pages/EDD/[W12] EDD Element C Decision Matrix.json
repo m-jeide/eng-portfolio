@@ -1,0 +1,19 @@
+{
+  "title": "[W12] EDD Element C Decision Matrix",
+  "date": "11/12/25",
+  "type": "Element C",
+  "brief": [
+    "Create a decision matrix to evaluate and compare different design options based on key criteria."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Decision Matrix",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
