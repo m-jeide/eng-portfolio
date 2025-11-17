@@ -5,7 +5,8 @@
   "brief": [
     "Learn how to use Robocell software",
     "Simulate robot movements",
-    "Program a robot to perform basic tasks"
+    "Program a robot to perform basic tasks",
+    "Updated 11/17/25 with new Activity C handout & video"
   ],
   "elements": [
     {
@@ -61,8 +62,8 @@
       "type": "Video",
       "items": [
         {
-          "label": "[VIDEO] Activity C Demonstration",
-          "src": "https://www.youtube.com/watch?v=IzsvwdXiCgE"
+          "label": "[VIDEO] Activity C Demonstration (updated 11/17/25)",
+          "src": "https://www.youtube.com/watch?v=f2vnkCoyd0A"
         }
       ]
     },
