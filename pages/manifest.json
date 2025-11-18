@@ -319,6 +319,12 @@
   ],
   "EDD": [
     {
+      "id": "EDD Element C",
+      "title": "EDD Element C",
+      "type": "Elements",
+      "date": "11/17/25"
+    },
+    {
       "id": "[W12] EDD Element C Decision Matrix",
       "title": "[W12] EDD Element C Decision Matrix",
       "type": "Element C",
