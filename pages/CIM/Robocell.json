@@ -1,0 +1,89 @@
+{
+  "title": "{file}",
+  "date": "11/07/25",
+  "type": "Project",
+  "brief": [
+    "Learn how to use Robocell software",
+    "Simulate robot movements",
+    "Program a robot to perform basic tasks",
+    "Updated 11/17/25 with new Activity C handout & video"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Introduction",
+          "src": "resources/{class}/{type}/{title}/Introduction.pdf"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+         {
+          "label": "Activity A",
+          "src": "resources/{class}/{type}/{title}/Activity_A.pdf"
+        },
+         {
+          "label": "Activity A - Pick and Place",
+          "src": "resources/{class}/{type}/{title}/Activity_A2.pdf"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Activity B",
+          "src": "resources/{class}/{type}/{title}/Activity_B.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Video",
+      "items": [
+        {
+          "label": "[VIDEO] Activity B Demonstration",
+          "src": "https://www.youtube.com/watch?v=xDXuslbdYSI"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Activity C",
+          "src": "resources/{class}/{type}/{title}/Activity_C.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Video",
+      "items": [
+        {
+          "label": "[VIDEO] Activity C Demonstration (updated 11/17/25)",
+          "src": "https://www.youtube.com/watch?v=f2vnkCoyd0A"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Activity D",
+          "src": "resources/{class}/{type}/{title}/Activity_D.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Video",
+      "items": [
+        {
+          "label": "[VIDEO] Activity D Demonstration",
+          "src": "https://www.youtube.com/watch?v=KfjDto9Jtg8"
+        }
+      ]
+    }
+  ]
+}

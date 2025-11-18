@@ -1,6 +1,18 @@
 {
   "CIM": [
     {
+      "id": "Robocell",
+      "title": "Robocell",
+      "type": "Project",
+      "date": "11/07/25"
+    },
+    {
+      "id": "[W13] [NOTES] CIM 3.1.1 Robotics",
+      "title": "[W13] [NOTES] CIM 3.1.1 Robotics",
+      "type": "Notes",
+      "date": "11/03/25"
+    },
+    {
       "id": "[W11-12] Project 2.3.3 Super HERO LOGOS and GM Codes",
       "title": "[W11-12] Project 2.3.3 Super HERO LOGOS and GM Codes",
       "type": "Notes",
@@ -307,14 +319,26 @@
   ],
   "EDD": [
     {
-      "id": "[W11] Element C 3.0 Customer Design Requirements",
-      "title": "[W11] Element C 3.0 Customer Design Requirements",
+      "id": "[W12] EDD Element C Decision Matrix",
+      "title": "[W12] EDD Element C Decision Matrix",
+      "type": "Element C",
+      "date": "11/12/25"
+    },
+    {
+      "id": "[W12] EDD Week 12 Report",
+      "title": "[W12] EDD Week 12 Report",
+      "type": "Weekly Report",
+      "date": "11/04/25"
+    },
+    {
+      "id": "[W11] EDD Element C Design Brief",
+      "title": "[W11] EDD Element C Design Brief",
       "type": "Element C",
       "date": "11/02/25"
     },
     {
-      "id": "[W11] EDD Element C Design Brief",
-      "title": "W11: EDD Element C Design Brief",
+      "id": "[W11] Element C 3.0 Customer Design Requirements",
+      "title": "[W11] Element C 3.0 Customer Design Requirements",
       "type": "Element C",
       "date": "11/02/25"
     },

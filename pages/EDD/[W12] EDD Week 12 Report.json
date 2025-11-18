@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "11/04/25",
+  "type": "Weekly Report",
+  "brief": [
+    "Week 12 report of our EDD progress."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}

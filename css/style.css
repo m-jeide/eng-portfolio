@@ -223,7 +223,7 @@ body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-u
 /* About */
 .about { 
   padding-top: 6px; 
-  padding-bottom: 130px
+  padding-bottom: 190px
 }
 .about-title {
   font-size: clamp(36px, 6vw, 56px);
