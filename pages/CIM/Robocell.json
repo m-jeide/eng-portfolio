@@ -102,6 +102,24 @@
           "src": "https://www.youtube.com/watch?v=xPVNJXZZeM8"
         }
       ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Activity F",
+          "src": "resources/{class}/{type}/{title}/Activity_F.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Video",
+      "items": [
+        {
+          "label": "[VIDEO] Activity F Demonstration",
+          "src": "https://www.youtube.com/watch?v=F_1iVbB6YWk"
+        }
+      ]
     }
   ]
 }
