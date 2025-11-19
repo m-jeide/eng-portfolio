@@ -84,6 +84,24 @@
           "src": "https://www.youtube.com/watch?v=KfjDto9Jtg8"
         }
       ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Activity E",
+          "src": "resources/{class}/{type}/{title}/Activity_E.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Video",
+      "items": [
+        {
+          "label": "[VIDEO] Activity E Demonstration",
+          "src": "https://www.youtube.com/watch?v=xPVNJXZZeM8"
+        }
+      ]
     }
   ]
 }
