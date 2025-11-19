@@ -120,6 +120,24 @@
           "src": "https://www.youtube.com/watch?v=F_1iVbB6YWk"
         }
       ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Activity G",
+          "src": "resources/{class}/{type}/{title}/Activity_G.pdf"
+        }
+      ]
+    },
+    {
+      "type": "Video",
+      "items": [
+        {
+          "label": "[VIDEO] Activity G Demonstration",
+          "src": "https://www.youtube.com/watch?v=NFy-X6CjPx0"
+        }
+      ]
     }
   ]
 }
