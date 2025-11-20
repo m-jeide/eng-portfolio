@@ -34,7 +34,7 @@
   .chip-class { background: rgba(0, 122, 255, 0.18); }
   .chip-type  { background: rgba(88, 101, 242, 0.18); }
   .icon-img {
-    filter: invert(1);
+    filter: invert(0);
   }
   .icon-btn:hover {
     background: rgba(0, 122, 255, 0.12);
@@ -42,7 +42,7 @@
   }
   .search-container .search {
     background-image: url('../resources/icons/search.png');
-    filter: none;
+    filter: invert(0);
   }
 }
 
@@ -126,7 +126,7 @@ body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-u
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: invert(0);
+  filter: invert(1);
 }
 
 /* Search container */
@@ -151,6 +151,7 @@ body { margin:0; background:var(--bg); color:var(--text); font:18px/1.6 system-u
   background-repeat: no-repeat;
   background-position: 12px center;
   background-size: 20px 20px;
+  filter: invert(1);
 }
 .search-container .filter-btn {
   flex-shrink: 0;
