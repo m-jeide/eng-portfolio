@@ -319,6 +319,18 @@
   ],
   "EDD": [
     {
+      "id": "[W13] Element D2.0 Concept Development (Fusion 360)",
+      "title": "[W13] Element D2.0 Concept Development (Fusion 360)",
+      "type": "Element D",
+      "date": "11/19/25"
+    },
+    {
+      "id": "[W14] Element D 7.0 & 8.0 Materials & Fabrication Research",
+      "title": "[W14] Element D 7.0 & 8.0 Materials & Fabrication Research",
+      "type": "Element D",
+      "date": "11/19/25"
+    },
+    {
       "id": "EDD Element C",
       "title": "EDD Element C",
       "type": "Elements",
