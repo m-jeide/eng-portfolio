@@ -1,0 +1,23 @@
+{
+  "title": "[W13] Element D2.0 Concept Development (Fusion 360)",
+  "date": "11/19/25",
+  "type": "Element D",
+  "brief": [
+    "Brainstorm and sketch solutions."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Hand-drawn Sketches",
+          "src": "resources/{class}/{type}/{title}/Concepts.pdf"
+        },
+        {
+          "label": "F360 Design",
+          "src": "resources/{class}/{type}/{title}/F360.pdf"
+        }
+      ]
+    }
+  ]
+}
