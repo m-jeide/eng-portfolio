@@ -1,7 +1,7 @@
 /* --- Page-specific styling (interpreter) --- */
 
 main#app.container {
-  width: min(100%, 1280px);
+  width: min(100%, 1600px);
   margin: 0 auto;
   padding: 48px clamp(32px, 5vw, 80px) 96px;
 }
@@ -230,6 +230,7 @@ main#app.container {
   display: grid;
   gap: 20px;
   margin: 12px 0;
+  align-items: start;
 }
 
 /* 2-column layout */
@@ -264,19 +265,23 @@ main#app.container {
 .layout-item {
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 .layout-item .media {
   margin: 0;
   width: 100%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .layout-item .media-center {
   flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-height: 0;
 }
 
 .layout-item .pdf-frame,
@@ -288,7 +293,8 @@ main#app.container {
 
 .layout-item .pdf-frame {
   height: 100%;
-  min-height: 400px;
+  min-height: 900px;
+  max-height: 1400px;
 }
 
 .layout-item .image-frame {
