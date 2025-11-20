@@ -1,7 +1,7 @@
 /* --- Page-specific styling (interpreter) --- */
 
 main#app.container {
-  width: min(100%, 1600px);
+  width: min(100%, 1480px);
   margin: 0 auto;
   padding: 48px clamp(32px, 5vw, 80px) 96px;
 }
@@ -287,14 +287,21 @@ main#app.container {
 .layout-item .pdf-frame,
 .layout-item .video-frame,
 .layout-item .image-frame {
-  width: 100%;
-  max-width: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
 }
 
 .layout-item .pdf-frame {
   height: 100%;
   min-height: 900px;
   max-height: 1400px;
+}
+
+.layout-item .video-frame {
+  width: 100% !important;
+  max-width: 100% !important;
+  aspect-ratio: 16 / 9;
 }
 
 .layout-item .image-frame {
