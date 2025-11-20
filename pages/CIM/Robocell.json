@@ -10,130 +10,124 @@
   ],
   "elements": [
     {
-      "type": "PDF",
-      "items": [
+      "type": "layout",
+      "label": "Overview & Setup",
+      "template": "3-columns",
+      "elements": [
         {
+          "type": "PDF",
           "label": "Introduction",
           "src": "resources/{class}/{type}/{title}/Introduction.pdf"
-        }
-      ]
-    },
-    {
-      "type": "PDF",
-      "items": [
-         {
+        },
+        {
+          "type": "PDF",
           "label": "Activity A",
           "src": "resources/{class}/{type}/{title}/Activity_A.pdf"
         },
-         {
+        {
+          "type": "PDF",
           "label": "Activity A - Pick and Place",
           "src": "resources/{class}/{type}/{title}/Activity_A2.pdf"
         }
       ]
     },
     {
-      "type": "PDF",
-      "items": [
+      "type": "layout",
+      "label": "Activity B - Demonstration",
+      "template": "2-columns",
+      "elements": [
         {
-          "label": "Activity B",
+          "type": "PDF",
+          "label": "Activity B Handout",
           "src": "resources/{class}/{type}/{title}/Activity_B.pdf"
-        }
-      ]
-    },
-    {
-      "type": "Video",
-      "items": [
+        },
         {
+          "type": "Video",
           "label": "[VIDEO] Activity B Demonstration",
           "src": "https://www.youtube.com/watch?v=xDXuslbdYSI"
         }
       ]
     },
     {
-      "type": "PDF",
-      "items": [
+      "type": "layout",
+      "label": "Activity C - Demonstration",
+      "template": "2-columns",
+      "elements": [
         {
-          "label": "Activity C",
+          "type": "PDF",
+          "label": "Activity C Handout",
           "src": "resources/{class}/{type}/{title}/Activity_C.pdf"
-        }
-      ]
-    },
-    {
-      "type": "Video",
-      "items": [
+        },
         {
+          "type": "Video",
           "label": "[VIDEO] Activity C Demonstration (updated 11/17/25)",
           "src": "https://www.youtube.com/watch?v=f2vnkCoyd0A"
         }
       ]
     },
     {
-      "type": "PDF",
-      "items": [
+      "type": "layout",
+      "label": "Activity D - Demonstration",
+      "template": "2-columns",
+      "elements": [
         {
-          "label": "Activity D",
+          "type": "PDF",
+          "label": "Activity D Handout",
           "src": "resources/{class}/{type}/{title}/Activity_D.pdf"
-        }
-      ]
-    },
-    {
-      "type": "Video",
-      "items": [
+        },
         {
+          "type": "Video",
           "label": "[VIDEO] Activity D Demonstration",
           "src": "https://www.youtube.com/watch?v=KfjDto9Jtg8"
         }
       ]
     },
     {
-      "type": "PDF",
-      "items": [
+      "type": "layout",
+      "label": "Activity E - Demonstration",
+      "template": "2-columns",
+      "elements": [
         {
-          "label": "Activity E",
+          "type": "PDF",
+          "label": "Activity E Handout",
           "src": "resources/{class}/{type}/{title}/Activity_E.pdf"
-        }
-      ]
-    },
-    {
-      "type": "Video",
-      "items": [
+        },
         {
+          "type": "Video",
           "label": "[VIDEO] Activity E Demonstration",
           "src": "https://www.youtube.com/watch?v=xPVNJXZZeM8"
         }
       ]
     },
     {
-      "type": "PDF",
-      "items": [
+      "type": "layout",
+      "label": "Activity F - Demonstration",
+      "template": "2-columns",
+      "elements": [
         {
-          "label": "Activity F",
+          "type": "PDF",
+          "label": "Activity F Handout",
           "src": "resources/{class}/{type}/{title}/Activity_F.pdf"
-        }
-      ]
-    },
-    {
-      "type": "Video",
-      "items": [
+        },
         {
+          "type": "Video",
           "label": "[VIDEO] Activity F Demonstration",
           "src": "https://www.youtube.com/watch?v=F_1iVbB6YWk"
         }
       ]
     },
     {
-      "type": "PDF",
-      "items": [
+      "type": "layout",
+      "label": "Activity G - Demonstration",
+      "template": "2-columns",
+      "elements": [
         {
-          "label": "Activity G",
+          "type": "PDF",
+          "label": "Activity G Handout",
           "src": "resources/{class}/{type}/{title}/Activity_G.pdf"
-        }
-      ]
-    },
-    {
-      "type": "Video",
-      "items": [
+        },
         {
+          "type": "Video",
           "label": "[VIDEO] Activity G Demonstration",
           "src": "https://www.youtube.com/watch?v=NFy-X6CjPx0"
         }
