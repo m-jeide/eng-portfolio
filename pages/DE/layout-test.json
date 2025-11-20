@@ -1,0 +1,81 @@
+{
+  "title": "Layout System Test",
+  "type": "Test",
+  "date": "2025-01-19",
+  "brief": [
+    "Testing the new layout template system",
+    "Demonstrates 2-column, 3-column, and 1-big-2-small layouts",
+    "All layouts should collapse to single column on mobile"
+  ],
+  "elements": [
+    {
+      "type": "synopsis",
+      "content": "This page demonstrates the new **layout element** feature. You can use layout containers to arrange elements in grids instead of the default vertical stack."
+    },
+    {
+      "type": "layout",
+      "label": "2-Column Image Gallery",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/600x400/6ee7ff/0f1115?text=Image+1",
+          "label": "First Image"
+        },
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/600x400/a0acff/0f1115?text=Image+2",
+          "label": "Second Image"
+        }
+      ]
+    },
+    {
+      "type": "layout",
+      "label": "3-Column Video Gallery",
+      "template": "3-columns",
+      "elements": [
+        {
+          "type": "video",
+          "src": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "label": "Video 1"
+        },
+        {
+          "type": "video",
+          "src": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "label": "Video 2"
+        },
+        {
+          "type": "video",
+          "src": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "label": "Video 3"
+        }
+      ]
+    },
+    {
+      "type": "layout",
+      "label": "1 Big + 2 Small (PDF + Images)",
+      "template": "1-big-2-small",
+      "elements": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/800x1000/6ee7ff/0f1115?text=Main+Content",
+          "label": "Main Document"
+        },
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/400x400/a0acff/0f1115?text=Detail+1",
+          "label": "Detail View 1"
+        },
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/400x400/ff6ea0/0f1115?text=Detail+2",
+          "label": "Detail View 2"
+        }
+      ]
+    },
+    {
+      "type": "notes",
+      "content": "This is a regular notes section that appears vertically (outside of any layout container). The layout system is **opt-in** and **backward compatible** - all existing pages continue to work as before!"
+    }
+  ]
+}

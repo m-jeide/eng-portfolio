@@ -197,6 +197,12 @@
   ],
   "DE": [
     {
+      "id": "layout-test",
+      "title": "Layout System Test",
+      "type": "Test",
+      "date": "01/19/25"
+    },
+    {
       "id": "Intro to Flip Flops",
       "title": "Intro to Flip Flops",
       "type": "Notes",

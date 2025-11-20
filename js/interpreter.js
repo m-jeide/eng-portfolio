@@ -457,6 +457,81 @@
       const heading = el && el.label ? String(el.label) : (refType ? `${refType} Assignments` : "References");
       const hasItems = items.length > 0;
       return section(heading, ({ registerItem, sectionId }) => renderTypeReferenceBody(items, refType, ctx, registerItem, sectionId), i, { skipDefaultToc: hasItems });
+    },
+
+    layout: (el, ctx, i, page) => {
+      const template = el.template || "2-columns";
+      const childElements = Array.isArray(el.elements) ? el.elements : [];
+      const label = el.label || "";
+
+      if (!childElements.length) {
+        return section(label || "Layout", `<div class="muted">No elements in layout.</div>`, i);
+      }
+
+      // Render child elements without their own section wrappers
+      const renderedChildren = childElements.map((childEl, childIndex) => {
+        const childType = normalizeType(childEl.type);
+
+        // Render the child element's content directly without section wrapper
+        if (childType === "pdf" || childType === "video" || childType === "image" || childType === "images") {
+          const items = normalizeItems(childEl);
+          return items.map((it) => {
+            const src = makeSrc(it.src, page, ctx);
+
+            if (childType === "pdf") {
+              const rawLabel = it.label || it.title || childEl.label || "PDF";
+              const displayLabel = escapeHtml(rawLabel);
+              const embedUrl = buildPdfViewerUrl(src, PDF_DEFAULT_ZOOM);
+              const iframe = `<iframe class="pdf-frame" src="${embedUrl}" data-pdf-src="${escapeHtml(src)}"></iframe>`;
+              const actions = `
+                <div class="media-actions">
+                  <a class="btn" href="${embedUrl}" target="_blank" rel="noopener">Open in new tab</a>
+                  <a class="btn" href="${src}" download>Download</a>
+                </div>`;
+              return `<figure class="media layout-item">
+                        <div class="media-center">${iframe}</div>
+                        <figcaption class="media-caption">${displayLabel}</figcaption>
+                        ${actions}
+                      </figure>`;
+            } else if (childType === "video") {
+              const embed = toVideoEmbed(src);
+              const rawLabel = it.label || it.title || childEl.label || "Video";
+              const displayLabel = escapeHtml(rawLabel);
+              return `<figure class="media layout-item">
+                        <div class="media-center">${embed}</div>
+                        <figcaption class="media-caption">${displayLabel}</figcaption>
+                      </figure>`;
+            } else if (childType === "image" || childType === "images") {
+              const rawLabel = it.label || it.title || childEl.label || "Image";
+              const displayLabel = escapeHtml(rawLabel);
+              const alt = escapeHtml(it.alt || it.label || page.title || "");
+              const img = `<img class="image-frame" src="${src}" alt="${alt}" loading="lazy">`;
+              return `<figure class="media layout-item">
+                        <div class="media-center">${img}</div>
+                        <figcaption class="media-caption">${displayLabel}</figcaption>
+                      </figure>`;
+            }
+            return "";
+          }).join("");
+        } else if (childType === "notes" || childType === "synopsis" || childType === "designbrief") {
+          const content = childEl.content || childEl.text || "";
+          return `<div class="card layout-item">${richText(content, { preserveLineBreaks: childType === "notes" })}</div>`;
+        }
+
+        // For other types, fall back to default rendering
+        const renderer = RENDERERS[childType];
+        if (renderer) {
+          return `<div class="layout-item">${renderer(childEl, ctx, childIndex, page)}</div>`;
+        }
+        return "";
+      }).join("");
+
+      const templateClass = `layout-${template}`;
+      const layoutHtml = `<div class="layout-container ${templateClass}">${renderedChildren}</div>`;
+
+      return label
+        ? section(label, layoutHtml, i)
+        : `<div class="element stagger" style="--delay:${(0.42 + i * 0.12).toFixed(2)}s">${layoutHtml}</div>`;
     }
   };
 

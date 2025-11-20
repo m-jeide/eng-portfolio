@@ -225,6 +225,104 @@ main#app.container {
 .card, .tile { box-shadow: none }
 .lane { background: transparent; border: none }
 
+/* --- Layout Templates --- */
+.layout-container {
+  display: grid;
+  gap: 20px;
+  margin: 12px 0;
+}
+
+/* 2-column layout */
+.layout-2-columns {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* 3-column layout */
+.layout-3-columns {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* 1 big, 2 small layout - left column 60%, right column 40% with 2 stacked items */
+.layout-1-big-2-small {
+  grid-template-columns: 1.5fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.layout-1-big-2-small > .layout-item:first-child {
+  grid-row: 1 / 3;
+}
+
+.layout-1-big-2-small > .layout-item:nth-child(2) {
+  grid-row: 1;
+}
+
+.layout-1-big-2-small > .layout-item:nth-child(3) {
+  grid-row: 2;
+}
+
+/* Layout items */
+.layout-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-item .media {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.layout-item .media-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout-item .pdf-frame,
+.layout-item .video-frame,
+.layout-item .image-frame {
+  width: 100%;
+  max-width: 100%;
+}
+
+.layout-item .pdf-frame {
+  height: 100%;
+  min-height: 400px;
+}
+
+.layout-item .image-frame {
+  max-height: none;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive: collapse to single column on smaller screens */
+@media (max-width: 900px) {
+  .layout-2-columns,
+  .layout-3-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .layout-1-big-2-small {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .layout-1-big-2-small > .layout-item:first-child {
+    grid-row: auto;
+  }
+
+  .layout-1-big-2-small > .layout-item:nth-child(2),
+  .layout-1-big-2-small > .layout-item:nth-child(3) {
+    grid-row: auto;
+  }
+
+  .layout-item .image-frame {
+    object-fit: contain;
+  }
+}
+
 /* --- Loading + error states --- */
 .loading-state {
   display: flex;
