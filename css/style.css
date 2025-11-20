@@ -44,6 +44,9 @@
     background-image: url('../resources/icons/search.png');
     filter: invert(0);
   }
+  .link-card {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
 }
 
 /* Base */
@@ -380,7 +383,8 @@ a:focus-visible, button:focus-visible, .tile:focus-visible {
   justify-content: center;
   padding: 1rem;
   min-width: 150px;
-  background-color: var(--card-bg);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--hair);
   border-radius: 8px;
   box-shadow: var(--shadow);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
