@@ -118,6 +118,14 @@
     const type     = page.type || "";
     const brief    = Array.isArray(page.brief) ? page.brief : [];
     const elements = Array.isArray(page.elements) ? page.elements : [];
+    const style    = page.style || "default";
+
+    // Apply style to body element
+    if (style && style !== "default") {
+      document.body.setAttribute("data-style", style);
+    } else {
+      document.body.removeAttribute("data-style");
+    }
 
     // allow {file}, {class}, {id} in titles
     const title = tpl(rawTitle, { file: fileBase, class: parentDir, id: idStr });
@@ -141,9 +149,16 @@
     ].join("");
 
     // header with staggered animation
+    const mojoLogoHtml = style === "MOJO"
+      ? `<img src="${BASE}resources/icons/MOJO/MOJO.png" alt="MOJO Logo" class="page-title-logo" />`
+      : "";
+    const titleWrapper = style === "MOJO"
+      ? `<div class="page-title-wrapper"><h1 class="page-title stagger" style="--delay:.10s">${mojoLogoHtml}${escapeHtml(title)}</h1></div>`
+      : `<h1 class="page-title stagger" style="--delay:.10s">${escapeHtml(title)}</h1>`;
+
     const header = `
       <header class="page-header">
-        <h1 class="page-title stagger" style="--delay:.10s">${escapeHtml(title)}</h1>
+        ${titleWrapper}
         <div class="page-tags stagger" style="--delay:.22s">${chips}</div>
         ${date ? `<div class="page-date stagger" style="--delay:.34s">${escapeHtml(date)}</div>` : ""}
       </header>
