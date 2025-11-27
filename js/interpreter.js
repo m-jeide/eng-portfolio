@@ -120,9 +120,18 @@
     const elements = Array.isArray(page.elements) ? page.elements : [];
     const style    = page.style || "default";
 
-    // Apply style to body element
+    // Apply style to body element and load corresponding CSS
     if (style && style !== "default") {
       document.body.setAttribute("data-style", style);
+      // Dynamically load the style-specific CSS if not already loaded
+      const styleId = `style-${style}`;
+      if (!document.getElementById(styleId)) {
+        const link = document.createElement('link');
+        link.id = styleId;
+        link.rel = 'stylesheet';
+        link.href = `${BASE}css/${style}.css`;
+        document.head.appendChild(link);
+      }
     } else {
       document.body.removeAttribute("data-style");
     }
