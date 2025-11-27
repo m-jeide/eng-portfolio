@@ -127,7 +127,7 @@
 
       // If this is a new style, we need to load the CSS and wait for it
       if (isNewStyle) {
-        // Add a class to disable transitions during initial load
+        // Add a class to disable color transitions during initial load (but not page animations)
         document.body.classList.add('disable-transitions');
 
         const link = document.createElement('link');
@@ -143,20 +143,19 @@
           // Force a reflow to ensure styles are applied
           void document.body.offsetHeight;
 
-          // Wait for page content to be ready and start fading in before enabling transitions
-          // This prevents the flashbang effect when the page loads
-          setTimeout(() => {
-            document.body.classList.remove('disable-transitions');
-          }, 150);
+          // Mark that the style CSS has loaded
+          document.body.dataset.styleLoaded = 'true';
         };
 
         document.head.appendChild(link);
       } else {
         // CSS already loaded, just apply the style
         document.body.setAttribute("data-style", style);
+        document.body.dataset.styleLoaded = 'true';
       }
     } else {
       document.body.removeAttribute("data-style");
+      document.body.dataset.styleLoaded = 'true';
     }
 
     // allow {file}, {class}, {id} in titles
@@ -207,11 +206,40 @@
     const elementsHtml = withSectionCollector(collectorState, () => renderElements(resolvedElements, ctx, page));
     const tocHtml = renderTableOfContents(collectorState.list);
 
+    // Wait for style CSS to finish loading before mounting content
+    await waitForStyleLoaded();
+
     // mount with enter animation wrapper
     const body = header + abstractHtml + tocHtml + elementsHtml;
     app.innerHTML = `<div class="page-anim">${body}</div>`;
     schedulePdfAutosize(app);
+
+    // Remove disable-transitions to allow both color transitions and page animations
+    if (document.body.classList.contains('disable-transitions')) {
+      // Force a reflow to ensure background colors are fully applied
+      void document.body.offsetHeight;
+      // Remove the class in the next frame to enable all transitions
+      requestAnimationFrame(() => {
+        document.body.classList.remove('disable-transitions');
+      });
+    }
+
     animateIn();
+  }
+
+  function waitForStyleLoaded() {
+    return new Promise((resolve) => {
+      if (document.body.dataset.styleLoaded === 'true') {
+        resolve();
+      } else {
+        const checkInterval = setInterval(() => {
+          if (document.body.dataset.styleLoaded === 'true') {
+            clearInterval(checkInterval);
+            resolve();
+          }
+        }, 10);
+      }
+    });
   }
 
   // Robustly trigger the page enter animation (works on cache restores)

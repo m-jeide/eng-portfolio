@@ -3,12 +3,17 @@
 /* Import Oswald and Lato fonts from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400&family=Lato:wght@400&display=swap');
 
-/* Disable all transitions during initial load to prevent flashbang */
-body.disable-transitions,
-body.disable-transitions *,
-body.disable-transitions *::before,
-body.disable-transitions *::after {
+/* Disable color/background transitions during initial load to prevent flashbang
+   But allow page animation transitions (.page-anim, .stagger) to work */
+body.disable-transitions {
   transition: none !important;
+}
+
+body.disable-transitions *:not(.page-anim):not(.stagger),
+body.disable-transitions *:not(.page-anim):not(.stagger)::before,
+body.disable-transitions *:not(.page-anim):not(.stagger)::after {
+  transition-property: background-color, color, border-color, box-shadow, filter !important;
+  transition-duration: 0s !important;
 }
 
 /* Smooth transitions for MOJO style changes - only apply when ready */
