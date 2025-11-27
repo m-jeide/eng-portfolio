@@ -5,214 +5,214 @@
 
 /* MOJO Theme Variables */
 body[data-style="MOJO"] {
-  --bg: #e0e0e0;
-  --text: #000000;
-  --muted: #000000;
-  --panel: #e0e0e0;
-  --card: #e0e0e0;
-  --ring: rgba(255, 121, 0, 0.18);
-  --accent: #ff7900;
-  --hair: #ff7900;
-  --site-header-bg: #e0e0e0;
-  --site-header-border-color: #ff7900;
+  --bg: #e0e0e0 !important;
+  --text: #000000 !important;
+  --muted: #000000 !important;
+  --panel: #e0e0e0 !important;
+  --card: #e0e0e0 !important;
+  --ring: rgba(255, 121, 0, 0.18) !important;
+  --accent: #ff7900 !important;
+  --hair: #ff7900 !important;
+  --site-header-bg: #e0e0e0 !important;
+  --site-header-border-color: #ff7900 !important;
 }
 
 /* MOJO Typography */
 body[data-style="MOJO"] {
-  font-family: 'Lato', sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  background: #e0e0e0;
-  color: #000000;
+  font-family: 'Lato', sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  background: #e0e0e0 !important;
+  color: #000000 !important;
 }
 
 body[data-style="MOJO"] h1 {
-  font-family: 'Oswald', sans-serif;
-  font-size: 60px;
-  font-weight: 400;
-  color: #000000;
+  font-family: 'Oswald', sans-serif !important;
+  font-size: 60px !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
 }
 
 body[data-style="MOJO"] h2 {
-  font-family: 'Oswald', sans-serif;
-  font-size: 36px;
-  font-weight: 400;
-  color: #000000;
+  font-family: 'Oswald', sans-serif !important;
+  font-size: 36px !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
 }
 
 body[data-style="MOJO"] h3 {
-  font-family: 'Oswald', sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  color: #000000;
+  font-family: 'Oswald', sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
 }
 
 /* MOJO specific element styling */
 body[data-style="MOJO"] .page-title {
-  font-family: 'Oswald', sans-serif;
-  font-size: 60px;
-  font-weight: 400;
-  color: #000000;
+  font-family: 'Oswald', sans-serif !important;
+  font-size: 60px !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
 }
 
 body[data-style="MOJO"] .element-title {
-  font-family: 'Oswald', sans-serif;
-  font-size: 36px;
-  font-weight: 400;
-  color: #000000;
+  font-family: 'Oswald', sans-serif !important;
+  font-size: 36px !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
 }
 
 body[data-style="MOJO"] .type-reference-title {
-  font-family: 'Oswald', sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  color: #000000;
+  font-family: 'Oswald', sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
 }
 
 /* MOJO dividers */
 body[data-style="MOJO"] .site-header {
-  border-bottom-color: #ff7900;
+  border-bottom-color: #ff7900 !important;
 }
 
 body[data-style="MOJO"] .element {
-  border-bottom: 2px solid #ff7900;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  border-bottom: 2px solid #ff7900 !important;
+  padding-bottom: 20px !important;
+  margin-bottom: 20px !important;
 }
 
 body[data-style="MOJO"] .element:last-child {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 /* MOJO cards */
 body[data-style="MOJO"] .card,
 body[data-style="MOJO"] .tile {
-  background: #e0e0e0;
-  border: 1px solid #ff7900;
+  background: #e0e0e0 !important;
+  border: 1px solid #ff7900 !important;
 }
 
 body[data-style="MOJO"] .type-reference-item {
-  border-color: #ff7900;
-  background: #e0e0e0;
+  border-color: #ff7900 !important;
+  background: #e0e0e0 !important;
 }
 
 /* MOJO buttons */
 body[data-style="MOJO"] .btn,
 body[data-style="MOJO"] a.btn,
 body[data-style="MOJO"] button.btn {
-  border-color: #ff7900;
-  color: #000000;
+  border-color: #ff7900 !important;
+  color: #000000 !important;
 }
 
 body[data-style="MOJO"] .btn:hover,
 body[data-style="MOJO"] a.btn:hover,
 body[data-style="MOJO"] button.btn:hover {
-  background: #ff7900;
-  color: #e0e0e0;
+  background: #ff7900 !important;
+  color: #e0e0e0 !important;
 }
 
 /* MOJO chips */
 body[data-style="MOJO"] .chip {
-  background: rgba(255, 121, 0, 0.2);
-  color: #000000;
+  background: rgba(255, 121, 0, 0.2) !important;
+  color: #000000 !important;
 }
 
 body[data-style="MOJO"] .chip-class,
 body[data-style="MOJO"] .chip-type {
-  background: rgba(255, 121, 0, 0.3);
-  color: #000000;
+  background: rgba(255, 121, 0, 0.3) !important;
+  color: #000000 !important;
 }
 
-/* MOJO page header with logo */
-body[data-style="MOJO"] .page-title-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+/* MOJO header logo - small icon next to page title in site header */
+body[data-style="MOJO"] .site-header__assignment {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
 }
 
-body[data-style="MOJO"] .page-title-logo {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
+body[data-style="MOJO"] .mojo-header-logo {
+  width: 16px !important;
+  height: 16px !important;
+  object-fit: contain !important;
 }
 
 /* MOJO results panel */
 body[data-style="MOJO"] .results-panel {
-  border-bottom-color: #ff7900;
+  border-bottom-color: #ff7900 !important;
 }
 
 /* MOJO item styling */
 body[data-style="MOJO"] .item {
-  border-color: #ff7900;
-  background: #e0e0e0;
+  border-color: #ff7900 !important;
+  background: #e0e0e0 !important;
 }
 
 /* MOJO icon buttons */
 body[data-style="MOJO"] .icon-btn {
-  border-color: #ff7900;
+  border-color: #ff7900 !important;
 }
 
 body[data-style="MOJO"] .icon-btn:hover {
-  background: rgba(255, 121, 0, 0.2);
-  border-color: #ff7900;
+  background: rgba(255, 121, 0, 0.2) !important;
+  border-color: #ff7900 !important;
 }
 
 /* MOJO search and select inputs */
 body[data-style="MOJO"] .search,
 body[data-style="MOJO"] .select {
-  border-color: #ff7900;
-  background: #e0e0e0;
-  color: #000000;
+  border-color: #ff7900 !important;
+  background: #e0e0e0 !important;
+  color: #000000 !important;
 }
 
 body[data-style="MOJO"] .search:focus,
 body[data-style="MOJO"] .select:focus {
-  border-color: #ff7900;
+  border-color: #ff7900 !important;
 }
 
 /* MOJO filter menu */
 body[data-style="MOJO"] .filter-menu {
-  background: #e0e0e0;
-  border-color: #ff7900;
+  background: #e0e0e0 !important;
+  border-color: #ff7900 !important;
 }
 
 /* Remove light/dark mode overrides for MOJO */
 @media (prefers-color-scheme: light) {
   body[data-style="MOJO"] {
-    --bg: #e0e0e0;
-    --text: #000000;
-    --muted: #000000;
-    --panel: #e0e0e0;
-    --card: #e0e0e0;
-    --ring: rgba(255, 121, 0, 0.18);
-    --accent: #ff7900;
-    --hair: #ff7900;
-    --site-header-bg: #e0e0e0;
-    --site-header-border-color: #ff7900;
+    --bg: #e0e0e0 !important;
+    --text: #000000 !important;
+    --muted: #000000 !important;
+    --panel: #e0e0e0 !important;
+    --card: #e0e0e0 !important;
+    --ring: rgba(255, 121, 0, 0.18) !important;
+    --accent: #ff7900 !important;
+    --hair: #ff7900 !important;
+    --site-header-bg: #e0e0e0 !important;
+    --site-header-border-color: #ff7900 !important;
   }
 
   body[data-style="MOJO"] .card,
   body[data-style="MOJO"] .tile {
-    background: #e0e0e0;
+    background: #e0e0e0 !important;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   body[data-style="MOJO"] {
-    --bg: #e0e0e0;
-    --text: #000000;
-    --muted: #000000;
-    --panel: #e0e0e0;
-    --card: #e0e0e0;
-    --ring: rgba(255, 121, 0, 0.18);
-    --accent: #ff7900;
-    --hair: #ff7900;
-    --site-header-bg: #e0e0e0;
-    --site-header-border-color: #ff7900;
+    --bg: #e0e0e0 !important;
+    --text: #000000 !important;
+    --muted: #000000 !important;
+    --panel: #e0e0e0 !important;
+    --card: #e0e0e0 !important;
+    --ring: rgba(255, 121, 0, 0.18) !important;
+    --accent: #ff7900 !important;
+    --hair: #ff7900 !important;
+    --site-header-bg: #e0e0e0 !important;
+    --site-header-border-color: #ff7900 !important;
   }
 
   body[data-style="MOJO"] .card,
   body[data-style="MOJO"] .tile {
-    background: #e0e0e0;
+    background: #e0e0e0 !important;
   }
 }

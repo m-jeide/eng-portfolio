@@ -135,7 +135,11 @@
 
     const assignmentHeader = document.getElementById("headerAssignmentName");
     if (assignmentHeader) {
-      assignmentHeader.textContent = title;
+      if (style === "MOJO") {
+        assignmentHeader.innerHTML = `<img src="${BASE}resources/icons/MOJO/MOJO.png" alt="MOJO" class="mojo-header-logo" />${escapeHtml(title)}`;
+      } else {
+        assignmentHeader.textContent = title;
+      }
       assignmentHeader.hidden = false;
     }
 
@@ -149,16 +153,9 @@
     ].join("");
 
     // header with staggered animation
-    const mojoLogoHtml = style === "MOJO"
-      ? `<img src="${BASE}resources/icons/MOJO/MOJO.png" alt="MOJO Logo" class="page-title-logo" />`
-      : "";
-    const titleWrapper = style === "MOJO"
-      ? `<div class="page-title-wrapper"><h1 class="page-title stagger" style="--delay:.10s">${mojoLogoHtml}${escapeHtml(title)}</h1></div>`
-      : `<h1 class="page-title stagger" style="--delay:.10s">${escapeHtml(title)}</h1>`;
-
     const header = `
       <header class="page-header">
-        ${titleWrapper}
+        <h1 class="page-title stagger" style="--delay:.10s">${escapeHtml(title)}</h1>
         <div class="page-tags stagger" style="--delay:.22s">${chips}</div>
         ${date ? `<div class="page-date stagger" style="--delay:.34s">${escapeHtml(date)}</div>` : ""}
       </header>
