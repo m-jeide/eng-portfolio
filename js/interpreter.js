@@ -214,15 +214,8 @@
     app.innerHTML = `<div class="page-anim">${body}</div>`;
     schedulePdfAutosize(app);
 
-    // Remove disable-transitions to allow both color transitions and page animations
-    if (document.body.classList.contains('disable-transitions')) {
-      // Force a reflow to ensure background colors are fully applied
-      void document.body.offsetHeight;
-      // Remove the class in the next frame to enable all transitions
-      requestAnimationFrame(() => {
-        document.body.classList.remove('disable-transitions');
-      });
-    }
+    // Remove disable-transitions immediately to allow page animations
+    document.body.classList.remove('disable-transitions');
 
     animateIn();
   }
@@ -238,6 +231,11 @@
             resolve();
           }
         }, 10);
+        // Timeout after 500ms to prevent infinite wait
+        setTimeout(() => {
+          clearInterval(checkInterval);
+          resolve();
+        }, 500);
       }
     });
   }
