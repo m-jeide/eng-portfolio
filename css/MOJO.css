@@ -3,23 +3,44 @@
 /* Import Oswald and Lato fonts from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400&family=Lato:wght@400&display=swap');
 
-/* Smooth transitions for MOJO style changes */
-body {
+/* Disable all transitions during initial load to prevent flashbang */
+body.disable-transitions,
+body.disable-transitions *,
+body.disable-transitions *::before,
+body.disable-transitions *::after {
+  transition: none !important;
+}
+
+/* Smooth transitions for MOJO style changes - only apply when ready */
+body[data-style="MOJO"] {
   transition: background-color 0.6s ease, color 0.6s ease;
 }
 
 /* Apply transitions to specific properties, excluding font changes */
-body *,
-body *::before,
-body *::after {
+body[data-style="MOJO"] *,
+body[data-style="MOJO"] *::before,
+body[data-style="MOJO"] *::after {
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 /* Don't transition font properties to avoid janky text changes */
-h1, h2, h3, h4, h5, h6,
-.page-title, .element-title, .type-reference-title,
-.brand, .site-header__assignment {
+body[data-style="MOJO"] h1,
+body[data-style="MOJO"] h2,
+body[data-style="MOJO"] h3,
+body[data-style="MOJO"] h4,
+body[data-style="MOJO"] h5,
+body[data-style="MOJO"] h6,
+body[data-style="MOJO"] .page-title,
+body[data-style="MOJO"] .element-title,
+body[data-style="MOJO"] .type-reference-title {
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease !important;
+}
+
+/* Header elements should keep their default fonts and styles */
+body[data-style="MOJO"] .brand,
+body[data-style="MOJO"] .site-header__assignment {
+  font-family: system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial, sans-serif !important;
+  transition: none !important;
 }
 
 /* MOJO Theme Variables */
@@ -93,14 +114,20 @@ body[data-style="MOJO"] .site-header {
   background: rgba(246, 247, 251, 0.82) !important;
   border-bottom: 1px solid #ff7900 !important;
   box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
 }
 
 body[data-style="MOJO"] .brand {
   color: #0d1321 !important;
+  font-weight: 800 !important;
+  font-size: clamp(18px, 2.4vw, 26px) !important;
 }
 
 body[data-style="MOJO"] .site-header__assignment {
   color: #5b6476 !important;
+  font-weight: 600 !important;
+  font-size: clamp(12px, 1.5vw, 16px) !important;
 }
 
 /* MOJO dividers */
@@ -189,17 +216,27 @@ body[data-style="MOJO"] .icon-btn:hover {
   border-color: rgba(0, 122, 255, 0.35) !important;
 }
 
+/* MOJO header icons should not be inverted (keep light mode appearance) */
+body[data-style="MOJO"] .icon-img {
+  filter: none !important;
+}
+
 /* MOJO search and select inputs - keep light mode styling for header */
 body[data-style="MOJO"] .search,
 body[data-style="MOJO"] .select {
   border-color: rgba(0, 0, 0, 0.08) !important;
   background: rgba(255, 255, 255, 0.8) !important;
   color: #0d1321 !important;
+  filter: none !important;
 }
 
 body[data-style="MOJO"] .search:focus,
 body[data-style="MOJO"] .select:focus {
   border-color: rgba(0, 122, 255, 0.45) !important;
+}
+
+body[data-style="MOJO"] .search-container .search {
+  filter: none !important;
 }
 
 /* MOJO filter menu - keep light mode styling */

@@ -122,15 +122,38 @@
 
     // Apply style to body element and load corresponding CSS
     if (style && style !== "default") {
-      document.body.setAttribute("data-style", style);
-      // Dynamically load the style-specific CSS if not already loaded
       const styleId = `style-${style}`;
-      if (!document.getElementById(styleId)) {
+      const isNewStyle = !document.getElementById(styleId);
+
+      // If this is a new style, we need to load the CSS and wait for it
+      if (isNewStyle) {
+        // Add a class to disable transitions during initial load
+        document.body.classList.add('disable-transitions');
+
         const link = document.createElement('link');
         link.id = styleId;
         link.rel = 'stylesheet';
         link.href = `${BASE}css/${style}.css`;
+
+        // Wait for CSS to load before applying the data-style attribute
+        link.onload = () => {
+          // Apply the style (colors will apply instantly due to disable-transitions)
+          document.body.setAttribute("data-style", style);
+
+          // Force a reflow to ensure styles are applied
+          void document.body.offsetHeight;
+
+          // Wait for page content to be ready and start fading in before enabling transitions
+          // This prevents the flashbang effect when the page loads
+          setTimeout(() => {
+            document.body.classList.remove('disable-transitions');
+          }, 100);
+        };
+
         document.head.appendChild(link);
+      } else {
+        // CSS already loaded, just apply the style
+        document.body.setAttribute("data-style", style);
       }
     } else {
       document.body.removeAttribute("data-style");
