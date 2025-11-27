@@ -147,7 +147,7 @@
           // This prevents the flashbang effect when the page loads
           setTimeout(() => {
             document.body.classList.remove('disable-transitions');
-          }, 100);
+          }, 150);
         };
 
         document.head.appendChild(link);

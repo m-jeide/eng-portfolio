@@ -13,14 +13,14 @@ body.disable-transitions *::after {
 
 /* Smooth transitions for MOJO style changes - only apply when ready */
 body[data-style="MOJO"] {
-  transition: background-color 0.6s ease, color 0.6s ease;
+  transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* Apply transitions to specific properties, excluding font changes */
 body[data-style="MOJO"] *,
 body[data-style="MOJO"] *::before,
 body[data-style="MOJO"] *::after {
-  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
 }
 
 /* Don't transition font properties to avoid janky text changes */
@@ -36,10 +36,9 @@ body[data-style="MOJO"] .type-reference-title {
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease !important;
 }
 
-/* Header elements should keep their default fonts and styles */
+/* Header elements should NOT transition */
 body[data-style="MOJO"] .brand,
 body[data-style="MOJO"] .site-header__assignment {
-  font-family: system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial, sans-serif !important;
   transition: none !important;
 }
 
@@ -109,7 +108,7 @@ body[data-style="MOJO"] .type-reference-title {
   color: #000000 !important;
 }
 
-/* MOJO header - keep semi-transparent light mode styling */
+/* MOJO header - ALWAYS use light mode styling regardless of device preference */
 body[data-style="MOJO"] .site-header {
   background: rgba(246, 247, 251, 0.82) !important;
   border-bottom: 1px solid #ff7900 !important;
@@ -120,12 +119,14 @@ body[data-style="MOJO"] .site-header {
 
 body[data-style="MOJO"] .brand {
   color: #0d1321 !important;
+  font-family: system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial, sans-serif !important;
   font-weight: 800 !important;
   font-size: clamp(18px, 2.4vw, 26px) !important;
 }
 
 body[data-style="MOJO"] .site-header__assignment {
   color: #5b6476 !important;
+  font-family: system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial, sans-serif !important;
   font-weight: 600 !important;
   font-size: clamp(12px, 1.5vw, 16px) !important;
 }
@@ -181,10 +182,11 @@ body[data-style="MOJO"] .chip-type {
   color: #000000 !important;
 }
 
-/* MOJO header logo - icon next to page title in site header */
+/* MOJO header logo - icon next to page title in site header - keep centered */
 body[data-style="MOJO"] .site-header__assignment {
   display: flex !important;
   align-items: center !important;
+  justify-content: center !important;
   gap: 10px !important;
 }
 
@@ -205,7 +207,7 @@ body[data-style="MOJO"] .item {
   background: #e0e0e0 !important;
 }
 
-/* MOJO icon buttons - keep light mode styling for header */
+/* MOJO icon buttons - ALWAYS use light mode styling (ignore dark mode) */
 body[data-style="MOJO"] .icon-btn {
   border-color: rgba(0, 0, 0, 0.08) !important;
   background: transparent !important;
@@ -216,18 +218,19 @@ body[data-style="MOJO"] .icon-btn:hover {
   border-color: rgba(0, 122, 255, 0.35) !important;
 }
 
-/* MOJO header icons should not be inverted (keep light mode appearance) */
-body[data-style="MOJO"] .icon-img {
-  filter: none !important;
+/* MOJO header icons should NEVER be inverted - always light mode */
+@media (prefers-color-scheme: dark) {
+  body[data-style="MOJO"] .icon-img {
+    filter: none !important;
+  }
 }
 
-/* MOJO search and select inputs - keep light mode styling for header */
+/* MOJO search and select inputs - ALWAYS use light mode styling */
 body[data-style="MOJO"] .search,
 body[data-style="MOJO"] .select {
   border-color: rgba(0, 0, 0, 0.08) !important;
   background: rgba(255, 255, 255, 0.8) !important;
   color: #0d1321 !important;
-  filter: none !important;
 }
 
 body[data-style="MOJO"] .search:focus,
@@ -235,8 +238,12 @@ body[data-style="MOJO"] .select:focus {
   border-color: rgba(0, 122, 255, 0.45) !important;
 }
 
-body[data-style="MOJO"] .search-container .search {
-  filter: none !important;
+/* Prevent search input from being inverted in dark mode */
+@media (prefers-color-scheme: dark) {
+  body[data-style="MOJO"] .search,
+  body[data-style="MOJO"] .search-container .search {
+    filter: none !important;
+  }
 }
 
 /* MOJO filter menu - keep light mode styling */
