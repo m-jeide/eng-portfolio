@@ -132,6 +132,28 @@
           "src": "https://www.youtube.com/watch?v=NFy-X6CjPx0"
         }
       ]
+    },
+    {
+      "type": "layout",
+      "label": "Activity H - Demonstration",
+      "template": "1-big-2-small",
+      "elements": [
+        {
+          "type": "PDF",
+          "label": "Activity H Handout",
+          "src": "resources/{class}/{type}/{title}/Activity_H.pdf"
+        },
+        {
+          "type": "Video",
+          "label": "[VIDEO] Activity H",
+          "src": "https://www.youtube.com/watch?v=sHC3NGEdDlY"
+        },
+        {
+          "type": "Image",
+          "label": "Actibity H Positions",
+          "src": "resources/{class}/{type}/{title}/Activity_H_Positions.png"
+        }
+      ]
     }
   ]
 }
