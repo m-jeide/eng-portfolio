@@ -370,6 +370,17 @@ a:focus-visible, button:focus-visible, .tile:focus-visible {
 }
 @keyframes wobble { 0%{transform:rotate(0)} 25%{transform:rotate(-1.8deg)} 50%{transform:rotate(1.8deg)} 100%{transform:rotate(0)} }
 
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-12px); }
+  50% { transform: translateY(-6px); }
+  75% { transform: translateY(-3px); }
+}
+
+.greeting-bounce {
+  animation: bounce 0.5s ease;
+}
+
 #links { margin-top: 2rem; }
 
 .card-container {

@@ -49,4 +49,32 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (eddSection) {
     eddSection.remove();
   }
+
+  // Greeting cycler
+  const greetings = ["HI!", "HEY!", "HEYA!", "HOWDY!", "SALUTATIONS!"];
+  let currentIndex = Math.floor(Math.random() * greetings.length);
+
+  const greetingEl = document.getElementById("greeting");
+  if (greetingEl) {
+    // Set initial random greeting
+    greetingEl.textContent = greetings[currentIndex] + ", I'm Matthew";
+
+    // Add click handler
+    greetingEl.addEventListener("click", function() {
+      // Cycle to next greeting
+      currentIndex = (currentIndex + 1) % greetings.length;
+      greetingEl.textContent = greetings[currentIndex] + ", I'm Matthew";
+
+      // Add bounce animation
+      greetingEl.classList.remove("greeting-bounce");
+      // Force reflow to restart animation
+      void greetingEl.offsetWidth;
+      greetingEl.classList.add("greeting-bounce");
+
+      // Remove animation class after it completes
+      setTimeout(() => {
+        greetingEl.classList.remove("greeting-bounce");
+      }, 500);
+    });
+  }
 });

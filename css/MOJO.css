@@ -168,9 +168,15 @@ body[data-style="MOJO"] .mojo-header-logo {
   object-fit: contain !important;
 }
 
-/* MOJO results panel */
+/* MOJO results panel - ensure clickability during/after transitions */
 body[data-style="MOJO"] .results-panel {
   border-bottom-color: #ff7900 !important;
+}
+
+body[data-style="MOJO"] .results-panel,
+body[data-style="MOJO"] .results-panel.open,
+body[data-style="MOJO"] .results-panel * {
+  pointer-events: auto !important;
 }
 
 /* MOJO item styling */
@@ -210,11 +216,21 @@ body[data-style="MOJO"] .select:focus {
   border-color: rgba(0, 122, 255, 0.45) !important;
 }
 
-/* Prevent search input from being inverted in dark mode */
+/* Prevent search input from being inverted in dark mode, but darken the icon */
 @media (prefers-color-scheme: dark) {
   body[data-style="MOJO"] .search,
   body[data-style="MOJO"] .search-container .search {
     filter: none !important;
+  }
+
+  /* Make search icon visible on light MOJO background */
+  body[data-style="MOJO"] .search-container .search {
+    background-image: url('../resources/icons/search.png');
+    background-repeat: no-repeat;
+    background-position: 12px center;
+    background-size: 20px 20px;
+    /* Darken the icon for visibility on light background */
+    filter: brightness(0) saturate(100%) !important;
   }
 }
 
