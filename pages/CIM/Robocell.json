@@ -150,7 +150,7 @@
         },
         {
           "type": "Image",
-          "label": "Actibity H Positions",
+          "label": "Activity H Positions",
           "src": "resources/{class}/{type}/{title}/Activity_H_Positions.png"
         }
       ]
