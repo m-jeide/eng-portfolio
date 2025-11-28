@@ -122,40 +122,19 @@
 
     // Apply style to body element and load corresponding CSS
     if (style && style !== "default") {
+      document.body.setAttribute("data-style", style);
+
+      // Dynamically load the style-specific CSS if not already loaded
       const styleId = `style-${style}`;
-      const isNewStyle = !document.getElementById(styleId);
-
-      // If this is a new style, we need to load the CSS and wait for it
-      if (isNewStyle) {
-        // Add a class to disable color transitions during initial load (but not page animations)
-        document.body.classList.add('disable-transitions');
-
+      if (!document.getElementById(styleId)) {
         const link = document.createElement('link');
         link.id = styleId;
         link.rel = 'stylesheet';
         link.href = `${BASE}css/${style}.css`;
-
-        // Wait for CSS to load before applying the data-style attribute
-        link.onload = () => {
-          // Apply the style (colors will apply instantly due to disable-transitions)
-          document.body.setAttribute("data-style", style);
-
-          // Force a reflow to ensure styles are applied
-          void document.body.offsetHeight;
-
-          // Mark that the style CSS has loaded
-          document.body.dataset.styleLoaded = 'true';
-        };
-
         document.head.appendChild(link);
-      } else {
-        // CSS already loaded, just apply the style
-        document.body.setAttribute("data-style", style);
-        document.body.dataset.styleLoaded = 'true';
       }
     } else {
       document.body.removeAttribute("data-style");
-      document.body.dataset.styleLoaded = 'true';
     }
 
     // allow {file}, {class}, {id} in titles
@@ -206,38 +185,11 @@
     const elementsHtml = withSectionCollector(collectorState, () => renderElements(resolvedElements, ctx, page));
     const tocHtml = renderTableOfContents(collectorState.list);
 
-    // Wait for style CSS to finish loading before mounting content
-    await waitForStyleLoaded();
-
     // mount with enter animation wrapper
     const body = header + abstractHtml + tocHtml + elementsHtml;
     app.innerHTML = `<div class="page-anim">${body}</div>`;
     schedulePdfAutosize(app);
-
-    // Remove disable-transitions immediately to allow page animations
-    document.body.classList.remove('disable-transitions');
-
     animateIn();
-  }
-
-  function waitForStyleLoaded() {
-    return new Promise((resolve) => {
-      if (document.body.dataset.styleLoaded === 'true') {
-        resolve();
-      } else {
-        const checkInterval = setInterval(() => {
-          if (document.body.dataset.styleLoaded === 'true') {
-            clearInterval(checkInterval);
-            resolve();
-          }
-        }, 10);
-        // Timeout after 500ms to prevent infinite wait
-        setTimeout(() => {
-          clearInterval(checkInterval);
-          resolve();
-        }, 500);
-      }
-    });
   }
 
   // Robustly trigger the page enter animation (works on cache restores)
