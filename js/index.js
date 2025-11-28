@@ -50,20 +50,18 @@ document.addEventListener("DOMContentLoaded", () => {
     eddSection.remove();
   }
 
-  // Greeting cycler
-  const greetings = ["HI!", "HEY!", "HEYA!", "HOWDY!", "SALUTATIONS!"];
-  let currentIndex = Math.floor(Math.random() * greetings.length);
+  // Random greeting selector
+  const greetings = ["HI!", "HEY!", "HEYA!", "HOWDY!", "SALUTATIONS!", "hi!", "hey!", "heya!", "howdy!", "salutations!"];
 
   const greetingEl = document.getElementById("greeting");
   if (greetingEl) {
     // Set initial random greeting
-    greetingEl.textContent = greetings[currentIndex] + ", I'm Matthew";
+    greetingEl.textContent = greetings[Math.floor(Math.random() * greetings.length)];
 
     // Add click handler
     greetingEl.addEventListener("click", function() {
-      // Cycle to next greeting
-      currentIndex = (currentIndex + 1) % greetings.length;
-      greetingEl.textContent = greetings[currentIndex] + ", I'm Matthew";
+      // Pick a random greeting
+      greetingEl.textContent = greetings[Math.floor(Math.random() * greetings.length)];
 
       // Add bounce animation
       greetingEl.classList.remove("greeting-bounce");
