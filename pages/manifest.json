@@ -325,6 +325,24 @@
   ],
   "EDD": [
     {
+      "id": "[W13] EDD Week 13 Report",
+      "title": "[W13] EDD Week 13 Report",
+      "type": "Weekly Report",
+      "date": "12/02/25"
+    },
+    {
+      "id": "[W14] EDD Week 14 Report",
+      "title": "[W14] EDD Week 14 Report",
+      "type": "Weekly Report",
+      "date": "12/02/25"
+    },
+    {
+      "id": "[W15] EDD Week 15 Report",
+      "title": "[W15] EDD Week 15 Report",
+      "type": "Weekly Report",
+      "date": "12/02/25"
+    },
+    {
       "id": "[W13] Element D2.0 Concept Development (Fusion 360)",
       "title": "[W13] Element D2.0 Concept Development (Fusion 360)",
       "type": "Element D",
