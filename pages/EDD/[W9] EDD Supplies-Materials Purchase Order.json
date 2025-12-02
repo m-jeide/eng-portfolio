@@ -1,0 +1,20 @@
+{
+  "title": "[W9] EDD Supplies-Materials Purchase Order",
+  "date": "10/10/25",
+  "type": "Element C",
+  "style": "MOJO",
+  "brief": [
+    "Ordered necessary supplies and materials for our EDD project."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
