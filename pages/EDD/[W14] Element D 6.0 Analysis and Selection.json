@@ -1,0 +1,20 @@
+{
+  "title": "[W14] Element D 6.0 Analysis and Selection",
+  "date": "12/02/25",
+  "type": "Element D",
+  "style": "MOJO",
+  "brief": [
+    "Perform analysis on our sketches and determine a suitable candidate to prototype"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
