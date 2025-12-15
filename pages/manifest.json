@@ -153,6 +153,12 @@
   ],
   "Certifications": [
     {
+      "id": "Manufacturing Technology",
+      "title": "Manufacturing Technology",
+      "type": "Certifications",
+      "date": "12/15/25"
+    },
+    {
       "id": "OSHA-10",
       "title": "OSHA-10",
       "type": "Certifications",
