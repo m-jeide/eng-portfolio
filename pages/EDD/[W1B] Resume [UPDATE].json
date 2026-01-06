@@ -1,0 +1,19 @@
+{
+  "title": "W1B: Resume [UPDATE]",
+  "date": "01/06/26",
+  "type": "Notes",
+  "brief": [
+    "Updated the resume created at the start of the year showcasing our new skills and experience."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Resume",
+          "src": "resources/{class}/{type}/{title}/Matthew's Awesome Engineering Resume.pdf"
+        }
+      ]
+    }
+  ]
+}
