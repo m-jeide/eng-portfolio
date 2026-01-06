@@ -7,7 +7,7 @@ window.CLASSES = ["DE", "CIM", "EDD", "Certifications"];
 window.SPECIALTY_FLAGS = window.SPECIALTY_FLAGS || {};
 window.SPECIALTY_FLAGS.EDD_ELEMENTS = true;
 
-window.RESUME_URL = "/eng-portfolio/resources/EDD/Notes/%5BW2%5D%20Canva%20Resume/%5BW2%5D%20Canva%20Resume.pdf#zoom=100";
+window.RESUME_URL = "/eng-portfolio/resources/EDD/Notes/%5BW1B%5D%20Resume/Matthew's%20Awesome%20Engineering%20Resume.pdf";
 
 // Detect beta-mode query parameters up front so pages can toggle designs.
 (function () {
