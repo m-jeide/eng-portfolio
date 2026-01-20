@@ -1,0 +1,21 @@
+{
+  "title": "[W2B] EDD Gantt Chart [Update]",
+  "date": "01/19/25",
+  "type": "Element D",
+  "style": "MOJO",
+  "brief": [
+    "Update our EDD Gantt Chart for the second semester.",
+    "Plan how goals will be achieved."
+  ],
+  "elements": [
+    {
+      "type": "Image",
+      "items": [
+        {
+          "label": "Gantt Chart",
+          "src": "resources/{class}/{type}/{title}/image.png"
+        }
+      ]
+    }
+  ]
+}
