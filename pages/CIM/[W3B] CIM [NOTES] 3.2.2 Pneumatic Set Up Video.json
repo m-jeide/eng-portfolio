@@ -1,0 +1,19 @@
+{
+  "title": "[W3B] CIM [NOTES] 3.2.2 Pneumatic Set Up Video",
+  "date": "01/19/25",
+  "type": "Notes",
+  "brief": [
+    "Learn how to setup pneumatics with Vex V5 equipment."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Notes",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
