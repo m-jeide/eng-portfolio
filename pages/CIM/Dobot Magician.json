@@ -3,10 +3,17 @@
   "date": "01/20/26",
   "type": "Project",
   "brief": [
-    "doing this LATER"
+    "Learn how to use and program a Dobot Magician"
   ],
   "elements": [
     {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "A. Pick and Place",
+          "src": "resources/{class}/{type}/{title}/Assignment A.pdf"
+        }
+      ] 
     }
   ]
 }
