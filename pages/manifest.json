@@ -343,6 +343,12 @@
   ],
   "EDD": [
     {
+      "id": "[W1B-W2B] EDD Week 1B-2B Report",
+      "title": "[W1B-W2B] EDD Week 1B-2B Report",
+      "type": "Weekly Report",
+      "date": "01/19/26"
+    },
+    {
       "id": "[W2B] EDD Gantt Chart [Update]",
       "title": "[W2B] EDD Gantt Chart [Update]",
       "type": "Element D",
