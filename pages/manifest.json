@@ -1,6 +1,12 @@
 {
   "CIM": [
     {
+      "id": "[W3B] CIM [NOTES] 3.2.2 Pneumatic Set Up Video",
+      "title": "[W3B] CIM [NOTES] 3.2.2 Pneumatic Set Up Video",
+      "type": "Notes",
+      "date": "01/19/26"
+    },
+    {
       "id": "Robocell",
       "title": "Robocell",
       "type": "Project",
@@ -143,12 +149,6 @@
       "title": "[W2] CIM Introduction to the VEX V5Robotics Platform",
       "type": "Notes",
       "date": "08/24/25"
-    },
-    {
-      "id": "[W3B] CIM [NOTES] 3.2.2 Pneumatic Set Up Video",
-      "title": "[W3B] CIM [NOTES] 3.2.2 Pneumatic Set Up Video",
-      "type": "Notes",
-      "date": "01/19/25"
     },
     {
       "id": "[W12] [Sketch-Draft Code] CNC Super Hero Logo",
@@ -342,6 +342,12 @@
     }
   ],
   "EDD": [
+    {
+      "id": "[W2B] EDD Gantt Chart [Update]",
+      "title": "[W2B] EDD Gantt Chart [Update]",
+      "type": "Element D",
+      "date": "01/19/26"
+    },
     {
       "id": "[W1B] Resume [UPDATE]",
       "title": "W1B: Resume [UPDATE]",
@@ -623,12 +629,6 @@
       "title": "[W2] Canva Resume",
       "type": "Notes",
       "date": "08/18/25"
-    },
-    {
-      "id": "[W2B] EDD Gantt Chart [Update]",
-      "title": "[W2B] EDD Gantt Chart [Update]",
-      "type": "Element D",
-      "date": "01/19/25"
     }
   ]
 }
