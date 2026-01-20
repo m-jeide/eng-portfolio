@@ -1,6 +1,12 @@
 {
   "CIM": [
     {
+      "id": "Dobot Magician",
+      "title": "Dobot Magician",
+      "type": "Project",
+      "date": "01/20/26"
+    },
+    {
       "id": "[W3B] CIM [NOTES] 3.2.2 Pneumatic Set Up Video",
       "title": "[W3B] CIM [NOTES] 3.2.2 Pneumatic Set Up Video",
       "type": "Notes",
