@@ -145,6 +145,12 @@
       "date": "08/24/25"
     },
     {
+      "id": "[W3B] CIM [NOTES] 3.2.2 Pneumatic Set Up Video",
+      "title": "[W3B] CIM [NOTES] 3.2.2 Pneumatic Set Up Video",
+      "type": "Notes",
+      "date": "01/19/25"
+    },
+    {
       "id": "[W12] [Sketch-Draft Code] CNC Super Hero Logo",
       "title": "[W12] [Sketch-Draft Code] CNC Super Hero Logo",
       "type": "Notes",
@@ -617,6 +623,12 @@
       "title": "[W2] Canva Resume",
       "type": "Notes",
       "date": "08/18/25"
+    },
+    {
+      "id": "[W2B] EDD Gantt Chart [Update]",
+      "title": "[W2B] EDD Gantt Chart [Update]",
+      "type": "Element D",
+      "date": "01/19/25"
     }
   ]
 }
