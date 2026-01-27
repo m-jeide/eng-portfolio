@@ -12,6 +12,10 @@
         {
           "label": "A. Pick and Place",
           "src": "resources/{class}/{type}/{title}/Assignment A.pdf"
+        },
+        {
+          "label": "B. Block Matrix",
+          "src": "resources/{class}/{type}/{title}/Assignment B.pdf"
         }
       ] 
     }
