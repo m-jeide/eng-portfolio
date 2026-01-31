@@ -1,20 +1,67 @@
 {
-  "title": "[W14] Element D 7.0 & 8.0 Materials & Fabrication Research",
-  "date": "11/19/25",
+  "title": "[W12] Element D 4.0 Detailed Drawings [Fusion 360]",
+  "date": "01/31/26",
   "type": "Element D",
   "style": "MOJO",
   "brief": [
-    "Research material and fabrication techniques for our project."
+    "Create detailed drawings of our planned solutions."
   ],
   "elements": [
     {
-      "type": "PDF",
-      "items": [
+      "type": "layout",
+      "label": "Motor Housing Assembly",
+      "template": "2-columns",
+      "elements": [
         {
-          "label": "Report",
-          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+          "type": "PDF",
+          "label": "Isometric",
+          "src": "resources/{class}/{type}/{title}/Motor Assembly-VIEW.pdf"
+        },
+        {
+          "type": "PDF",
+          "label": "Multi-view",
+          "src": "resources/{class}/{type}/{title}/Motor Assembly-EXPANDED.pdf"
         }
       ]
+    },
+    {
+      "type": "layout",
+      "label": "Motor Housing Lid",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "PDF",
+          "label": "Isometric",
+          "src": "resources/{class}/{type}/{title}/Motor Assembly Top-VIEW.pdf"
+        },
+        {
+          "type": "PDF",
+          "label": "Multi-view",
+          "src": "resources/{class}/{type}/{title}/Motor Assembly Top-EXPANDED.pdf"
+        }
+      ]
+    },
+    {
+      "type": "layout",
+      "label": "Motor Housing Base",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "PDF",
+          "label": "Isometric",
+          "src": "resources/{class}/{type}/{title}/Motor Assembly Base-VIEW.pdf"
+        },
+        {
+          "type": "PDF",
+          "label": "Multi-view",
+          "src": "resources/{class}/{type}/{title}/Motor Assembly Base-EXPANDED.pdf"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "label": "Owen's Drawings",
+      "src": "resources/{class}/{type}/{title}/Owen Designs.pdf"
     }
   ]
 }
