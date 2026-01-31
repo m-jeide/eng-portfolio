@@ -355,6 +355,24 @@
   ],
   "EDD": [
     {
+      "id": "[W12] Element D 4.0 Detailed Drawings [Fusion 360]",
+      "title": "[W12] Element D 4.0 Detailed Drawings [Fusion 360]",
+      "type": "Element D",
+      "date": "01/31/26"
+    },
+    {
+      "id": "[W14] Element D 7.0 & 8.0 Materials & Fabrication Research",
+      "title": "[W14] Element D 7.0 & 8.0 Materials & Fabrication Research",
+      "type": "Element D",
+      "date": "01/31/26"
+    },
+    {
+      "id": "[W3B] EDD Week 3B Report",
+      "title": "[W3B] EDD Week 3B Report",
+      "type": "Weekly Report",
+      "date": "01/31/26"
+    },
+    {
       "id": "[W1B-W2B] EDD Week 1B-2B Report",
       "title": "[W1B-W2B] EDD Week 1B-2B Report",
       "type": "Weekly Report",
@@ -399,12 +417,6 @@
     {
       "id": "[W13] Element D2.0 Concept Development (Fusion 360)",
       "title": "[W13] Element D2.0 Concept Development (Fusion 360)",
-      "type": "Element D",
-      "date": "11/19/25"
-    },
-    {
-      "id": "[W14] Element D 7.0 & 8.0 Materials & Fabrication Research",
-      "title": "[W14] Element D 7.0 & 8.0 Materials & Fabrication Research",
       "type": "Element D",
       "date": "11/19/25"
     },
