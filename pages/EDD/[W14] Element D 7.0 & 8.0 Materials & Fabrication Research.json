@@ -1,6 +1,6 @@
 {
   "title": "[W14] Element D 7.0 & 8.0 Materials & Fabrication Research",
-  "date": "11/19/25",
+  "date": "01/31/26",
   "type": "Element D",
   "style": "MOJO",
   "brief": [
@@ -11,8 +11,16 @@
       "type": "PDF",
       "items": [
         {
-          "label": "Report",
-          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+          "label": "PLA & FDM",
+          "src": "resources/{class}/{type}/{title}/Material and Fabrication 1.pdf"
+        },
+        {
+          "label": "PETG & Laser-Cutting",
+          "src": "resources/{class}/{type}/{title}/Material and Fabrication 1.pdf"
+        },
+        {
+          "label": "ABS & Injection Molding",
+          "src": "resources/{class}/{type}/{title}/Material and Fabrication 3.pdf"
         }
       ]
     }
