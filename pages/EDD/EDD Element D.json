@@ -1,6 +1,6 @@
 {
   "title": "{file}",
-  "date": "01/31/25",
+  "date": "01/31/26",
   "type": "Elements",
   "brief": [
     "Detailed report of current Element D findings and analysis."
@@ -62,7 +62,7 @@
     },
     {
       "type": "reference",
-      "label": "Decision Matrix",
+      "label": "Detailed Drawings",
       "target": "EDD/[W12] Element D 4.0 Detailed Drawings [Fusion 360]"
     },
     {
