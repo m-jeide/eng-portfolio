@@ -32,12 +32,12 @@
         {
           "type": "PDF",
           "label": "Isometric",
-          "src": "resources/{class}/{type}/{title}/Motor Assembly Top-VIEW.pdf"
+          "src": "resources/{class}/{type}/{title}/Motor Housing Top-VIEW.pdf"
         },
         {
           "type": "PDF",
           "label": "Multi-view",
-          "src": "resources/{class}/{type}/{title}/Motor Assembly Top-EXPANDED.pdf"
+          "src": "resources/{class}/{type}/{title}/Motor Housing Top-EXPANDED.pdf"
         }
       ]
     },
@@ -49,12 +49,12 @@
         {
           "type": "PDF",
           "label": "Isometric",
-          "src": "resources/{class}/{type}/{title}/Motor Assembly Base-VIEW.pdf"
+          "src": "resources/{class}/{type}/{title}/Motor Housing Base-VIEW.pdf"
         },
         {
           "type": "PDF",
           "label": "Multi-view",
-          "src": "resources/{class}/{type}/{title}/Motor Assembly Base-EXPANDED.pdf"
+          "src": "resources/{class}/{type}/{title}/Motor Housing Base-EXPANDED.pdf"
         }
       ]
     },
