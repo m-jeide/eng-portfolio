@@ -373,6 +373,18 @@
       "date": "01/31/26"
     },
     {
+      "id": "EDD Element D",
+      "title": "EDD Element D",
+      "type": "Elements",
+      "date": "01/31/26"
+    },
+    {
+      "id": "Expert Interview - Jasmine Shields",
+      "title": "Expert Interview - Jasmine Shields",
+      "type": "Element D",
+      "date": "01/21/26"
+    },
+    {
       "id": "[W1B-W2B] EDD Week 1B-2B Report",
       "title": "[W1B-W2B] EDD Week 1B-2B Report",
       "type": "Weekly Report",
@@ -571,12 +583,6 @@
       "date": "09/23/25"
     },
     {
-      "id": "Expert Interview - Jasmine Shields",
-      "title": "Expert Interview - Jasmine Shields",
-      "type": "Element A",
-      "date": "09/23/25"
-    },
-    {
       "id": "[W6] EDD Week 6 Report",
       "title": "[W6] EDD Week 6 Report",
       "type": "Weekly Report",
@@ -665,12 +671,6 @@
       "title": "[W2] Canva Resume",
       "type": "Notes",
       "date": "08/18/25"
-    },
-    {
-      "id": "EDD Element D",
-      "title": "EDD Element D",
-      "type": "Elements",
-      "date": "01/31/25"
     }
   ]
 }
