@@ -1,0 +1,84 @@
+{
+  "title": "{file}",
+  "date": "01/31/25",
+  "type": "Elements",
+  "brief": [
+    "Detailed report of current Element D findings and analysis."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Element D Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/GANTT CHART.png",
+      "label": "Gantt Chart Showcasing the Team's Progress"
+    },
+    {
+      "type": "notes",
+      "label": "Problem Statement",
+      "content": "Commercially available STEM toys designed for children—particularly those marketed towards girls—often fail to sustain inquiry-driven engagement through narrower technical content, limited opportunities for authentic engineering practices, and inconsistent value relative to gender-neutral alternatives. These shortcomings reduce opportunities for meaningful guardian-child co-play and can dampen long-term interest in STEM among children ages 6-12."
+    },
+    {
+      "type": "notes",
+      "label": "Introduction",
+      "content": "Following the establishment of design requirements and measurable benchmarks in Element C, the M.O.J.O. team transitioned into the systematic development, evaluation, and selection of potential design solutions. This phase focused on translating stakeholder needs and evidence-based criteria into viable engineering concepts through structured brainstorming, concept sketching, and comparative analysis. Multiple design alternatives were generated and evaluated using decision matrices grounded in the specifications defined in Element C, as well as insights from consumer feedback and expert consultation. Through this iterative and criteria-driven process, the team identified a rover-based modular construction system as the solution that best balances affordability, inclusivity, durability, authentic STEM learning, and guardian-child co-play, establishing a defensible foundation for prototyping and testing in subsequent elements."
+    },
+    {
+      "type": "notes",
+      "label": "Analysis and Selection",
+      "content": "The analysis and selection process for the Open STEM Project was guided directly by the design requirements and measurable benchmarks established in Element C. After identifying the limitations of existing STEM toys and translating stakeholder needs into objective criteria, the M.O.J.O. team entered a structured concept evaluation phase. Multiple design concepts were generated through brainstorming and SCAMPER-based ideation, ranging from simple mechanical construction kits to more complex modular electronic systems. The purpose of this phase was to explore a wide solution space before narrowing toward a final, defensible design direction.<br>To objectively compare concepts, the team developed and applied a weighted decision matrix derived from Element C specifications. The evaluation criteria included affordability, durability, modularity, appropriate complexity, safety, reusability, aesthetics, co-play support, and gender neutrality. Each concept was scored quantitatively against these criteria using a standardized numerical scale. This approach reduced subjective bias and allowed direct comparison across concepts while revealing tradeoffs between competing priorities. Several concepts were eliminated due to excessive cost, limited educational depth, or poor alignment with classroom and household constraints.<br>The decision matrix results consistently identified a rover-based modular construction system as the highest-performing solution. Unlike alternative concepts that optimized individual features at the expense of others, the modular rover balanced all critical benchmarks simultaneously. It demonstrated strong performance in modularity, affordability, gender neutrality, and co-play support while remaining technically feasible within the project’s prototyping and classroom constraints. This balance made the rover concept uniquely capable of addressing both the educational shortcomings and equity barriers identified in the initial problem statement.<br>Expert and consumer input further validated the results of the quantitative evaluation. Expert consultation emphasized the importance of realistic engineering practices, predictable system behavior, and appropriately scoped functionality. Feedback reinforced the decision to prioritize a rover-based system that supports authentic hardware–software integration rather than simplified or unreliable programming environments. Consumer input highlighted the value of open-ended construction, shared guardian-child interaction, and a design that avoids stereotyped themes while remaining engaging. These insights aligned closely with the highest-scoring concept in the decision matrix, strengthening confidence in the final selection.<br>The modular rover solution was ultimately selected because it translates stakeholder needs into a feasible, testable engineering system. The design supports inquiry-based learning through hands-on construction, iteration, and sensor-based behaviors while remaining affordable and reusable. By meeting or exceeding all critical benchmarks established in Element C and being substantiated through expert and consumer feedback, the selected solution provides a strong foundation for detailed design documentation and subsequent prototype development."
+    },
+    {
+      "type": "reference",
+      "label": "Concept Development",
+      "target": "EDD/[W13] Element D2.0 Concept Development (Fusion 360)"
+    },
+    {
+      "type": "reference",
+      "label": "Analysis and Selection",
+      "target": "EDD/[W14] Element D 6.0 Analysis and Selection"
+    },
+    {
+      "type": "reference",
+      "label": "Expert Review",
+      "target": "EDD/Expert Interview - Jasmine Shields"
+    },
+    {
+      "type": "reference",
+      "label": "Design Matrix",
+      "target": "EDD/[W12] EDD Element C Decision Matrix"
+    },
+    {
+      "type": "notes",
+      "label": "Detailed Design Documentation",
+      "content": "Following the selection of the modular rover concept, detailed design documentation was developed to translate the chosen solution into manufacturable components. These drawings were created to evaluate feasibility, scale, component integration, and readiness for prototyping while remaining consistent with classroom fabrication constraints. The documentation includes multiview and isometric representations of key subsystems such as the rover chassis, motor housing, and electronics mounting solutions."
+    },
+    {
+      "type": "reference",
+      "label": "Decision Matrix",
+      "target": "EDD/[W12] Element D 4.0 Detailed Drawings [Fusion 360]"
+    },
+    {
+      "type": "notes",
+      "label": "Materials and Fabrication Research",
+      "content": "After finalizing the selected solution, the M.O.J.O. team conducted materials and fabrication research to assess feasible methods for constructing the modular rover system. This research phase focused on evaluating options that align with affordability targets, durability requirements, safety considerations, and classroom prototyping constraints. At this stage, the research is exploratory and does not represent a final material or fabrication decision.<br>Three thermoplastic materials commonly used in prototyping and consumer products were investigated: PLA, PETG, and ABS. Each material was evaluated using STEM-based considerations, including mechanical properties, thermal behavior, manufacturability, cost, and suitability for repeated educational use. The analysis identified tradeoffs between ease of printing, durability, heat resistance, and classroom safety, providing a data-driven basis for future material selection during prototyping and refinement.<br>Three fabrication methods were researched to support both early-stage prototyping and potential future production: FDM 3D printing, laser cutting, and injection molding. Each method was evaluated based on setup cost, scalability, design flexibility, production speed, and classroom feasibility. FDM printing was identified as well-suited for rapid iteration and low-volume prototyping, laser cutting as an efficient option for flat structural components and modular interfaces, and injection molding as a long-term production method if the design were scaled beyond classroom use. This research establishes feasible pathways for manufacturing without prematurely constraining the design."
+    },
+    {
+      "type": "reference",
+      "label": "Material and Fabrication Research",
+      "target": "EDD/[W14] Element D 7.0 & 8.0 Materials & Fabrication Research"
+    },
+    {
+      "type": "notes",
+      "label": "Conclusion",
+      "content": "Element D documents the systematic development, evaluation, and selection of a final design solution for the Open STEM Project. Through structured brainstorming, quantitative decision matrices, and integration of expert and consumer feedback, the M.O.J.O. team selected a modular rover-based construction system that best meets the design requirements and benchmarks established in Element C. Detailed design documentation demonstrates the feasibility of the selected solution, while materials and fabrication research confirms that the design can be realistically prototyped and potentially scaled.<br>The outcome of this element is a defensible, evidence-based design direction that balances educational value, inclusivity, affordability, and manufacturability. With a final solution selected and supporting research completed, the project is well positioned to transition into prototyping, testing, and refinement in subsequent elements."
+    }
+  ]
+}
