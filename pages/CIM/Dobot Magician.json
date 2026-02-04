@@ -7,17 +7,55 @@
   ],
   "elements": [
     {
-      "type": "PDF",
-      "items": [
+      "type": "layout",
+      "label": "Activity A - Pick and Place",
+      "template": "2-columns",
+      "elements": [
         {
-          "label": "A. Pick and Place",
+          "type": "PDF",
+          "label": "Activity A Handout",
           "src": "resources/{class}/{type}/{title}/Assignment A.pdf"
         },
         {
-          "label": "B. Block Matrix",
-          "src": "resources/{class}/{type}/{title}/Assignment B.pdf"
+          "type": "Video",
+          "label": "[VIDEO] Activity A Demonstration",
+          "src": "https://www.youtube.com/watch?v=oI8b12Q2PBs"
         }
-      ] 
+      ]
+    },
+    {
+      "type": "layout",
+      "label": "Activity B - Block Matrix",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "PDF",
+          "label": "Activity B Handout",
+          "src": "resources/{class}/{type}/{title}/Assignment B.pdf"
+        },
+        {
+          "type": "Video",
+          "label": "[VIDEO] Activity B Demonstration",
+          "src": "https://www.youtube.com/watch?v=jdUcir9-Rko"
+        }
+      ]
+    },
+    {
+      "type": "layout",
+      "label": "Activity C - Color Sensor",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "PDF",
+          "label": "Activity C Handout",
+          "src": "resources/{class}/{type}/{title}/Assignment C.pdf"
+        },
+        {
+          "type": "Video",
+          "label": "[VIDEO] Activity C Demonstration",
+          "src": "https://www.youtube.com/watch?v=Lu_nDxDqv9Q"
+        }
+      ]
     }
   ]
 }
