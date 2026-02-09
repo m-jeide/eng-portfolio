@@ -56,6 +56,23 @@
           "src": "https://www.youtube.com/watch?v=Lu_nDxDqv9Q"
         }
       ]
+    },
+    {
+      "type": "layout",
+      "label": "Activity D - Pneumatics",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "PDF",
+          "label": "Activity D Handout",
+          "src": "resources/{class}/{type}/{title}/Assignment D.pdf"
+        },
+        {
+          "type": "Video",
+          "label": "[VIDEO] Activity D Demonstration",
+          "src": "https://www.youtube.com/watch?v=vnqfpO_3W5k"
+        }
+      ]
     }
   ]
 }
