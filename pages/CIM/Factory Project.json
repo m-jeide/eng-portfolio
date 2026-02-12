@@ -1,0 +1,15 @@
+{
+  "title": "Factory Project",
+  "date": "02/12/26",
+  "type": "Project",
+  "brief": [
+    "Design a mock factory."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "Label": "Brainstorm sketch - Individual",
+      "src": "resources/{class}/{type}/{title}/Brainstorm Sketch.pdf"
+    }
+  ]
+}
