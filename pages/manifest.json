@@ -1,16 +1,22 @@
 {
   "CIM": [
     {
-      "id": "[W4B] [INTERVIEW] Engineering [STEM] Interview 2026",
-      "title": "[W4B] [INTERVIEW] Engineering [STEM] Interview 2026",
-      "type": "Notes",
-      "date": "01/26/26"
+      "id": "Factory Project",
+      "title": "Factory Project",
+      "type": "Project",
+      "date": "02/12/26"
     },
     {
       "id": "Dobot Magician",
       "title": "Dobot Magician",
       "type": "Project",
-      "date": "01/20/26"
+      "date": "02/09/26"
+    },
+    {
+      "id": "[W4B] [INTERVIEW] Engineering [STEM] Interview 2026",
+      "title": "[W4B] [INTERVIEW] Engineering [STEM] Interview 2026",
+      "type": "Notes",
+      "date": "01/26/26"
     },
     {
       "id": "[W3B] CIM [NOTES] 3.2.2 Pneumatic Set Up Video",
