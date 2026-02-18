@@ -8,7 +8,12 @@
   "elements": [
     {
       "type": "PDF",
-      "Label": "Brainstorm sketch - Individual",
+      "label": "Design Brief",
+      "src": "resources/{class}/{type}/{title}/Design Brief.pdf"
+    },
+    {
+      "type": "PDF",
+      "label": "Brainstorm Sketch - Individual",
       "src": "resources/{class}/{type}/{title}/Brainstorm Sketch.pdf"
     }
   ]
