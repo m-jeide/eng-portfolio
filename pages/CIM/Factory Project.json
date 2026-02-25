@@ -1,11 +1,16 @@
 {
   "title": "Factory Project",
-  "date": "02/12/26",
+  "date": "02/24/26",
   "type": "Project",
   "brief": [
     "Design a mock factory."
   ],
   "elements": [
+    {
+      "type": "PDF",
+      "label": "OSHA Safety Plan (Tabloid Size)", 
+      "src": "resources/{class}/{type}/{title}/OSHA Safety Plan.pdf"
+    },
     {
       "type": "PDF",
       "label": "Design Brief",
