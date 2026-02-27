@@ -7,6 +7,21 @@
   ],
   "elements": [
     {
+      "type": "layout",
+      "label": "Fusion Assembly Design",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "PDF",
+          "src": "resources/{class}/{type}/{title}/Assembly Drawing-1.pdf"
+        },
+        {
+          "type": "PDF",
+          "src": "resources/{class}/{type}/{title}/Assembly Drawing-2.pdf"
+        }
+      ]
+    },
+    {
       "type": "PDF",
       "label": "OSHA Safety Plan (Tabloid Size)", 
       "src": "resources/{class}/{type}/{title}/OSHA Safety Plan.pdf"
