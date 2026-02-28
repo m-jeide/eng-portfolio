@@ -1,0 +1,20 @@
+{
+  "title": "{file}",
+  "date": "02/27/26",
+  "type": "Weekly Report",
+  "style": "MOJO",
+  "brief": [
+    "Week 7B report of the team's progress."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
