@@ -1,0 +1,21 @@
+{
+  "title": "[W8B] [UPDATE] Problem Statement",
+  "date": "02/27/25",
+  "type": "Notes",
+  "style": "MOJO",
+  "brief": [
+    "Update our design statement utilizing outside research",
+    "Compare our new design statement to our initial design statement"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Presentation",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
