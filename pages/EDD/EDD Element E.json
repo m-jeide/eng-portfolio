@@ -1,0 +1,119 @@
+{
+  "title": "{file}",
+  "date": "03/01/26",
+  "type": "Elements",
+  "brief": [
+    "Detailed report of current Element E findings and analysis."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Element E Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/GANTT CHART.png",
+      "label": "Gantt Chart Showcasing the Team's Progress"
+    },
+    {
+      "type": "notes",
+      "label": "Problem Statement",
+      "content": "Commercially available STEM toys designed for children—particularly those marketed towards girls—often fail to sustain inquiry-driven engagement through narrower technical content, limited opportunities for authentic engineering practices, and inconsistent value relative to gender-neutral alternatives. These shortcomings reduce opportunities for meaningful guardian-child co-play and can dampen long-term interest in STEM among children ages 6-12. The M.O.J.O.'s team proposed solution, a modular rover-based construction kit, addresses these documented gaps through the deliberate application of Science, Technology, Engineering, and Mathematics principles across every stage of the design process, from material selection and circuit design to fabrication, tolerance analysis, and prototype iteration."
+    },
+    {
+      "type": "notes",
+      "label": "Introduction",
+      "content": "Element E documents the application of STEM principles and practices employed by the M.O.J.O. team throughout the Open STEM Project design process. This element demonstrates that each design decision was grounded in subject-specific knowledge and sound technical reasoning rather than intuition or assumption. Across the project's development stages—spanning problem definition, market analysis, expert consultation, concept generation, materials research, and prototype development—the team continuously drew upon principles from all four STEM disciplines to inform, validate, and refine the design.<br>From a science standpoint, the team applied thermoplastic material science to evaluate candidate filaments for FDM printing, applied electrical principles including Ohm's Law and Kirchhoff's Voltage Law to design a stable multi-rail power delivery system, and used electrochemical properties of lithium-ion cells to predict theoretical battery runtime. From a technology standpoint, the team utilized Autodesk Fusion 360 for parametric CAD modeling, slicing software including UltiMaker Cura and IdeaMaker to prepare print files, and the Arduino IDE to develop and flash microcontroller firmware for the ESP32. From an engineering standpoint, the team maintained a structured engineering notebook, developed and updated a Gantt chart to track project milestones, and applied an iterative design methodology across two documented prototype revisions. From a mathematics standpoint, the team performed dimensional tolerance calculations to ensure component fit, used standard component datasheets to derive design geometry, and applied electrical formulas to quantify system power consumption and battery life.<br>Together, these STEM applications provide evidence that the M.O.J.O. design is substantiated by technical rigor appropriate to the project's scope and goals."
+    },
+    {
+      "type": "notes",
+      "label": "Science — Thermoplastic Material Properties",
+      "content": "The selection of structural materials for the M.O.J.O. rover prototype required a systematic evaluation of thermoplastic filament properties, a process directly rooted in materials science. Three candidate materials were researched: PLA (Polylactic Acid), PETG (Polyethylene Terephthalate Glycol), and ABS (Acrylonitrile Butadiene Styrene). Each material was characterized by key physical and thermal properties relevant to the rover's design requirements, particularly the 0.8-meter drop resilience specification and the thermal environments anticipated during classroom and home use.<br>PLA exhibits a glass transition temperature of approximately 60–65°C and a tensile strength of 50–70 MPa. While it is the most printable of the three materials—requiring no heated bed and minimal warping—its relatively low glass transition temperature and brittle failure mode under impact loads present risks for the rover chassis, particularly given the target drop test specification. PETG, with a glass transition temperature of approximately 80°C and improved toughness compared to PLA, offers a balance of printability and functional durability. Its lower warping tendency relative to ABS makes it accessible on school-grade printers equipped with a heated bed. ABS, with a glass transition temperature of approximately 105°C, provides the highest thermal and impact resistance of the three but demands more controlled printing conditions—including an enclosure and ventilation—that may not always be available in a classroom context.<br>Understanding these material properties was essential to the project because the rover must survive realistic use by children aged 6–12, including drops, repeated assembly cycles, and storage in warm environments. Material selection directly determined whether the prototype could meet its durability specification, and the comparative analysis of glass transition temperatures, impact resistance, and printability provided a defensible, data-driven basis for fabrication decisions rather than defaulting to whichever filament was on hand."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/FIGURE S1 - FILAMENT COMPARISON.png",
+      "label": "Figure S1 — Thermoplastic Filament Property Comparison"
+    },
+    {
+      "type": "notes",
+      "label": "Science — Voltage Regulation and Electrical Power Principles",
+      "content": "The M.O.J.O. rover's power delivery system required the application of fundamental electrical science, specifically the principles governing voltage, current, resistance, and power as expressed by Ohm's Law (V = IR) and the electrical power formula (P = IV). The system is designed around a single 18650 lithium-ion cell, which produces a nominally variable output voltage ranging from approximately 3.0V (depleted) to 4.2V (fully charged), with a nominal resting voltage of 3.7V. This variable output is incompatible with the fixed voltage requirements of the rover's two primary subsystems: the ESP32 microcontroller and associated sensors, which require a stable 3.3V supply, and the dual N20 DC motors, which are rated for 6V operation.<br>To address this, the design incorporates a buck-boost converter—a switched-mode power supply topology capable of both stepping voltage down (buck) and stepping it up (boost) relative to its input. This allows the circuit to deliver regulated 3.3V to the logic and sensor rail and regulated 6V to the motor rail regardless of the cell's state of charge. The TP4056 integrated circuit manages safe charging of the 18650 cell via a USB-C input, implementing a constant-current/constant-voltage (CC/CV) charging profile that protects the cell from overcharge.<br>Understanding these electrical principles was critical because the team could not simply connect the battery directly to any component. An unregulated 4.2V input to the ESP32 would exceed its maximum rated supply voltage and risk hardware failure. Providing only 3.7V nominal to the motors would result in reduced torque and speed compared to their rated performance. Applying Ohm's Law and power calculations to each subsystem allowed the team to correctly specify the converter's output rails, estimate current draw per rail, and verify that the overall system design was electrically sound."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/FIGURE S2 - POWER DELIVERY DIAGRAM.png",
+      "label": "Figure S2 — M.O.J.O. Power Delivery System Block Diagram"
+    },
+    {
+      "type": "notes",
+      "label": "Science — Electrochemical Energy Storage and Theoretical Runtime",
+      "content": "The third science principle applied during the project concerns the electrochemical properties of lithium-ion battery cells and the relationship between stored energy, current draw, and discharge time. This analysis was conducted during the specification phase to validate that the 45-minute continuous runtime requirement established in Element C was achievable with a single 18650 cell.<br>A standard 18650 lithium-ion cell stores charge measured in milliampere-hours (mAh), with typical capacity values ranging from approximately 2,000–3,500 mAh depending on the specific cell. The fundamental relationship governing theoretical runtime is: t = C / I_total, where t is runtime in hours, C is capacity in mAh, and I_total is total current draw in mA. To apply this formula, the team estimated the per-component current draw at the operating voltages defined by the power delivery system. The ESP32 draws approximately 150–240 mA during active processing. Each N20 motor draws approximately 100–150 mA under typical running load (well below the rated stall current). The ultrasonic and color sensors draw approximately 15–20 mA each. Applying the Element C duty cycle assumption of 50% active motor operation and 50% idle-with-sensors-active, the blended average current draw across all components was estimated at approximately 300–400 mA.<br>Using a conservative cell capacity of 2,500 mAh and a conservative current estimate of 400 mA: t = 2500 mAh / 400 mA = 6.25 hours. This result significantly exceeds the 45-minute specification, confirming that the single-cell design provides adequate runtime margin even under pessimistic assumptions. This electrochemical analysis was important because it transformed the runtime specification from an unverified claim into a quantitatively supported design decision, grounding the product's reusability promise in scientific reasoning."
+    },
+    {
+      "type": "notes",
+      "label": "Technology — Autodesk Fusion",
+      "content": "Autodesk Fusion served as the primary CAD environment for the M.O.J.O. project. All structural rover components—chassis, motor mounts, wheel assemblies, sensor brackets, and battery housing—were modeled as parametric solid bodies, meaning key dimensions such as motor shaft diameters and component pocket depths were driven by named parameters. When tolerance adjustments were required between prototype revisions, a single parameter change propagated automatically through all affected geometry, eliminating the need to manually re-dimension parts. Fusion was also used to generate the multiview and isometric working drawings documented in Element D, and its interference-checking tools allowed the team to verify that components such as the ESP32 and TP4056 would physically fit their enclosures before any material was committed to print. Without parametric CAD, tolerance iteration between revisions would have required complete remodeling of affected parts, which was not feasible within the project timeline."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/FIGURE T1 - FUSION PARAMETRIC.png",
+      "label": "Figure T1 — Fusion 360 Parametric Demonstration with R2 Brain Clips"
+    },
+    {
+      "type": "notes",
+      "label": "Technology — Slicing Software: UltiMaker Cura and IdeaMaker",
+      "content": "Before any component was printed, Fusion 360 STL exports were processed through slicing software to generate G-code toolpath instructions for the FDM printers. UltiMaker Cura was paired with the Creality Ender-3 V2, and IdeaMaker was paired with the RAISE3D Pro 3 HS. Both programs slice a 3D mesh into horizontal layers and generate extrusion paths, travel moves, and temperature commands, but each carries hardware-specific default profiles. Key parameters applied across both slicers included a 0.2mm layer height for structural parts, 40% infill (typically 20% for other components) for load-bearing components to maximize isotropic impact resistance, and a reduced first-layer speed to improve bed adhesion and base dimensional accuracy. Slicing settings proved directly consequential during Revision 1, where incorrect parameters caused under-extrusion in thin walls and poor layer bonding in motor mount overhangs—failures that informed the corrective changes carried into Revision 2."
+    },
+    {
+      "type": "notes",
+      "label": "Technology — Arduino IDE and ESP32 Firmware",
+      "content": "The Arduino IDE was used to develop, compile, and flash the firmware running on the ESP32 microcontroller, which serves as the rover's central processing unit. The ESP32 was programmed to manage sensor polling, motor control signals via PWM output, and behavioral mode switching between the rover's three operational tiers: basic driving, line-following using a color sensor, and obstacle avoidance using an ultrasonic distance sensor. The Arduino IDE's serial monitor was used extensively during bench testing to read live sensor output and verify that sensor readings matched expected values before integrating each module into the full system. Programming the ESP32 through the Arduino IDE was important because it provided a consistent, classroom-accessible development environment that does not require proprietary tools, keeping the technology stack replicable and low-cost."
+    },
+    {
+      "type": "notes",
+      "label": "Engineering — Iterative Design Process",
+      "content": "The M.O.J.O. team applied an iterative engineering design methodology across two documented prototype revisions. Revision 1 established the baseline architecture—chassis geometry, motor mounting strategy, and electronics layout—and was subjected to preliminary functional testing. Failures identified during R1, including motor mount flex under load, under-extrusion in thin-wall sections, and interference between the battery housing and the logic board, were logged in the engineering notebook and translated directly into geometry and slicer parameter changes for Revision 2. This structured revision process is a core engineering practice because it grounds design improvements in documented evidence rather than assumption, and it produced a measurable progression in prototype quality between revisions."
+    },
+    {
+      "type": "notes",
+      "label": "Engineering — Gantt Chart",
+      "content": "A Gantt chart was maintained throughout the project to organize tasks, assign responsibilities, and track milestone completion across the school-year timeline. The chart structured the project into sequential phases aligned with the EDD element progression, from problem definition and market research through expert consultation, concept generation, materials research, and prototype fabrication. Updating the Gantt chart at regular intervals allowed the team to identify schedule slippage early—such as delays in component procurement—and reallocate effort accordingly. Gantt charts are a standard project management tool in professional engineering practice because they make dependencies and deadlines visible across a team, reducing the risk of work proceeding out of sequence."
+    },
+    {
+      "type": "notes",
+      "label": "Engineering — Engineering Notebook and Virtual Documentation",
+      "content": "Throughout the project, the M.O.J.O. team maintained both a physical engineering notebook and virtual notes to record observations, test results, design decisions, and STEM reflections at each project stage. Entries were dated and labeled by element and topic, providing a chronological and auditable record of the team's reasoning process. Testing results from bench trials—including battery runtime measurements, motor response checks, and sensor calibration data—were logged immediately after collection to prevent data loss and ensure accuracy in subsequent analysis. Formal documentation practices are essential in engineering because they create a traceable record that supports design validation, facilitates team communication, and provides evidence that conclusions were reached through systematic observation rather than guesswork."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/FIGURE E2 - NOTEBOOK ENTRY.png",
+      "label": "Figure E2 — Virtual Notebook Entry Example (2/17/26)"
+    },
+    {
+      "type": "notes",
+      "label": "Math — Dimensional Tolerance Calculations and Parametric Parameters",
+      "content": "Tolerance analysis was applied throughout the CAD modeling process to ensure that 3D-printed components would fit together correctly given the inherent dimensional variability of FDM fabrication. FDM printing on the printers available to the team carries a typical dimensional tolerance of ±0.1–0.5mm depending on geometry and calibration. For any two mating parts—such as a motor shaft seated in a printed bore, or a snap-fit connector interface—a clearance value was calculated and applied as a named parameter in Fusion 360. For example, a press-fit interface targeting zero clearance in nominal dimensions would be assigned a parametric clearance offset of +0.2mm on the receiving bore diameter to account for print shrinkage and layer variation, expressed as: D_bore = D_shaft + delta_clearance. Storing these offsets as parameters rather than hard-coded dimensions meant that when R1 testing revealed that motor bores were too tight, the clearance parameter was incremented and the change propagated to every instance in the assembly without manual rework."
+    },
+    {
+      "type": "notes",
+      "label": "Math — Standard Component Dimensions in Design Geometry",
+      "content": "Each off-the-shelf electronic component used in the rover—the 18650 cell, ESP32 development board, TP4056 charging module, and N20 motor—carries manufacturer-specified physical dimensions that were used directly as design inputs in Fusion 360. The 18650 cell is standardized at 18.6mm diameter and 65.2mm length, the N20 motor body at 10mm × 12mm × 20mm with a 3mm output shaft diameter, and the ESP32 board at approximately 51mm × 28mm. These values were entered as named parameters in the CAD model, and all enclosures, pockets, and mounting features were derived from them using arithmetic relationships such as: L_pocket = L_component + delta_clearance and W_pocket = W_component + delta_clearance. Using datasheet dimensions as the mathematical foundation of the geometry ensured that printed parts were sized to real hardware from the first revision rather than estimated by hand, which reduced the number of fit-related failures in R1 and gave the team a reliable baseline for tolerance iteration."
+    },
+    {
+      "type": "notes",
+      "label": "Math — TP4056 Charge Rate and Charge Time Calculation",
+      "content": "The TP4056 lithium-ion charge controller implements a constant-current/constant-voltage (CC/CV) charging profile with a default charge current of 1000mA (1A), which can be adjusted via an external resistor according to the formula specified in the component datasheet: I_charge = V_prog / R_prog, where V_prog is a fixed internal reference voltage of 1.0V and R_prog is the value of the programming resistor in kilohms. At the default 1.2kΩ resistor, this yields I_charge = 1000mA. The theoretical charge time for a depleted 18650 cell of capacity C at this current is then: t_charge = C / I_charge = 2500 mAh / 1000 mA = 2.5 hours. This calculation confirmed that a fully depleted rover could be recharged within a single class period or overnight session, supporting the reusability specification from Element C without requiring a proprietary charger or overnight-only charging window."
+    },
+    {
+      "type": "notes",
+      "label": "Conclusion",
+      "content": "The application of STEM principles throughout the M.O.J.O. project served not only as a methodology for building the rover, but as a cumulative body of evidence that validates the original problem statement and substantiates every major design decision. The problem identified in Element A—that commercially available STEM toys marketed toward girls consistently underdeliver on authentic engineering content and durable educational value—is directly validated by the science of material properties, which confirmed that the thin, low-grade plastics typical of budget STEM kits carry insufficient impact resistance and thermal tolerance for sustained use by children. Electrical science and mathematics together substantiated the design decision to implement a regulated multi-rail power system rather than a direct battery connection, as Ohm's Law and power calculations demonstrated that an unregulated supply would exceed safe operating voltages for the ESP32 and underperform the motors. The runtime and charge time calculations confirmed that the single-cell design meets the 45-minute specification with substantial margin, grounding the product's reusability claim in quantitative reasoning rather than assertion.<br>Engineering principles—iterative design, Gantt-based scheduling, and structured documentation—ensured that STEM findings were captured, acted upon, and traceable across revisions, which is precisely the kind of authentic engineering practice the project was designed to model for its target users. The integration of technology tools including Fusion 360, slicing software, and the Arduino IDE demonstrates that the design process itself mirrored professional engineering workflows, further reinforcing the product's identity as a genuine STEM learning artifact rather than a novelty toy. Looking ahead to Element F, the team will conduct formal prototype testing against the measurable specifications defined in Element C, including the 0.8-meter drop test, timed assembly trials, runtime verification, and line-following performance evaluation, with all results recorded in the engineering notebook and analyzed using the same mathematical and scientific frameworks established in this element."
+    }
+  ]
+}
