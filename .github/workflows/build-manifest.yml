@@ -6,8 +6,6 @@ on:
     paths:
       - "pages/**.json"
       - "scripts/build-manifest.mjs"
-    paths-ignore:
-      - "pages/manifest.json"
   workflow_dispatch:
 
 concurrency:
