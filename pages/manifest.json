@@ -361,6 +361,18 @@
   ],
   "EDD": [
     {
+      "id": "[W3B] EDD Element F 2.0 & 3.0 Design Review and Project Merit",
+      "title": "[W3B] EDD Element F 2.0 & 3.0 Design Review and Project Merit",
+      "type": "Element F",
+      "date": "03/08/26"
+    },
+    {
+      "id": "EDD Element F",
+      "title": "EDD Element F",
+      "type": "Elements",
+      "date": "03/08/26"
+    },
+    {
       "id": "EDD Element E",
       "title": "EDD Element E",
       "type": "Elements",
