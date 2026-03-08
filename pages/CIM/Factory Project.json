@@ -1,6 +1,6 @@
 {
   "title": "Factory Project",
-  "date": "02/24/26",
+  "date": "03/08/26",
   "type": "Project",
   "brief": [
     "Design a mock factory."
@@ -20,6 +20,11 @@
           "src": "resources/{class}/{type}/{title}/Assembly Drawing-2.pdf"
         }
       ]
+    },
+    {
+      "type": "PDF",
+      "label": "Cost Analysis", 
+      "src": "resources/{class}/{type}/{title}/Cost Analysis.pdf"
     },
     {
       "type": "PDF",
