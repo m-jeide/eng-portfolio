@@ -1,0 +1,20 @@
+{
+  "title": "[W3B] EDD Element F 2.0 & 3.0 Design Review and Project Merit",
+  "date": "03/08/26",
+  "type": "Element F",
+  "style": "MOJO",
+  "brief": [
+    "Create a life cycle-diagram for our product."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Diagram",
+          "src": "resources/{class}/{type}/{title}/diagram.pdf"
+        }
+      ]
+    }
+  ]
+}
