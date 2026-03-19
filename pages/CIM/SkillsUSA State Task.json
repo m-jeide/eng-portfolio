@@ -9,6 +9,28 @@
   ],
   "elements": [
     {
+      "type": "layout",
+      "label": "Iterative Designs",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "PDF",
+          "label": "Revision 2",
+          "src": "resources/{class}/{type}/{title}/R2.pdf"
+        },
+        {
+          "type": "PFG",
+          "label": "Revision 3",
+          "src": "resources/{class}/{type}/{title}/R3.pdf"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "label": "Fusion Design (`BIG M'S Spectacular Catapult`)",
+      "src": "resources/{class}/{type}/{title}/R1.pdf"
+    },
+    {
       "type": "PDF",
       "label": "Decision Matrix",
       "src": "resources/{class}/{type}/{title}/Decision Matrix.pdf"
