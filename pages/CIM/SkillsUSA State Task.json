@@ -15,13 +15,13 @@
       "elements": [
         {
           "type": "PDF",
-          "label": "Revision 2",
-          "src": "resources/{class}/{type}/{title}/R2.pdf"
-        },
-        {
-          "type": "PFG",
           "label": "Revision 3",
           "src": "resources/{class}/{type}/{title}/R3.pdf"
+        },
+        {
+          "type": "PDF",
+          "label": "Revision 2",
+          "src": "resources/{class}/{type}/{title}/R2.pdf"
         }
       ]
     },
