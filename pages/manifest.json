@@ -1,8 +1,14 @@
 {
   "CIM": [
     {
+      "id": "SkillsUSA State Task",
+      "title": "Factory Project (SkillsUSA State Task)",
+      "type": "Project",
+      "date": "03/20/26"
+    },
+    {
       "id": "Factory Project",
-      "title": "Factory Project",
+      "title": "Factory Project (Factory Project)",
       "type": "Project",
       "date": "03/08/26"
     },
