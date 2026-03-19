@@ -1,0 +1,17 @@
+{
+  "title": "Factory Project",
+  "date": "03/20/26",
+  "type": "Project",
+  "brief": [
+    "Design a solution to the challenge given for 2026 state competitors in SkillsUSA, Additive Manufacturing.",
+    "Project spanned from 3/16/26-3/20/26.",
+    "Partner: Omri Lavi."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "label": "Brainstorm Sketch - Matthew Jeide",
+      "src": "resources/{class}/{type}/{title}/Matthew Jeide - Sketch.pdf"
+    }
+  ]
+}
