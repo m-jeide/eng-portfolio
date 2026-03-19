@@ -10,8 +10,18 @@
   "elements": [
     {
       "type": "PDF",
+      "label": "Decision Matrix",
+      "src": "resources/{class}/{type}/{title}/Decision Matrix.pdf"
+    },
+    {
+      "type": "PDF",
       "label": "Brainstorm Sketch - Matthew Jeide",
       "src": "resources/{class}/{type}/{title}/Matthew Jeide - Sketch.pdf"
+    },
+    {
+      "type": "PDF",
+      "label": "Brainstorm Sketch - Omri Lavi",
+      "src": "resources/{class}/{type}/{title}/Omri Lavi - Sketch.pdf"
     }
   ]
 }
