@@ -9,6 +9,11 @@
   ],
   "elements": [
     {
+      "type": "Video",
+      "label": "3-Minute Solution Presentation & Explanation", 
+      "src": "https://www.youtube.com/watch?v=gJyThEMNh3k"
+    },
+    {
       "type": "notes",
       "label": "STL Files & G-Code",
       "content": "Note: Assignment requested prepared G-code, but given G-code may not work on every printer (sliced with UltiMaker Cura for a modified Ender 3 V2). Please slice the .stl files according to your own setup.<br>https://drive.google.com/drive/folders/123eIi3-PcR1tw3OkyOKXt0InFjl77vdt?usp=sharing "
