@@ -13,6 +13,11 @@
       "label": "3-Minute Solution Presentation & Explanation", 
       "src": "https://www.youtube.com/watch?v=gJyThEMNh3k"
     },
+  {
+      "type": "PDF",
+      "label": "Engineering Notebook", 
+      "src": "resources/{class}/{type}/{title}/Engineering Notebook.pdf"
+    },    
     {
       "type": "notes",
       "label": "STL Files & G-Code",
