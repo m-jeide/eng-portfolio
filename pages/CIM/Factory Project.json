@@ -7,6 +7,11 @@
   ],
   "elements": [
     {
+      "type": "Video",
+      "label": "Demonstration",
+      "src": "https://www.youtube.com/watch?v=iHzEtPFzaag"
+    },
+    {
       "type": "PDF",
       "label": "Project Report",
       "src": "resources/{class}/{type}/{title}/Report.pdf"
