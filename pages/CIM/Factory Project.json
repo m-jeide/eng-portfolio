@@ -7,6 +7,11 @@
   ],
   "elements": [
     {
+      "type": "PDF",
+      "label": "Project Report",
+      "src": "resources/{class}/{type}/{title}/Report.pdf"
+    },
+    {
       "type": "layout",
       "label": "Fusion Assembly Design",
       "template": "2-columns",
