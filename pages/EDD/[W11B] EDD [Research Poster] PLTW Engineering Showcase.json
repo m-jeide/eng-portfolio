@@ -1,0 +1,20 @@
+{
+  "title": "[W11B] EDD [Research Poster] PLTW Engineering Showcase",
+  "date": "03/20/26",
+  "type": "Notes",
+  "style": "MOJO",
+  "brief": [
+    "Create a poster demonstrating our solution."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Poster",
+          "src": "resources/{class}/{type}/{title}/Poster.pdf"
+        }
+      ]
+    }
+  ]
+}
