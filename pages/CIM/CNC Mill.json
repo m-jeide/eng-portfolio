@@ -1,0 +1,93 @@
+{
+  "title": "CNC Mill",
+  "date": "04/03/26",
+  "type": "Project",
+  "brief": [
+    "Practice milling techniques."
+  ],
+  "elements": [
+    {
+      "type": "layout",
+      "label": "MLK Mill",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "image",
+          "label": "Design",
+          "src": "resources/{class}/{type}/{title}/MLK-MILL-DESIGN.png"
+        },
+        {
+          "type": "Video",
+          "label": "[VIDEO] MLK Mill",
+          "src": "https://www.youtube.com/watch?v=sjb36ZFZxZ8"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "label": "G-Code for MLK Mill Design",
+      "src": "resources/{class}/{type}/{title}/MLK G-Code.pdf"
+    },
+    {
+      "type": "PDF",
+      "label": "PART ONE",
+      "src": "resources/{class}/{type}/{title}/Part One.pdf"
+    },
+    {
+      "type": "layout",
+      "label": "PART ONE - PLTW Design",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "Video",
+          "label": "[VIDEO] PLTW Design",
+          "src": "https://www.youtube.com/watch?v=duReWGBPO7I"
+        },
+        {
+          "type": "PDF",
+          "label": "G-Code for PLTW Design",
+          "src": "resources/{class}/{type}/{title}/PLTW G-Code"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "label": "PART TWO",
+      "src": "resources/{class}/{type}/{title}/Part Two.pdf"
+    },
+    {
+      "type": "layout",
+      "label": "PART TWO - Slope Design",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "Video",
+          "label": "[VIDEO] Slope Design",
+          "src": "https://www.youtube.com/watch?v=20XStzw1YSU"
+        },
+        {
+          "type": "PDF",
+          "label": "G-Code for Slope Design",
+          "src": "resources/{class}/{type}/{title}/Slope G-Code"
+        }
+      ]
+    },
+    {
+      "type": "layout",
+      "label": "PART TWO - Complex Surface Design",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "Video",
+          "label": "[VIDEO] Complex Surface Design",
+          "src": "https://www.youtube.com/watch?v=66nqv3IED0s"
+        },
+        {
+          "type": "PDF",
+          "label": "G-Code for Complex Surface Design",
+          "src": "resources/{class}/{type}/{title}/Complex Surface G-Code"
+        }
+      ]
+    }
+  ]
+}
