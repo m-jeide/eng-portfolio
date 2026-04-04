@@ -46,7 +46,7 @@
         {
           "type": "PDF",
           "label": "G-Code for PLTW Design",
-          "src": "resources/{class}/{type}/{title}/PLTW G-Code"
+          "src": "resources/{class}/{type}/{title}/PLTW G-Code.pdf"
         }
       ]
     },
