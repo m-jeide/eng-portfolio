@@ -68,7 +68,7 @@
         {
           "type": "PDF",
           "label": "G-Code for Slope Design",
-          "src": "resources/{class}/{type}/{title}/Slope G-Code"
+          "src": "resources/{class}/{type}/{title}/Slope G-Code.pdf"
         }
       ]
     },
@@ -85,7 +85,7 @@
         {
           "type": "PDF",
           "label": "G-Code for Complex Surface Design",
-          "src": "resources/{class}/{type}/{title}/Complex Surface G-Code"
+          "src": "resources/{class}/{type}/{title}/Complex G-Code.pdf"
         }
       ]
     }
