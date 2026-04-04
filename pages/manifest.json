@@ -1,6 +1,12 @@
 {
   "CIM": [
     {
+      "id": "CNC Mill",
+      "title": "CNC Mill",
+      "type": "Project",
+      "date": "04/03/26"
+    },
+    {
       "id": "SkillsUSA State Task",
       "title": "SkillsUSA State Task",
       "type": "Project",
