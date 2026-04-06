@@ -97,7 +97,7 @@
         {
           "type": "PDF",
           "label": "Document Overview for Initials",
-          "src": "resources/{class}/{type}/{title}/Initials Document.pdf"
+          "src": "resources/{class}/{type}/{title}/Initial Document.pdf"
         },
         {
           "type": "Video",
