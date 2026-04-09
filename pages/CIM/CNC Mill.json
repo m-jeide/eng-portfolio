@@ -101,12 +101,12 @@
         },
         {
           "type": "Video",
-          "label": "[VIDEO] Fusion Simulation",
+          "label": "[VIDEO] Fusion Simulation for Initials",
           "src": "https://www.youtube.com/watch?v=M2Y_oLMfEGI"
         },
         {
           "type": "Video",
-          "label": "[VIDEO] CNCBase Simulation",
+          "label": "[VIDEO] CNCBase Simulation for Initials",
           "src": "https://www.youtube.com/watch?v=89s-kjHPO54"
         }
       ]
@@ -115,6 +115,28 @@
       "type": "PDF",
       "label": "G-Code for Initials Design",
       "src": "resources/{class}/{type}/{title}/Initials G-Code.pdf"
+    },
+    {
+      "type": "layout",
+      "label": "Flange",
+      "template": "1-big-2-small",
+      "elements": [
+        {
+          "type": "PDF",
+          "label": "Document Overview for Flange",
+          "src": "resources/{class}/{type}/{title}/Flange Document.pdf"
+        },
+        {
+          "type": "Video",
+          "label": "[VIDEO] Fusion Simulation for Flange",
+          "src": "https://www.youtube.com/watch?v=Mc6FXPsyVgc"
+        },
+        {
+          "type": "Video",
+          "label": "[VIDEO] CNCBase Simulation for Flange",
+          "src": "https://www.youtube.com/watch?v=MVsRXl9BVnc"
+        }
+      ]
     }
   ]
 }
