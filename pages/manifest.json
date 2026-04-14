@@ -1,6 +1,12 @@
 {
   "CIM": [
     {
+      "id": "CIM 2.3.7",
+      "title": "CIM 2.3.7",
+      "type": "Project",
+      "date": "04/14/26"
+    },
+    {
       "id": "CNC Mill",
       "title": "CNC Mill",
       "type": "Project",
