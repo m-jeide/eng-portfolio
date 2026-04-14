@@ -1,0 +1,38 @@
+{
+  "title": "CIM 2.3.7",
+  "date": "04/14/26",
+  "type": "Project",
+  "brief": [
+    "Practice milling techniques.",
+    "Create a jewelry box design with the skills we've learned."
+  ],
+  "elements": [
+    {
+      "type": "layout",
+      "label": "Practice Design",
+      "template": "1-big-2-small",
+      "elements": [
+        {
+          "type": "Video",
+          "label": "[VIDEO] Fusion Simulation",
+          "src": "https://www.youtube.com/watch?v=C0dOW2z9Sak"
+        },
+        {
+          "type": "image",
+          "label": "Fusion Design",
+          "src": "resources/{class}/{type}/{title}/Practice Design.png"
+        },
+        {
+          "type": "image",
+          "label": "Fusion Manufacture Setup",
+          "src": "resources/{class}/{type}/{title}/Practice Mill Setup.png"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "label": "G-Code for Practice Design",
+      "src": "resources/{class}/{type}/{title}/Practice G-Code.pdf"
+    }
+  ]
+}
