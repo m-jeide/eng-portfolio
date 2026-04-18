@@ -8,6 +8,72 @@
   ],
   "elements": [
     {
+      "type": "image",
+      "label": "Picture of Personal Project Design",
+      "src": "resources/{class}/{type}/{title}/Bubble.png"
+    },
+    {
+      "type": "layout",
+      "label": "Personal Project - Bubble",
+      "template": "1-big-2-small",
+      "elements": [
+        {
+          "type": "Video",
+          "label": "[VIDEO] Fusion Manufacturing Simulation",
+          "src": "https://www.youtube.com/watch?v=eb8u8hF1B2Q"
+        },
+        {
+          "type": "PDF",
+          "label": "Topview of Design",
+          "src": "resources/{class}/{type}/{title}/Bubble Multiview Top.pdf"
+        },
+        {
+          "type": "PDF",
+          "label": "Bottomview of Design",
+          "src": "resources/{class}/{type}/{title}/Bubble Multiview Bottom.pdf"
+        }
+      ]
+    },
+    {
+      "type": "layout",
+      "label": "Personal Project - 3D Printing",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "image",
+          "label": "IdeaMaker Screenshot",
+          "src": "resources/{class}/{type}/{title}/Bubble IdeaMaker.png"
+        },
+        {
+          "type": "notes",
+          "label": "Considerations for DfAM",
+          "content": "While the design is able to 3D printed, its optimizations for milling and subtractive manufacturing make it inefficient to be manufactured with additive manufacturing, using unnecessary filament to build supports and the cut area."
+        }
+      ]
+    },
+    {
+      "type": "layout",
+      "label": "Personal Project - 3D Printing; Optimized",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "image",
+          "label": "IdeaMaker Screenshot of Optimized Design",
+          "src": "resources/{class}/{type}/{title}/Bubble Optimized IdeaMaker.png"
+        },
+        {
+          "type": "notes",
+          "label": "DfAM Optimizations",
+          "content": "This design optimizes for additive manufacturing rather than milling, the improvements made (such as separation of two parts, removal of supports, orientation) vastly improve both material and time (~64% less filament, ~56% quicker)."
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "label": "Personal Project G-Code",
+      "src": "resources/{class}/{type}/{title}/Bubble G-Code.png"
+    },
+    {
       "type": "layout",
       "label": "Practice Design",
       "template": "1-big-2-small",
