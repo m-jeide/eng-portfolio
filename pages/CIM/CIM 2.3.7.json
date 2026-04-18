@@ -13,6 +13,16 @@
       "src": "resources/{class}/{type}/{title}/Bubble.png"
     },
     {
+      "type": "PDF",
+      "label": "Personal Project Sketch",
+      "src": "resources/{class}/{type}/{title}/Bubble Drawing.pdf"
+    },
+    {
+      "type": "PDF",
+      "label": "Personal Project Handout",
+      "src": "resources/{class}/{type}/{title}/Bubble Overview.pdf"
+    },
+    {
       "type": "layout",
       "label": "Personal Project - Bubble",
       "template": "1-big-2-small",
@@ -71,7 +81,7 @@
     {
       "type": "PDF",
       "label": "Personal Project G-Code",
-      "src": "resources/{class}/{type}/{title}/Bubble G-Code.png"
+      "src": "resources/{class}/{type}/{title}/Bubble G-Code.pdf"
     },
     {
       "type": "layout",
