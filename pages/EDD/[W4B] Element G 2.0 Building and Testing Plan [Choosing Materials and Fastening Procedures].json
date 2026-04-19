@@ -1,0 +1,39 @@
+{
+  "title": "[W4B] Element G 2.0 Building and Testing Plan [Choosing Materials and Fastening Procedures]",
+  "date": "04/19/26",
+  "type": "Element G",
+  "style": "MOJO",
+  "brief": [
+    "Create a testing plan for our prototype",
+    "Select materials and fastening procedures for our prototypes",
+    "Please review handout for comprehensive breakdown"
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Handout",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "VelociMotor Subsystem Drawing",
+          "src": "resources/{class}/{type}/{title}/VelociMotor Subsystem.pdf"
+        },
+        {
+          "label": "Cortex Subsystem Drawing",
+          "src": "resources/{class}/{type}/{title}/Cortex Subsystem.pdf"
+        },
+        {
+          "label": "Battery Subsystem Drawing",
+          "src": "resources/{class}/{type}/{title}/Battery Subsystem.pdf"
+        }
+      ]
+    }
+  ]
+}

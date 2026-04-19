@@ -1,0 +1,29 @@
+{
+  "title": "[W4B] EDD G5.0 Mock-Up | Prototype",
+  "date": "04/19/26",
+  "type": "Element G",
+  "style": "MOJO",
+  "brief": [
+    "Create a mock-up or prototype to demonstrate our solution."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Handout",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Mockup Drawing",
+          "src": "resources/{class}/{type}/{title}/Mockup Drawing.pdf"
+        }
+      ]
+    }
+  ]
+}
