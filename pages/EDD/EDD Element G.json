@@ -1,0 +1,147 @@
+{
+  "title": "{file}",
+  "date": "04/19/26",
+  "type": "Elements",
+  "brief": [
+    "Detailed report of current Element G findings and analysis."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Element G Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/GANTT CHART.png",
+      "label": "Gantt Chart Showcasing the Team's Progress"
+    },
+    {
+      "type": "notes",
+      "label": "Problem Statement",
+      "content": "Commercially available STEM toys designed for children—particularly those marketed towards girls—often fail to sustain inquiry-driven engagement through narrower technical content, limited opportunities for authentic engineering practices, and inconsistent value relative to gender-neutral alternatives, which can dampen long-term interest in STEM among children ages 6–12."
+    },
+    {
+      "type": "notes",
+      "label": "Introduction & Background Information",
+      "content": "The M.O.J.O. team's Revision 3 (R3) prototype represents the first fully integrated, operationally tested iteration of the modular rover platform. Building on the architectural lessons of R1 and R2 documented in prior elements, R3 prioritized functional completeness and hands-on testability over geometric refinement, producing a rover that successfully demonstrated core drive behavior, wireless control, and gamepad-compatible operation during the team's public showcase event.<br>The structural components of the R3 prototype—including the rover chassis, VelociMotor enclosure halves, Cortex enclosure, battery holder, and wheel hubs—were fabricated via FDM on a Creality Ender 3 V2 using PLA+ filament at a 0.2mm layer height and 40% infill for load-bearing sections, consistent with the slicer parameters established in Element E. PLA+ was selected over standard PLA because its modified formulation provides marginally improved impact resistance and layer adhesion relative to unmodified PLA while remaining fully compatible with the Ender 3 V2's bed temperature range, making it a practical intermediate between PLA's printability and PETG's toughness. The VelociMotor enclosure experienced a structural failure during assembly testing prior to the showcase, specifically a fracture at one of the labyrinth interlock tabs, which was repaired using hot-melt adhesive as an expedient field fix consistent with the team's iterative-by-design prototyping philosophy.<br>The electronic subsystem of the R3 prototype integrates an ESP32-WROOM-32 development board as the central processing unit, a DRV8833 dual H-bridge motor driver managing both N20 gearmotors, a TP4056 lithium-ion charge management module, a single 18650 cell as the primary energy source, and two buck-boost converters delivering regulated 3.3V to the logic rail and regulated 6V to the motor rail—architecture documented in the power delivery block diagram of Element E. Rubber bands were applied around the wheel hubs as a low-cost traction enhancement, substituting for the molded tire geometry planned for a future revision. The ESP32 was programmed via the Arduino IDE in C++, implementing a soft access point (AP) mode in which the rover itself broadcasts a Wi-Fi network; users connect their devices directly to this network and access the rover's embedded web server to issue drive commands. This design choice eliminates the dependency on external network infrastructure, making the rover operable in any environment without a router or internet connection—a deliberate accessibility decision aligned with the product's target household context.<br>The web server's control interface was built to support the Gamepad API, allowing a paired gamepad—in testing, an Xbox controller—to issue analog throttle and steering inputs through the browser, replacing the on-screen virtual joystick for users who prefer physical controls. This dual-input architecture (touch/click and gamepad) directly supports the co-play design requirement by allowing guardians and children to take turns or share control without reconfiguring hardware.<br>The R3 prototype was evaluated against four of the five design requirements established in Element C. The retail price specification (≤$60 retail, ≤$25 at scale) was satisfied: the complete R3 bill of materials totals under $70 at small-quantity prototype pricing, and the team's costing analysis from prior elements confirms the ≤$25 unit cost pathway at production volumes. The drop resilience specification (survive three drops from 0.8m onto vinyl flooring without functional failure) was satisfied during showcase testing, with the rover resuming normal operation after multiple accidental drops over the course of the multi-hour event. The speed specification was satisfied, with the rover demonstrating observable, controlled locomotion within the 0.1–0.3 m/s target range during drive testing. The line-following specification (>85% track completion at specified speeds) was not tested in R3, as the color sensor module and associated AGV firmware were not integrated into this revision; the DRIVE brain module was the sole operational mode implemented. This gap is documented and framed as a scope boundary of the R3 prototype rather than a design failure: the platform architecture demonstrably supports sensor module integration, and the line-following specification remains a target for the R4 revision."
+    },
+    {
+      "type": "notes",
+      "label": "Building and Testing Plan",
+      "content": "The following plan documents the construction sequence for the R3 prototype, responsible team member(s), and the corresponding test method for each step. The materials list follows."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/BUILD SEQUENCE TABLE.png",
+      "label": "Build Sequence and Testing — Step-by-Step Table"
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/MATERIALS LIST TABLE.png",
+      "label": "Materials List — R3 Bill of Materials"
+    },
+    {
+      "type": "notes",
+      "label": "Prototype Fabrication — Structural Components",
+      "content": "All structural components were sliced in UltiMaker Cura and printed on the Creality Ender 3 V2 using PLA+ filament at 0.2mm layer height, 40% gyroid infill for load-bearing parts, a bed temperature of 65°C for the first layer and 60°C for subsequent layers, and a print temperature of 215°C. The chassis was printed as a single flat body with integrated slots for the VelociMotor and Cortex modules. The VelociMotor enclosure halves and Cortex enclosure halves were printed as separate top-and-bottom pairs. The named parameters established in Fusion 360—particularly the 0.2mm clearance gap derived from the gap = nozzle_size × safety_factor formula documented in Element E—governed all pocket and slot dimensions to ensure proper fit without manual hand-fitting. Print time across all components totaled approximately eight hours across multiple sequential builds."
+    },
+    {
+      "type": "notes",
+      "label": "Prototype Fabrication — VelociMotor Assembly",
+      "content": "Each N20 gearmotor was press-fit into the corresponding motor pocket in its VelociMotor enclosure bottom. The motor body (10mm × 12mm cross-section) was aligned with the D-shaft facing outward through the designated aperture. The enclosure top was then pressed down over the motor, engaging the labyrinth interlock tabs to clamp the motor in place. During this step, one enclosure top experienced a tab fracture at the labyrinth interface—a failure mode consistent with PLA's brittle behavior under snap-fit loading, as analyzed in the W14 Building and Testing Plan. The fractured tab was bonded with hot-melt adhesive as a field repair, restoring mechanical retention of the motor. This incident reinforced the team's planned transition to PETG for R4 enclosure components, where the higher toughness (3.0 ft-lb/in versus 0.4 ft-lb/in for PLA) will prevent elastic fracture of thin snap-fit tabs. Motor lead wires were routed through the wire channels molded into the enclosure walls.<br>Printed wheel hubs were pressed onto the D-shafts of each N20 motor, but for some prototypes, purchased D-shaft wheels were used. The D-shaft flat face transmits torque to the hub bore; dimensional accuracy at this interface is critical, as shaft-to-hub slop produces rotational backlash that degrades drive precision."
+    },
+    {
+      "type": "notes",
+      "label": "Prototype Fabrication — Cortex Assembly",
+      "content": "The ESP32 development board and DRV8833 motor driver were seated on the half-size breadboard. Jumper wires connected the DRV8833's IN1–IN4 control pins to the corresponding ESP32 GPIO pins, and its motor output terminals to the N20 motor leads routed from the VelociMotor assemblies. The 3.3V buck-boost converter output was connected to the ESP32's 3.3V power pin, and the 6V output was connected to the DRV8833's VM motor supply pin. The populated breadboard was placed into the Cortex enclosure bottom, and the enclosure top was pressed down, engaging the snap clips to retain the electronics stack. Wire channels in the enclosure walls captured the motor and power leads, preventing sharp bending at termination points."
+    },
+    {
+      "type": "notes",
+      "label": "Prototype Fabrication — Final Chassis Integration",
+      "content": "The completed VelociMotor assemblies were pressed into the front chassis slots, and the Cortex module was inserted into the central chassis slot. All modules are retained by friction and geometric interlock geometry, with no fasteners required—consistent with the tool-minimal assembly specification from Element C. The coaster wheel at the rear was installed to complete the three-point contact geometry that ensures the color sensor (in future revisions) will maintain proximity to the ground surface."
+    },
+    {
+      "type": "notes",
+      "label": "Detailed Drawings",
+      "content": "The following drawings document the R3 prototype as built. The mechanical drawings present the rover's primary structural subsystems with nominal dimensions derived from the Fusion 360 parametric model."
+    },
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Drawing — M.O.J.O. Frame",
+          "src": "resources/{class}/{type}/{title}/DRAWING - MOJO FRAME.pdf"
+        },
+        {
+          "label": "Drawing — VelociMotor Assembly & Exploded",
+          "src": "resources/{class}/{type}/{title}/DRAWING - VELOCIMETER ASSEMBLY EXPLODED.pdf"
+        },
+        {
+          "label": "Drawing — VelociMotor Enclosure Top",
+          "src": "resources/{class}/{type}/{title}/DRAWING - VELOCIMETER ENCLOSURE TOP.pdf"
+        },
+        {
+          "label": "Drawing — VelociMotor Enclosure Bottom",
+          "src": "resources/{class}/{type}/{title}/DRAWING - VELOCIMETER ENCLOSURE BOTTOM.pdf"
+        },
+        {
+          "label": "Drawing — Cortex Enclosure Top",
+          "src": "resources/{class}/{type}/{title}/DRAWING - CORTEX ENCLOSURE TOP.pdf"
+        },
+        {
+          "label": "Drawing — Cortex Enclosure Bottom",
+          "src": "resources/{class}/{type}/{title}/DRAWING - CORTEX ENCLOSURE BOTTOM.pdf"
+        },
+        {
+          "label": "Drawing — M.O.J.O. Propel",
+          "src": "resources/{class}/{type}/{title}/DRAWING - MOJO PROPEL.pdf"
+        }
+      ]
+    },
+    {
+      "type": "notes",
+      "label": "Firmware State Diagram",
+      "content": "The mojo_cortex.ino firmware operates as a single-mode DRIVE controller in R3. The state machine governs the following transitions: IDLE → CONNECTED → DRIVING → STOPPED → IDLE.<br>IDLE: ESP32 broadcasts soft AP, web server listening. No motor output. Awaiting client connection.<br>CONNECTED: Client device joins network and loads web UI. /ping heartbeat begins. Link status indicator active. Client lock acquired.<br>DRIVING: User input (touch joystick or gamepad axis) received via HTTP or WebSocket. ESP32 computes left/right motor PWM values using turn-scaling formula; outputs to DRV8833 IN1–IN4 pins via analogWrite. Throttle deadzone applied to prevent motor creep at near-zero inputs.<br>STOPPED: Emergency stop button pressed OR /ping heartbeat times out (stale timeout). hardStop() called: all four direction pins explicitly zeroed via digitalWrite(LOW) and analogWrite(0). Returns to CONNECTED state when heartbeat resumes or user re-engages."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/ELECTRONIC SCHEMATIC.png",
+      "label": "Electronic Schematic — R3 Multi-Rail Power and Control Architecture"
+    },
+    {
+      "type": "notes",
+      "label": "Testing — Retail Price / BOM Cost",
+      "content": "Specification: Prototype BOM < $70. Test method: Direct summation of itemized BOM with unit quantities and sourced prices. R3 BOM total is approximately $62 as documented in the materials list, satisfying the <$70 prototype threshold. At-scale cost modeling using injection molding and custom PCB estimates from Element C projects a unit cost below $25, satisfying the production cost specification. This requirement is mathematically verifiable from the BOM alone and does not require physical testing beyond procurement records.<br>Result at R3: PASS."
+    },
+    {
+      "type": "notes",
+      "label": "Testing — Assembly Time",
+      "content": "Specification: Median < 30 minutes, basic hand tools only. Test method: Timed assembly trial to be conducted in Element H with a naive assembler following the written instructions, using only the tools specified (screwdriver, hex key). Median time across three trials will be recorded. The specification requires zero wiring errors, which is verifiable by operational check after assembly.<br>Preview of expected result: Assembly of R3 during team sessions was accomplished in approximately 20–25 minutes by experienced assemblers; a naive assembler is estimated to require 25–35 minutes on first attempt. Keying improvements planned for R4 are anticipated to reduce error-related rework that adds time for first-time assemblers."
+    },
+    {
+      "type": "notes",
+      "label": "Testing — Runtime",
+      "content": "Specification: > 45 minutes per charge, USB-C charging. Test method: Fully charge the 18650 cell via TP4056, then operate the rover under the Element C duty cycle (50% active movement, 50% idle with sensors active) until the cell voltage drops below the TP4056 undervoltage lockout threshold. Record elapsed time. USB-C charging compatibility is verified by the TP4056 module's port specification.<br>Mathematical validation (from Element E): t = C / I_total = 2500 mAh / 400 mA = 6.25 hours. This calculation, using a conservative 2,500mAh cell capacity and 400mA total current draw at the Element C duty cycle, demonstrates that the 45-minute specification is satisfied with a margin exceeding 8×. Physical testing in Element H will confirm the theoretical estimate against measured runtime.<br>Result at R3 (qualitative): The rover operated continuously throughout the multi-hour showcase session without battery depletion, corroborating the theoretical runtime calculation."
+    },
+    {
+      "type": "notes",
+      "label": "Testing — Line-Following Performance",
+      "content": "Specification: > 85% track completion at 0.1–0.3 m/s. This specification cannot be physically tested on the R3 prototype. The R3 DRIVE brain module does not incorporate the color sensor or AGV firmware required for autonomous line-following behavior. This is a deliberate scope boundary: the R3 prototype was built to validate the platform architecture (chassis, drivetrain, power system, wireless control) before layering sensor-dependent autonomy on top. The modular architecture—specifically the interchangeable brain module slot—confirms that a color sensor module can be integrated without modifying the chassis or power system.<br>Expert review: Jasmine Shields, Software Engineering student at UC Irvine (interviewed January 19, 2026, per Element F), confirmed during her expert consultation that line-following and AGV behavior are not purely software problems and depend critically on appropriate hardware and sensor integration. She affirmed that the team's phased approach—validating platform mechanics before implementing autonomous sensor logic—is consistent with sound embedded systems practice. Her guidance supports the decision to defer line-following integration to R4 rather than risk introducing sensor-related failures that could obscure platform-level issues."
+    },
+    {
+      "type": "notes",
+      "label": "Testing — Drop Resilience",
+      "content": "Specification: Survive three 0.8m drops onto vinyl, all systems functional. Test method: Assemble rover fully. Drop from 0.8m onto standard vinyl flooring three times. After each drop, verify motor response, sensor connectivity, and wireless control function. Record any mechanical breakage, disconnection, or functional loss.<br>Mathematical context: PETG impact resistance of 3.0 ft-lb/in (versus PLA's 0.4 ft-lb/in) was the basis for material selection in the W14 Building and Testing Plan. At a drop height of 0.8m, a rover of approximately 200g reaches an impact velocity of approximately 4.0 m/s at contact (from v = sqrt(2gh)), producing an impulse load that the enclosure geometry must absorb without brittle fracture. R3's PLA+ construction falls between standard PLA and PETG on this spectrum; preliminary drop testing at the showcase demonstrated survival of multiple uncontrolled drops without functional failure, though the pre-existing hot-glue repair on the VelociMotor enclosure tab represents a known vulnerability.<br>Result at R3 (qualitative): PASS in practice during showcase. Formal three-drop test on vinyl to be documented in Element H."
+    },
+    {
+      "type": "notes",
+      "label": "Conclusion",
+      "content": "The R3 prototype of the M.O.J.O. modular rover represents a significant advance over prior revisions, achieving the first fully integrated, wirelessly controlled, gamepad-compatible drive demonstration that directly validates the platform architecture underlying the product concept. The construction process yielded several important findings: the PLA+ labyrinth interlock tabs in the VelociMotor enclosure are insufficiently tough for repeated assembly and drop loading, motivating the planned transition to PETG in R4; rubber bands provide a viable interim traction solution that materially improves grip without geometric complexity; and the ESP32 soft AP architecture eliminates infrastructure dependencies in a manner that is both technically sound and directly aligned with the product's accessibility goals. The hot-glue repair to the fractured enclosure tab was a pragmatic field fix that allowed testing to proceed, but it confirms that snap-fit geometry in PLA+ requires either material substitution or geometric reinforcement before the design can claim robust drop resilience at the component level.<br>If tested formally against all five Element C specifications in Element H, the R3 prototype is expected to produce confirmed passes on cost, runtime, and drop resilience, a borderline result on assembly time for naive users, and a documented gap on line-following that is attributable to scope rather than platform failure. Looking ahead to R4, the team will prioritize PETG enclosure reprints, color sensor integration for the AGV brain module, and keying geometry to reduce assembly errors—changes that will bring the design into compliance with all five specifications simultaneously."
+    }
+  ]
+}
