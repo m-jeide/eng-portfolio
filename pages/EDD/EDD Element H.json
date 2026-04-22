@@ -1,0 +1,144 @@
+{
+  "title": "{file}",
+  "date": "04/21/26",
+  "type": "Elements",
+  "brief": [
+    "Detailed report of current Element H findings and analysis."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Element H Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/GANTT CHART.png",
+      "label": "Gantt Chart Showcasing the Team's Progress"
+    },
+    {
+      "type": "notes",
+      "label": "Problem Statement",
+      "content": "Commercially available STEM toys designed for children—particularly those marketed towards girls—often fail to sustain inquiry-driven engagement through narrower technical content, limited opportunities for authentic engineering practices, and inconsistent value relative to gender-neutral alternatives, reducing opportunities for meaningful guardian-child co-play and dampening long-term interest in STEM among children ages 6–12. The M.O.J.O. team has developed a modular rover-based construction kit as a proposed solution and now advances to formal prototype testing to evaluate whether the current prototype satisfies the measurable design requirements established in Element C."
+    },
+    {
+      "type": "notes",
+      "label": "Introduction & Background Information",
+      "content": "Consumer research, peer-reviewed literature, and expert consultation collectively confirm that the problem the M.O.J.O. team has identified is both real and persistent. Coyle and Liben (2020) demonstrated through controlled experimentation that gendered toy packaging produces measurably different learning outcomes and caregiver mediation patterns, validating the team's mechanics-first, dual-packaging design strategy as educationally consequential rather than purely cosmetic. Alexandre et al. (2022) identified caregiver involvement as a consistent predictor of sustained STEM engagement across a systematic review of 36 studies, providing direct empirical support for the co-play framework embedded in the rover kit's design. Original consumer survey data collected by the M.O.J.O. team further revealed that 83.6% of respondents had building sets as children, that affordability was identified as the top purchasing priority by 44.2% of respondents, and that the majority of respondents believed STEM toys are not marketed equitably across genders. Taken together, these findings establish that the M.O.J.O. project responds to a documented and measurable gap in the current market.<br>Element A established the foundational problem—that gender-coded STEM toys narrowed technical content and diminished educational value for girls—and defined the team's purpose as designing a construction kit grounded in evidence-based principles from child development and the learning sciences. Subsequent elements refined the design requirements, developed and evaluated concepts, and produced two documented prototype revisions culminating in Revision 3 (R3), the prototype to be evaluated in this element. The four design requirements selected for physical testing are: (R1) kit assembly completable in under 30 minutes using no specialized tools; (R2) continuous operation exceeding 45 minutes per charge under a 50% active, 50% idle duty cycle; (R3) structural and functional survival of three consecutive drops from 0.8 meters onto a vinyl surface; and (R4) correct execution of all five DRIVE module commands—forward, reverse, left turn, right turn, and emergency stop—across repeated trials. A fifth requirement, line-following performance above 85% track completion, is documented but not physically tested in this element; rationale is provided in the conclusion.<br>Testing will be conducted across four discrete experiments, each designed to evaluate one of the requirements listed above. Test 1 assesses kit assembly time using two trial types: a customer-facing trial in which pre-assembled modules are installed (the primary pass/fail condition), and a supplementary full-assembly trial conducted from individual components. Test 2 measures rover operational runtime from a fully charged cell under a defined duty cycle protocol. Test 3 subjects the assembled rover to a standardized drop sequence and evaluates post-drop system functionality. Test 4 evaluates DRIVE module command execution through a structured sequence of operator inputs and observed rover responses. Each test is designed to yield objective, replicable data that will feed directly into the analysis conducted in Element I."
+    },
+    {
+      "type": "notes",
+      "label": "Test 1 — Kit Assembly Time",
+      "content": "Test 1 evaluates Design Requirement R1, which specifies that a first-time user should be able to complete kit assembly in under 30 minutes using no specialized tools. Assembly time is a direct proxy for the product's accessibility to its target age group of 6–12 year-old children and their guardians. If assembly is excessively time-consuming or confusing, the educational experience is compromised before any STEM content is encountered. This test is conducted in a customer-facing kit assembly, where all modules arrive pre-assembled and serves as the formal pass/fail condition.<br>Pass/Fail Criteria: The test passes if the median trial completion time across all runs is equal to or less than 30 minutes, and if no single trial run exceeds 45 minutes. The 30-minute threshold is derived directly from the R1 specification established in Element C, which was itself informed by child development best practices regarding sustained attention spans in the 6–12 age group and consumer survey data indicating that parents prioritize ease of setup.<br>Materials: One fully assembled R3 rover kit (modules pre-assembled: Cortex, VelociMotors); included assembly instruction guide; stopwatch or smartphone timer; no tools beyond those included in the kit.<br>Initial Conditions: All trial components are pre-staged in the kit packaging in their as-shipped configuration. The test surface is a flat, clear table with no obstructions. The test participant has not previously assembled the rover and has not reviewed assembly instructions in advance. Timer starts when the participant opens the packaging and ends when the participant declares assembly complete and the rover is powered on successfully."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/TEST 1 SAFETY TABLE.png",
+      "label": "Test 1 — Safety Concerns and Controls"
+    },
+    {
+      "type": "notes",
+      "label": "Test 1 — Safety Test Termination",
+      "content": "Testing is stopped if a component fractures during normal assembly force, if the test participant reports injury, or if the battery is inserted incorrectly and the TP4056 indicator signals a fault condition. In any of these cases, the run is voided and the failure mode is recorded."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/TEST 1 DATA CHART.png",
+      "label": "Test 1 — Data Collection Chart"
+    },
+    {
+      "type": "notes",
+      "label": "Test 1 — Stepwise Procedure",
+      "content": "1. Confirm all pre-assembled modules (Cortex, VelociMotors) are present and undamaged.<br>2. Place all trial components and the instruction guide on the test surface. Do not open the instructions.<br>3. Instruct the test participant that they may begin. Start the timer simultaneously.<br>4. Observe without assistance. Record any assembly errors (incorrect connections, reversals, re-dos) as they occur.<br>5. When the participant declares assembly complete, prompt them to power on the rover.<br>6. Confirm the rover powers on successfully (indicator LED or motor response to input).<br>7. Stop the timer. Record elapsed time and any errors.<br>8. Reset all components to the starting configuration before the next run."
+    },
+    {
+      "type": "notes",
+      "label": "Test 2 — Runtime",
+      "content": "Test 2 evaluates Design Requirement R2, which specifies that the rover must remain operational for a minimum of 45 minutes per charge under a 50% active motor operation, 50% idle-with-electronics-active duty cycle. Runtime directly governs the usability of the product in classroom and home settings; a rover that depletes before a typical 45–60 minute activity period is complete fails to deliver on its core promise of sustained, reusable STEM engagement. The theoretical runtime analysis conducted in Element E, using a conservative 2,500 mAh cell capacity and a blended draw of approximately 300–400 mA, projected approximately 6.25 hours of operation—well in excess of the specification. This test converts that theoretical prediction into empirically measured data under controlled conditions.<br>Pass/Fail Criteria: The test passes if the rover remains functional—motors responding to input, ESP32 active and serving the web UI, all onboard electronics operational—for a continuous period of not less than 45 minutes across all three runs. Functional failure is defined as any condition in which the rover ceases to respond to driver input or the ESP32 resets or disconnects.<br>Materials: Fully assembled R3 rover with DRIVE module installed; fully charged 18650 cell; smartphone or laptop with Wi-Fi capability; stopwatch or smartphone timer; flat, unobstructed test surface (minimum 1m × 1m); engineering notebook for interval log entries.<br>Initial Conditions: Cell is confirmed fully charged (TP4056 charge-complete indicator confirmed). Rover is assembled and powered off at test start. Test surface is clear and level. Timer starts simultaneously with rover power-on. Duty cycle is enforced manually: operator drives rover at moderate throttle for 30-second intervals, then idles (motors stopped, ESP32 active) for 30-second intervals, repeating throughout the test."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/TEST 2 SAFETY TABLE.png",
+      "label": "Test 2 — Safety Concerns and Controls"
+    },
+    {
+      "type": "notes",
+      "label": "Test 2 — Safety Test Termination",
+      "content": "Testing is stopped immediately if the DRV8833 or ESP32 becomes hot to the touch during a thermal check, if the battery protection circuit engages before the 45-minute mark (constituting a test failure), or if any component emits smoke or unusual odor."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/TEST 2 DATA CHART.png",
+      "label": "Test 2 — Data Collection Chart"
+    },
+    {
+      "type": "notes",
+      "label": "Test 2 — Stepwise Procedure",
+      "content": "1. Confirm 18650 cell is fully charged per TP4056 indicator. Install cell in rover.<br>2. Connect to rover soft AP on test device. Confirm /ping response in web UI.<br>3. Power on rover. Start timer simultaneously.<br>4. Execute the defined duty cycle: 30 seconds of active driving at moderate throttle, 30 seconds of idle (motors stopped, ESP32 active). Repeat continuously.<br>5. At 15-minute mark: pause duty cycle. Carefully touch DRV8833 and ESP32 housings. Record thermal status. Resume duty cycle.<br>6. At 30-minute mark: repeat thermal check. Record. Resume duty cycle.<br>7. At 45-minute mark: confirm rover is still responsive to input. If yes, record pass and stop test. If rover has already failed, record failure time.<br>8. Power off rover. Allow 5-minute cooldown. Remove and re-install freshly charged cell before next run."
+    },
+    {
+      "type": "notes",
+      "label": "Test 3 — Drop Resilience",
+      "content": "Test 3 evaluates Design Requirement R3, which specifies that the rover must survive three consecutive drops from a height of 0.8 meters onto a vinyl surface with all systems remaining functional after each drop. The 0.8-meter height was selected in Element C to approximate table height, the most realistic accidental drop scenario during classroom or home use by the target age group. Structural and functional survival under drop loading is the most consequential durability requirement for any product intended for repeated handling by children. PETG filament was selected for structural components specifically due to its superior impact resistance (3.0 ft-lb/in vs. 0.4 ft-lb/in for PLA), and this test provides empirical validation of that material selection decision.<br>Pass/Fail Criteria: The test passes if, following all three drops in a single run, the rover powers on, the ESP32 connects to the test device, and all four motor drive directions respond correctly to input. Failure is defined as any post-drop condition in which structural fracture prevents normal operation, electronic connections are disrupted such that the rover does not power on, or motor response is absent or asymmetric. All three drops must be survived in a single run for the run to count as a pass.<br>Materials: Fully assembled R3 rover with DRIVE module, powered on; tape measure to confirm 0.8m drop height; vinyl test surface (minimum 0.5m × 0.5m); smartphone or laptop for post-drop functionality check; engineering notebook for recording drop orientation and post-drop observations.<br>Initial Conditions: Rover is fully assembled with cell installed and powered on prior to first drop. Drop height of 0.8 meters is measured from the bottom of the rover chassis to the vinyl surface. Drop orientation for each run: Drop 1 — base/chassis down; Drop 2 — top/Cortex module down; Drop 3 — side (wheel-down lateral). Vinyl surface is placed on a hard, level floor. Rover is held at drop height and released without additional force (free-fall only)."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/TEST 3 SAFETY TABLE.png",
+      "label": "Test 3 — Safety Concerns and Controls"
+    },
+    {
+      "type": "notes",
+      "label": "Test 3 — Safety Test Termination",
+      "content": "Testing is stopped if the 18650 cell is ejected on impact or the cell housing is cracked, if the TP4056 circuit indicates a fault after impact, or if any sharp fracture makes handling the rover unsafe without protective gloves."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/TEST 3 DATA CHART.png",
+      "label": "Test 3 — Data Collection Chart"
+    },
+    {
+      "type": "notes",
+      "label": "Test 3 — Stepwise Procedure",
+      "content": "1. Assemble rover fully. Install charged cell. Power on and confirm ESP32 connectivity.<br>2. Measure and mark 0.8m drop height above the vinyl test surface using tape measure.<br>3. Clear a 1-meter exclusion zone around the drop site.<br>4. Hold rover at 0.8m (chassis facing down). Release without additional force. Record orientation.<br>5. Retrieve rover. Inspect for sharp fractures before handling. Record any visible structural damage.<br>6. Power on rover (if off after impact). Attempt ESP32 connection. Attempt all four motor directions via web UI. Record results.<br>7. Repeat steps 4–6 for Drop 2 (top/Cortex down) and Drop 3 (lateral/side down).<br>8. Record overall run pass/fail based on whether rover passed all three individual drop checks.<br>9. Allow 5-minute rest between full runs. Re-inspect all connectors before next run."
+    },
+    {
+      "type": "notes",
+      "label": "Test 4 — Basic Drive Functionality",
+      "content": "Test 4 evaluates Design Requirement R4, which specifies that the rover's DRIVE module must correctly execute all five fundamental commands—forward, reverse, left turn, right turn, and emergency stop—across repeated trials. This test validates the foundational functional claim of the prototype: that R3 operates as a controllable differential-drive rover using the DRIVE brain module. The DRIVE module is the only brain module realized in R3, and confirming its reliable operation is prerequisite to any further behavioral claims about the platform. Drive functionality is validated here as an objective, observable pass/fail condition rather than a subjective evaluation, using a defined command sequence executed via the rover's web UI over its soft AP network.<br>Pass/Fail Criteria: The test passes if all five commands execute correctly—producing the expected rover response with no unintended behavior—across all three runs. A command is considered correctly executed if: forward produces sustained linear motion away from the operator; reverse produces sustained linear motion toward the operator; left turn produces a left-bearing rotation; right turn produces a right-bearing rotation; and emergency stop produces complete motor cessation within one second of command input regardless of prior command state. Failure is defined as any command producing no response, an incorrect response, or a response that requires multiple re-inputs to execute.<br>Materials: Fully assembled R3 rover with DRIVE module and charged 18650 cell; smartphone or laptop connected to rover soft AP; flat, unobstructed test surface (minimum 2m × 2m); engineering notebook for command-by-command response logging.<br>Initial Conditions: Rover is powered on and ESP32 soft AP is active. Test device is connected to rover AP and web UI is loaded. Rover is placed at the center of the test surface with clear travel distance in all directions. Throttle deadzone is set to its standard configured value. No other devices are connected to the rover (single-client lock active)."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/TEST 4 SAFETY TABLE.png",
+      "label": "Test 4 — Safety Concerns and Controls"
+    },
+    {
+      "type": "notes",
+      "label": "Test 4 — Safety Test Termination",
+      "content": "Testing is stopped if the rover becomes unresponsive to all input and cannot be stopped via the web UI, requiring manual power-off. Any run in which a power-off is required to stop the rover is recorded as a failure for the emergency stop command."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/TEST 4 DATA CHART.png",
+      "label": "Test 4 — Data Collection Chart"
+    },
+    {
+      "type": "notes",
+      "label": "Test 4 — Stepwise Procedure",
+      "content": "1. Power on rover. Connect test device to rover soft AP. Confirm web UI loads and /ping returns a response.<br>2. Place rover at center of test surface. Confirm clear travel space in all directions.<br>3. Input the Forward command. Observe and record rover response. Allow rover to travel approximately 0.5m, then return to center.<br>4. Input the Reverse command. Observe and record. Return to center.<br>5. Input the Left Turn command. Observe and record. Return to center.<br>6. Input the Right Turn command. Observe and record. Return to center.<br>7. Input Forward to create active motor state. While rover is in motion, input Emergency Stop. Record time from input to full stop. Record whether stop is achieved within one second.<br>8. Record run pass/fail. Power off rover, wait 30 seconds, power back on for next run.<br>9. Repeat steps 2–8 for Runs 2 and 3."
+    },
+    {
+      "type": "notes",
+      "label": "Expert Review",
+      "content": "The M.O.J.O. team consulted Jasmine Shields, a Software Engineering student at the University of California, Irvine, as the primary technical expert for this element. Shields was first engaged as an Expert Member Consultant earlier in the project and was most recently interviewed formally on January 19, 2026, at which point the conversation addressed the rover's firmware architecture, electronic systems, and general principles governing the empirical validation of embedded systems prototypes. During that consultation, Shields emphasized that features dependent on both hardware and software integration—such as sensor-driven behaviors—require hardware validation to precede behavioral validation, as software alone cannot confirm system performance when sensor input is involved. She further noted that battery runtime on real hardware is subject to implementation-specific losses not captured by theoretical calculations, making measured runtime data more reliable than projected values.<br>Shields's guidance from the January consultation informed the structure of the Element H test plan, particularly the decision to anchor Test 4 to hardware-observable outcomes (motor response and emergency stop behavior) rather than software-layer logging alone, and the decision to conduct measured runtime trials in Test 2 rather than relying solely on the Element E theoretical calculation. Shields did not review the specific test documents comprising this element, as the test plan was finalized after the January consultation concluded. However, the team's test designs are consistent with the validation principles she articulated: each test produces objective, hardware-observable outcomes; pass/fail thresholds are drawn directly from the Element C specifications; and no test relies on self-reported or subjective assessments. No tests were modified as a result of the expert consultation beyond the general structural influence described above."
+    },
+    {
+      "type": "notes",
+      "label": "Conclusion",
+      "content": "The four tests comprising Element H were selected to provide direct, hardware-observable evidence for the design requirements that are most consequential to the product's real-world viability and most amenable to physical measurement at the current stage of development. Test 1 (Assembly Time) addresses the product's accessibility to its target demographic by confirming whether a first-time user can build the rover within the 30-minute threshold established in Element C. Test 2 (Runtime) converts the theoretical electrochemical calculation from Element E into empirically grounded data, validating the usability claim that the rover can sustain a full activity session on a single charge. Test 3 (Drop Resilience) evaluates structural integrity under the realistic accident loading scenario—a table-height drop—that motivated the material selection of PETG over PLA. Test 4 (Drive Functionality) confirms that R3 performs its core purpose as a controllable differential-drive platform, providing the empirical foundation upon which all behavioral module claims rest. Together, these four tests constitute a coherent and mutually reinforcing evaluation of the prototype's fitness for purpose across its four most critical, physically testable performance dimensions.<br>The team expects all four tests to yield passing results based on prior observational evidence collected during prototype development and the public showcase. R3 successfully navigated operator commands during a multi-hour showcase session with no motor failures or firmware instability, providing reasonable confidence in Test 4 outcomes. The Element E theoretical runtime calculation of approximately 6.25 hours under conservative assumptions strongly suggests Test 2 will confirm compliance with the 45-minute requirement by a wide margin. PETG's documented impact resistance properties and the absence of structural fracture during prior handling support a passing outcome for Test 3. Assembly time has not been formally timed prior to Element H testing, making Test 1 the least predictable outcome, though the pre-assembled module configuration is expected to reduce complexity substantially below the 30-minute threshold.<br>One design requirement is not physically tested in this element: line-following performance above 85% track completion. This omission is intentional. R3 does not implement a functioning line-following module; the sensor integration and AGV firmware required for that behavior were not realized in the current prototype revision. The line-following specification remains documented as a design requirement for the platform and is evidenced through design work, firmware architecture documentation, and expert consultation with Jasmine Shields, who confirmed that sensor-driven behaviors are hardware-dependent and require hardware availability before empirical testing is meaningful. Element I will compile, analyze, and interpret all data collected through the procedures defined in this element."
+    }
+  ]
+}
