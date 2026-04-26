@@ -1,0 +1,99 @@
+{
+  "title": "{file}",
+  "date": "04/25/26",
+  "type": "Elements",
+  "brief": [
+    "Detailed report of current Element J findings and analysis."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Element J Report",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/GANTT CHART.png",
+      "label": "Gantt Chart Showcasing the Team's Progress"
+    },
+    {
+      "type": "notes",
+      "label": "Problem Statement",
+      "content": "Commercially available STEM toys designed for children—particularly those marketed towards girls—often fail to sustain inquiry-driven engagement through narrower technical content, limited opportunities for authentic engineering practices, and inconsistent value relative to gender-neutral alternatives, reducing opportunities for meaningful guardian-child co-play and dampening long-term interest in STEM among children ages 6–12. The M.O.J.O. team has developed a modular rover-based construction kit as a proposed solution and now documents the external evaluation conducted during the public showcase to assess how the project was received by consumers, peers, and stakeholders."
+    },
+    {
+      "type": "notes",
+      "label": "Introduction & Background Information",
+      "content": "External evaluation of the M.O.J.O. project was conducted on April 15, 2026, during a public showcase event held at Martin Luther King High School. The showcase served as a juried presentation environment in which the M.O.J.O. team displayed the R3 prototype, demonstrated its functionality, and engaged directly with attendees. Feedback was collected through a voluntary digital survey distributed to attendees at the booth, accessible via QR code. The survey instrument was designed to capture quantitative ratings across presentation quality, projected skill development outcomes, perceived societal impact, and likelihood to recommend, as well as open-ended qualitative comments. A total of 111 survey responses were collected across the duration of the event, spanning morning and afternoon presentation sessions. Respondents included fellow students, teachers, administrators, parents, and community members who engaged with the booth in person. Two additional responses were received in the days following the showcase, bringing the total to 111. The broad respondent pool reflects genuine public interest in the project and provides a diverse range of consumer, user, and stakeholder perspectives on the M.O.J.O. kit's design, educational value, and market viability."
+    },
+    {
+      "type": "notes",
+      "label": "How Feedback Was Collected",
+      "content": "Survey data was collected during the April 15, 2026 public showcase via a voluntary QR code-linked Google Form distributed at the M.O.J.O. booth. Attendees were invited to complete the survey after engaging with the prototype and speaking with team members. The survey was intentionally kept accessible, though several respondents noted in open-ended comments that the survey length was longer than preferred—feedback that is itself useful for future iterations of the evaluation instrument. No compensation was offered for participation."
+    },
+    {
+      "type": "notes",
+      "label": "Respondent Pool",
+      "content": "A total of 111 individuals completed the survey. Respondents included students from multiple grade levels, teachers and school staff, parents accompanying students, and community members attending the showcase. This population reflects the broad audience the M.O.J.O. kit is designed to reach: educators, potential buyers (guardians), and the peer community that shapes children's perceptions of STEM engagement."
+    },
+    {
+      "type": "notes",
+      "label": "Survey Results — Presentation Clarity",
+      "content": "Presentation Clarity (Q1 — Scale of 1–10): The average presentation clarity score across all 111 respondents was 9.41 out of 10, with the majority of respondents rating the presentation a perfect 10. This result indicates that the team's communication of the core problem, design intent, and prototype functionality was highly effective. Only a small number of respondents rated the presentation below 8, and no respondent rated it below 5. This directly supports R1 and the broader goal of educational accessibility: if the design rationale is clearly communicable to a general audience, the product concept is well-positioned for real-world deployment."
+    },
+    {
+      "type": "notes",
+      "label": "Survey Results — Most Appealing Aspects",
+      "content": "Most Appealing Aspects (Q2 — Select All That Apply): Respondents were asked to identify which aspects of the project were most appealing. Cost-Effectiveness/Affordability was the most frequently selected attribute, cited by 92 of 111 respondents (82.9%). Educational Value/Curriculum Integration ranked second at 73 selections (65.8%), followed by Accessibility via open-source design at 65 (58.6%), Potential for Collaboration and Community Building at 55 (49.5%), and Innovation/Novelty of the Technology at 55 (49.5%). These rankings are directly consistent with the design priorities the M.O.J.O. team established in Element C: affordability and educational value were the two leading specifications, and external evaluators independently identified these same dimensions as the project's strongest attributes. This convergence validates the team's original design priorities as correctly aligned with actual stakeholder values."
+    },
+    {
+      "type": "notes",
+      "label": "Survey Results — Projected Skill Development",
+      "content": "Projected Skill Development (Q3–Q11 — Skill Ratings): Respondents rated the project's projected effectiveness at teaching nine specific skills on a scale from Poorly to Adequately. Results across all nine categories were predominantly positive. The strongest ratings were in Engineering Concepts, Basic Circuitry, and Gears/Pulleys—areas directly tied to the rover's mechanical and electronic design. The lowest rated category, Complex Circuitry, reflects a legitimate and fair assessment: the R3 prototype does not expose complex circuit design to the user, as electronics arrive pre-assembled within the Cortex module. This feedback is constructive and accurate rather than a criticism of the design concept; it suggests that future module expansions could offer an optional complexity tier for older users seeking deeper engagement with circuit design."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/SKILL DEVELOPMENT RATINGS TABLE.png",
+      "label": "Projected Skill Development Ratings — All Nine Categories"
+    },
+    {
+      "type": "notes",
+      "label": "Survey Results — Societal Impact",
+      "content": "Societal Impact (Q12): When asked how influential the project might be for lower-income households and those in cycles of poverty, 48 respondents (43.2%) selected \"Incredibly Influential\" and 42 (37.8%) selected \"Very Influential,\" for a combined positive influence rate of 81.1%. Only 2 respondents (1.8%) selected \"Barely Influential\" and none selected \"Not Influential.\" This result speaks directly to the equity dimension of the M.O.J.O. project's mission. The design requirement for affordability—targeting a retail price in the $30–60 range with a production BOM below $25—was informed by the documented finding that 44.2% of the original consumer survey respondents identified affordability as their top purchasing priority. The showcase audience's response confirms that this framing resonates with a broad cross-section of the public."
+    },
+    {
+      "type": "notes",
+      "label": "Survey Results — Likelihood to Recommend",
+      "content": "Likelihood to Recommend (Q13 — Scale of 1–10): The average recommendation score was 8.81 out of 10, indicating strong overall endorsement of the project. Only a small number of respondents rated recommendation likelihood below 7. Taken alongside the 9.41 presentation clarity score, the data indicates that respondents not only understood the project clearly but were willing to advocate for it to peers and colleagues—a meaningful proxy for potential consumer adoption."
+    },
+    {
+      "type": "notes",
+      "label": "Qualitative Feedback Analysis",
+      "content": "Several substantive qualitative comments were submitted that are worth addressing directly.<br>Structural concerns about 3D printing: One respondent noted concerns about the lack of strength in 3D prints and the overall look of a 3D-printed toy in a consumer context. These comments are fair and reflect a known limitation of FDM prototyping that the team has acknowledged throughout the design process. The R3 prototype is a functional proof-of-concept rather than a production unit. Injection-molded housing—identified as a long-term fabrication pathway in Element D—would address these concerns at scale.<br>Packaging and product presentation: One respondent asked specifically about box design, noting it is a very important part of selling the product. The M.O.J.O. team has developed brand identity assets (typography, color palette, logo) and dual-packaging concepts informed by expert feedback in earlier elements, but formal packaging design has not been prototyped. This is a legitimate gap that future work should address.<br>Price perception: One respondent offered the nuanced observation that pricing the kit too low might cause consumers to perceive it as low quality—that if it's too cheap, they might think it would just be a waste of money rather than a real toy. This comment had not been previously considered by the team and introduces a relevant pricing psychology dimension. Consumer perception of price-quality relationship is a documented phenomenon in retail marketing and suggests that the retail price target should be calibrated not only for affordability but also for perceived value—a consideration for Element K and any future commercial planning.<br>Assembly instructions: One respondent asked whether there are directions to build the rover or if it is completely free range for imagination. This reflects genuine uncertainty about the guided vs. open-ended nature of the kit—a question directly relevant to the R1 design requirement and the guided assembly instruction guide included with the kit. It suggests the team's communication of the instructional component could be strengthened in future presentations.<br>Positive engagement with hands-on interaction: One respondent noted that the presentation was great and allowed them to even test out the project. The ability to physically interact with the rover during the showcase aligns directly with the co-play design requirement and demonstrates the prototype's readiness for genuine user engagement."
+    },
+    {
+      "type": "notes",
+      "label": "Project Poster",
+      "content": "The following poster was printed and displayed at the April 15, 2026 public showcase."
+    },
+    {
+      "type": "image",
+      "src": "resources/{class}/{type}/{title}/SHOWCASE POSTER.png",
+      "label": "M.O.J.O. Open STEM Project — Showcase Poster"
+    },
+    {
+      "type": "notes",
+      "label": "Engineering Portfolio",
+      "content": "All resources can be found under EDD marked pages and assignments at: https://mjeide.github.io/eng-portfolio/"
+    },
+    {
+      "type": "notes",
+      "label": "Conclusion",
+      "content": "The external evaluation conducted at the April 15, 2026 public showcase produced overwhelmingly positive results across all measured dimensions. With 111 respondents, the M.O.J.O. team received one of the largest feedback datasets in the project's history, providing statistically meaningful insight into how the design is perceived by a broad cross-section of consumers, peers, and community members. Presentation clarity averaged 9.41 out of 10, and likelihood to recommend averaged 8.81 out of 10, indicating that both the communication and the underlying product concept were well received.<br>Survey data confirmed that the team's design priorities are correctly aligned with stakeholder values. Affordability and educational value—the two attributes most frequently selected as appealing—correspond directly to the highest-priority design requirements established in Element C and refined through expert consultation in Elements D and F. The 81.1% of respondents who rated the project as \"Very\" or \"Incredibly\" influential for low-income households validates the equity-driven framing of the project's mission statement.<br>The skill development ratings indicate that the prototype communicates its STEM learning potential effectively across most categories, with Complex Circuitry representing the most clearly identified gap—one that is consistent with the current prototype's scope and addressable through future module development. Qualitative feedback surfaced three previously underexamined design considerations: production material quality perception, packaging design as a consumer touchpoint, and price-quality signaling psychology. Each of these represents actionable input for future development rather than fundamental criticisms of the design concept.<br>The showcase results collectively indicate that the M.O.J.O. prototype is a viable and market-resonant concept. The design meets its core educational and accessibility goals as perceived by real stakeholders, the prototype is functional enough to support live user interaction, and the team's communication of the problem and solution was highly effective. Looking ahead to Element K, the feedback gathered in this element will inform the final reflection on the project's overall outcomes, limitations, and recommendations for future development—particularly the areas of production-quality materials, packaging design, and the expansion of brain module complexity tiers."
+    }
+  ]
+}
