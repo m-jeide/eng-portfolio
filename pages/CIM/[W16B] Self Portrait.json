@@ -1,0 +1,75 @@
+{
+  "title": "[W16B] Self Portrait",
+  "date": "04/27/26",
+  "type": "Notes",
+  "brief": [
+    "Create a 3D self-portrait of ourselves using Makerspace"
+  ],
+  "elements": [
+    {
+      "type": "layout",
+      "label": "Self-Portrait",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "image",
+          "items": [
+            {
+              "label": "3D Model",
+              "src": "resources/{class}/{type}/{title}/Matthew.png"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "items": [
+            {
+              "label": "3D Model - IdeaMaker",
+              "src": "resources/{class}/{type}/{title}/Matthew IdeaMaker.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "label": "Self-Portrait Roundabout",
+      "src": "https://www.youtube.com/watch?v=Y7vBLszPKl4"
+    },
+    {
+      "type": "layout",
+      "label": "Portrait of a friend",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "image",
+          "items": [
+            {
+              "label": "3D Model",
+              "src": "resources/{class}/{type}/{title}/Sidney.png"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "items": [
+            {
+              "label": "3D Model - IdeaMaker",
+              "src": "resources/{class}/{type}/{title}/Sidney IdeaMaker.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "label": "Friend's Portrait Roundabout",
+      "src": "https://www.youtube.com/watch?v=bDFPNAxg9o8"
+    },
+    {
+      "type": "notes",
+      "label": "Source (STL files)",
+      "src": "https://drive.google.com/drive/folders/1efmSNFxRfad9ZYdg9Wgv7_JQQQzQRH5i?usp=sharing"
+    }
+  ]
+}
