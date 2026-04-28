@@ -1,6 +1,12 @@
 {
   "CIM": [
     {
+      "id": "[W16B] Self Portrait",
+      "title": "[W16B] Self Portrait",
+      "type": "Notes",
+      "date": "04/27/26"
+    },
+    {
       "id": "CIM 2.3.7",
       "title": "CIM 2.3.7",
       "type": "Project",
