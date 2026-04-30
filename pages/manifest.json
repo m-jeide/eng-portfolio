@@ -2,7 +2,13 @@
   "CIM": [
     {
       "id": "[W16B] Self Portrait",
-      "title": "[W16B] Self Portrait",
+      "title": "[W16B] Self Portrait ([W16B] Self Portrait)",
+      "type": "Notes",
+      "date": "04/27/26"
+    },
+    {
+      "id": "[W17B] Parametric Equations",
+      "title": "[W16B] Self Portrait ([W17B] Parametric Equations)",
       "type": "Notes",
       "date": "04/27/26"
     },
