@@ -1,0 +1,40 @@
+{
+  "title": "[W16B] Self Portrait",
+  "date": "04/27/26",
+  "type": "Notes",
+  "brief": [
+    "Learn and practice designing with parameters in Fusion."
+  ],
+  "elements": [
+    {
+      "type": "video",
+      "label": "Parametric Scaling Demonstration",
+      "src": "https://www.youtube.com/watch?v=Y7vBLszPKl4"
+    },
+    {
+      "type": "layout",
+      "label": "Parametric Design",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "image",
+          "items": [
+            {
+              "label": "Model",
+              "src": "resources/{class}/{type}/{title}/Model.png"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "items": [
+            {
+              "label": "Parameter Configuration",
+              "src": "resources/{class}/{type}/{title}/Parameters.png"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
