@@ -391,6 +391,12 @@
   ],
   "EDD": [
     {
+      "id": "[W17B] Patent Application",
+      "title": "[W17B] Patent Application",
+      "type": "Elements",
+      "date": "05/01/26"
+    },
+    {
       "id": "EDD Element L",
       "title": "EDD Element L",
       "type": "Elements",
