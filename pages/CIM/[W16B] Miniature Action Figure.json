@@ -1,0 +1,40 @@
+{
+  "title": "[W16B] Miniature Action Figure",
+  "date": "05/01/26",
+  "type": "Project",
+  "brief": [
+    "Design an action figure."
+  ],
+  "elements": [
+    {
+      "type": "video",
+      "label": "Rotation",
+      "src": "https://www.youtube.com/watch?v=KPdw1nw68to"
+    },
+    {
+      "type": "layout",
+      "label": "Design",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "image",
+          "items": [
+            {
+              "label": "WIP",
+              "src": "resources/{class}/{type}/{title}/WIP.png"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "items": [
+            {
+              "label": "Final",
+              "src": "resources/{class}/{type}/{title}/Final.png"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
