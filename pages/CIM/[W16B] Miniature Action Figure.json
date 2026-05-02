@@ -35,6 +35,11 @@
           ]
         }
       ]
+    },
+    {
+      "type": "PDF",
+      "label": "Handout",
+      "src": "resources/{class}/{type}/{title}/{title}.pdf"
     }
   ]
 }
