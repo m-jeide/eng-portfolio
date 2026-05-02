@@ -1,0 +1,19 @@
+{
+  "title": "{file}",
+  "date": "05/01/26",
+  "type": "Elements",
+  "brief": [
+    "A mockup of a patent application for MOJO technologies."
+  ],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Document",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    }
+  ]
+}
