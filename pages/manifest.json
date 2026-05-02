@@ -1,6 +1,12 @@
 {
   "CIM": [
     {
+      "id": "[W16B] Miniature Action Figure",
+      "title": "[W16B] Miniature Action Figure",
+      "type": "Project",
+      "date": "05/01/26"
+    },
+    {
       "id": "[W17B] Parametric Equations",
       "title": "[W17B] Parametric Equations",
       "type": "Notes",
