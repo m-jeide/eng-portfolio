@@ -8,7 +8,7 @@
   "elements": [
     {
       "type": "video",
-      "label": "Rotation",
+      "label": "3D Model Rotation",
       "src": "https://www.youtube.com/watch?v=KPdw1nw68to"
     },
     {
@@ -30,7 +30,7 @@
           "items": [
             {
               "label": "Final",
-              "src": "resources/{class}/{type}/{title}/Final.png"
+              "src": "resources/{class}/{type}/{title}/FINAL.png"
             }
           ]
         }
