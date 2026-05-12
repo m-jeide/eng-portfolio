@@ -213,6 +213,12 @@
   ],
   "Certifications": [
     {
+      "id": "Preparing for College and Careers",
+      "title": "Preparing for College and Careers",
+      "type": "Certifications",
+      "date": "05/12/26"
+    },
+    {
       "id": "Manufacturing Technology",
       "title": "Manufacturing Technology",
       "type": "Certifications",
@@ -235,12 +241,6 @@
       "title": "Manufacturing Principles",
       "type": "Certifications",
       "date": "08/22/25"
-    },
-    {
-      "id": "Preparing for College and Careers",
-      "title": "Preparing for College and Careers",
-      "type": "Certifications",
-      "date": "05/12/25"
     },
     {
       "id": "Electronics II",
@@ -402,6 +402,12 @@
     }
   ],
   "EDD": [
+    {
+      "id": "[W16B] EDD Week 14B, 15B, 16B Report",
+      "title": "[W16B] EDD Week 14B, 15B, 16B Report",
+      "type": "Weekly Report",
+      "date": "05/12/26"
+    },
     {
       "id": "[W17B] Patent Application",
       "title": "[W17B] Patent Application",
