@@ -1,0 +1,17 @@
+{
+  "title": "{file}",
+  "date": "05/12/26",
+  "type": "Certifications",
+  "brief": [],
+  "elements": [
+    {
+      "type": "PDF",
+      "items": [
+        {
+          "label": "Certificate",
+          "src": "resources/{class}/{type}/{title}/{title}.pdf"
+        }
+      ]
+    } 
+  ]
+}
