@@ -12,6 +12,23 @@
           "src": "resources/{class}/{type}/{title}/{title}.pdf"
         }
       ]
-    } 
+    },
+    {
+      "type": "layout",
+      "label": "Scores",
+      "template": "2-columns",
+      "elements": [
+        {
+          "type": "image",
+          "label": "Robotics I",
+          "src": "resources/{class}/{type}/{title}/Robotics I.png"
+        },
+        {
+          "type": "image",
+          "label": "Robotics II",
+          "src": "resources/{class}/{type}/{title}/Robotics I.png"
+        }
+      ]
+    }
   ]
 }
